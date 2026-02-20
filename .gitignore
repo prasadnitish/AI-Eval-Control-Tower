@@ -23,3 +23,9 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Draft and intermediate PRD/planning docs
+IMPLEMENTATION_PLAN.md
+PRD_AI_Eval_Control_Tower_best_of_both_codex.md
+PRD_AI_Eval_Control_Tower_claude.md
+PRD_AI_Eval_Control_Tower_codex.md
