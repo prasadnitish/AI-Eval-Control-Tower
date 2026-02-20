@@ -1,0 +1,27 @@
+{
+  "name": "ai-evals-control-tower",
+  "version": "1.0.0",
+  "description": "AI model evaluation framework — baseline vs candidate release readiness",
+  "type": "module",
+  "scripts": {
+    "dev": "vite src",
+    "build": "vite build src",
+    "preview": "vite preview",
+    "eval": "node eval/eval-runner.js",
+    "gate": "node eval/check-gate.js",
+    "history": "node eval/generate-history.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.78.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "recharts": "^2.13.3"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0"
+  }
+}

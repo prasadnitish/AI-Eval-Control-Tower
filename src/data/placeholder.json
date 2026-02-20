@@ -1,0 +1,992 @@
+{
+  "meta": {
+    "generated_at": "2026-02-19T12:00:00Z",
+    "dataset": "tpm-portfolio-evals",
+    "dataset_version": "v2.4.1",
+    "suite": "full-quality-latency-cost",
+    "prompt_count": 4200,
+    "judge_model": "claude-opus-4-5",
+    "runner_version": "0.9.3",
+    "run_id": "run_20260219_001"
+  },
+  "model_a": {
+    "name": "Claude Sonnet 4.5",
+    "provider": "Anthropic",
+    "version": "claude-sonnet-4-5"
+  },
+  "model_b": {
+    "name": "DeepSeek-V3",
+    "provider": "DeepSeek",
+    "version": "deepseek-chat"
+  },
+  "summary": {
+    "model_a_avg_quality": 82.8,
+    "model_b_avg_quality": 74,
+    "model_a_p50_latency_ms": 1090,
+    "model_a_p95_latency_ms": 2254,
+    "model_a_p99_latency_ms": 3732,
+    "model_b_p50_latency_ms": 1395,
+    "model_b_p95_latency_ms": 2815,
+    "model_b_p99_latency_ms": 4433,
+    "model_a_total_cost_usd": 12.96,
+    "model_b_total_cost_usd": 1.18,
+    "model_a_avg_cost_per_inference": 0.003086,
+    "model_b_avg_cost_per_inference": 0.000281,
+    "policy_violations": 3
+  },
+  "daily": [
+    {
+      "date": "2026-01-21",
+      "model_a": {
+        "quality_score": 87.5,
+        "latency_p50": 1190,
+        "latency_p95": 2202,
+        "latency_p99": 3772,
+        "cost_per_inference": 0.002972,
+        "scores": {
+          "relevance": 8.74,
+          "accuracy": 8.67,
+          "actionability": 8.23,
+          "coherence": 8.83,
+          "conciseness": 7.66
+        }
+      },
+      "model_b": {
+        "quality_score": 76.1,
+        "latency_p50": 1542,
+        "latency_p95": 2475,
+        "latency_p99": 4253,
+        "cost_per_inference": 0.000273,
+        "scores": {
+          "relevance": 8.07,
+          "accuracy": 7.76,
+          "actionability": 7.22,
+          "coherence": 7.96,
+          "conciseness": 8.39
+        }
+      }
+    },
+    {
+      "date": "2026-01-22",
+      "model_a": {
+        "quality_score": 82.1,
+        "latency_p50": 1217,
+        "latency_p95": 2382,
+        "latency_p99": 4130,
+        "cost_per_inference": 0.003085,
+        "scores": {
+          "relevance": 8.72,
+          "accuracy": 8.61,
+          "actionability": 7.82,
+          "coherence": 8.75,
+          "conciseness": 7.53
+        }
+      },
+      "model_b": {
+        "quality_score": 77.7,
+        "latency_p50": 1394,
+        "latency_p95": 2430,
+        "latency_p99": 3989,
+        "cost_per_inference": 0.000278,
+        "scores": {
+          "relevance": 7.67,
+          "accuracy": 7.58,
+          "actionability": 7.21,
+          "coherence": 7.91,
+          "conciseness": 8.35
+        }
+      }
+    },
+    {
+      "date": "2026-01-23",
+      "model_a": {
+        "quality_score": 82,
+        "latency_p50": 1231,
+        "latency_p95": 2370,
+        "latency_p99": 3555,
+        "cost_per_inference": 0.003236,
+        "scores": {
+          "relevance": 8.49,
+          "accuracy": 8.74,
+          "actionability": 7.85,
+          "coherence": 8.91,
+          "conciseness": 7.38
+        }
+      },
+      "model_b": {
+        "quality_score": 77.1,
+        "latency_p50": 1232,
+        "latency_p95": 2423,
+        "latency_p99": 3902,
+        "cost_per_inference": 0.000271,
+        "scores": {
+          "relevance": 8.05,
+          "accuracy": 7.71,
+          "actionability": 7.08,
+          "coherence": 8.04,
+          "conciseness": 8.52
+        }
+      }
+    },
+    {
+      "date": "2026-01-24",
+      "model_a": {
+        "quality_score": 81.8,
+        "latency_p50": 1177,
+        "latency_p95": 2250,
+        "latency_p99": 3266,
+        "cost_per_inference": 0.003248,
+        "scores": {
+          "relevance": 8.21,
+          "accuracy": 8.34,
+          "actionability": 8.09,
+          "coherence": 8.61,
+          "conciseness": 7.11
+        }
+      },
+      "model_b": {
+        "quality_score": 77.2,
+        "latency_p50": 1391,
+        "latency_p95": 3184,
+        "latency_p99": 4470,
+        "cost_per_inference": 0.000279,
+        "scores": {
+          "relevance": 7.8,
+          "accuracy": 7.58,
+          "actionability": 7.39,
+          "coherence": 8.18,
+          "conciseness": 8.53
+        }
+      }
+    },
+    {
+      "date": "2026-01-25",
+      "model_a": {
+        "quality_score": 81.6,
+        "latency_p50": 1040,
+        "latency_p95": 2367,
+        "latency_p99": 4080,
+        "cost_per_inference": 0.003082,
+        "scores": {
+          "relevance": 8.41,
+          "accuracy": 8.61,
+          "actionability": 7.82,
+          "coherence": 8.5,
+          "conciseness": 7.6
+        }
+      },
+      "model_b": {
+        "quality_score": 80.1,
+        "latency_p50": 1399,
+        "latency_p95": 2934,
+        "latency_p99": 4784,
+        "cost_per_inference": 0.00029,
+        "scores": {
+          "relevance": 8.26,
+          "accuracy": 7.47,
+          "actionability": 7.5,
+          "coherence": 8.16,
+          "conciseness": 8.41
+        }
+      }
+    },
+    {
+      "date": "2026-01-26",
+      "model_a": {
+        "quality_score": 86.9,
+        "latency_p50": 1195,
+        "latency_p95": 2041,
+        "latency_p99": 3302,
+        "cost_per_inference": 0.003061,
+        "scores": {
+          "relevance": 8.42,
+          "accuracy": 8.71,
+          "actionability": 8.15,
+          "coherence": 9.01,
+          "conciseness": 7.76
+        }
+      },
+      "model_b": {
+        "quality_score": 77.2,
+        "latency_p50": 1447,
+        "latency_p95": 2602,
+        "latency_p99": 4805,
+        "cost_per_inference": 0.000283,
+        "scores": {
+          "relevance": 8.17,
+          "accuracy": 7.73,
+          "actionability": 7.14,
+          "coherence": 8.34,
+          "conciseness": 8.15
+        }
+      }
+    },
+    {
+      "date": "2026-01-27",
+      "model_a": {
+        "quality_score": 86.6,
+        "latency_p50": 1116,
+        "latency_p95": 2128,
+        "latency_p99": 3691,
+        "cost_per_inference": 0.003007,
+        "scores": {
+          "relevance": 8.43,
+          "accuracy": 8.76,
+          "actionability": 8.35,
+          "coherence": 8.64,
+          "conciseness": 7.07
+        }
+      },
+      "model_b": {
+        "quality_score": 75.2,
+        "latency_p50": 1520,
+        "latency_p95": 2850,
+        "latency_p99": 4457,
+        "cost_per_inference": 0.000278,
+        "scores": {
+          "relevance": 8.07,
+          "accuracy": 7.71,
+          "actionability": 7.01,
+          "coherence": 7.85,
+          "conciseness": 8.19
+        }
+      }
+    },
+    {
+      "date": "2026-01-28",
+      "model_a": {
+        "quality_score": 84.5,
+        "latency_p50": 966,
+        "latency_p95": 1973,
+        "latency_p99": 3649,
+        "cost_per_inference": 0.003058,
+        "scores": {
+          "relevance": 8.2,
+          "accuracy": 8.55,
+          "actionability": 8.21,
+          "coherence": 8.77,
+          "conciseness": 7.1
+        }
+      },
+      "model_b": {
+        "quality_score": 80.4,
+        "latency_p50": 1498,
+        "latency_p95": 2564,
+        "latency_p99": 4230,
+        "cost_per_inference": 0.000287,
+        "scores": {
+          "relevance": 8.14,
+          "accuracy": 7.66,
+          "actionability": 7.43,
+          "coherence": 8.43,
+          "conciseness": 8.46
+        }
+      }
+    },
+    {
+      "date": "2026-01-29",
+      "model_a": {
+        "quality_score": 81.5,
+        "latency_p50": 1125,
+        "latency_p95": 2343,
+        "latency_p99": 4153,
+        "cost_per_inference": 0.003198,
+        "scores": {
+          "relevance": 8.68,
+          "accuracy": 8.45,
+          "actionability": 7.8,
+          "coherence": 8.89,
+          "conciseness": 7.2
+        }
+      },
+      "model_b": {
+        "quality_score": 74.5,
+        "latency_p50": 1227,
+        "latency_p95": 2547,
+        "latency_p99": 5161,
+        "cost_per_inference": 0.000277,
+        "scores": {
+          "relevance": 7.69,
+          "accuracy": 7.61,
+          "actionability": 7.08,
+          "coherence": 8.07,
+          "conciseness": 8.48
+        }
+      }
+    },
+    {
+      "date": "2026-01-30",
+      "model_a": {
+        "quality_score": 84.9,
+        "latency_p50": 1036,
+        "latency_p95": 2223,
+        "latency_p99": 4170,
+        "cost_per_inference": 0.002979,
+        "scores": {
+          "relevance": 8.58,
+          "accuracy": 8.87,
+          "actionability": 7.92,
+          "coherence": 8.69,
+          "conciseness": 7.46
+        }
+      },
+      "model_b": {
+        "quality_score": 76.7,
+        "latency_p50": 1425,
+        "latency_p95": 3108,
+        "latency_p99": 5116,
+        "cost_per_inference": 0.000284,
+        "scores": {
+          "relevance": 7.81,
+          "accuracy": 7.27,
+          "actionability": 6.99,
+          "coherence": 8.05,
+          "conciseness": 8.29
+        }
+      }
+    },
+    {
+      "date": "2026-01-31",
+      "model_a": {
+        "quality_score": 84.1,
+        "latency_p50": 1037,
+        "latency_p95": 2215,
+        "latency_p99": 4332,
+        "cost_per_inference": 0.003078,
+        "scores": {
+          "relevance": 8.68,
+          "accuracy": 8.54,
+          "actionability": 8.27,
+          "coherence": 8.77,
+          "conciseness": 7.49
+        }
+      },
+      "model_b": {
+        "quality_score": 76.2,
+        "latency_p50": 1378,
+        "latency_p95": 2890,
+        "latency_p99": 4947,
+        "cost_per_inference": 0.000272,
+        "scores": {
+          "relevance": 7.5,
+          "accuracy": 7.31,
+          "actionability": 7.05,
+          "coherence": 7.86,
+          "conciseness": 8.28
+        }
+      }
+    },
+    {
+      "date": "2026-02-01",
+      "model_a": {
+        "quality_score": 83.5,
+        "latency_p50": 1139,
+        "latency_p95": 2471,
+        "latency_p99": 4061,
+        "cost_per_inference": 0.003048,
+        "scores": {
+          "relevance": 8.21,
+          "accuracy": 8.64,
+          "actionability": 8.07,
+          "coherence": 8.54,
+          "conciseness": 7.33
+        }
+      },
+      "model_b": {
+        "quality_score": 73.2,
+        "latency_p50": 1588,
+        "latency_p95": 2405,
+        "latency_p99": 4342,
+        "cost_per_inference": 0.000282,
+        "scores": {
+          "relevance": 7.84,
+          "accuracy": 7.32,
+          "actionability": 7.38,
+          "coherence": 8.16,
+          "conciseness": 8.26
+        }
+      }
+    },
+    {
+      "date": "2026-02-02",
+      "model_a": {
+        "quality_score": 82.5,
+        "latency_p50": 958,
+        "latency_p95": 2037,
+        "latency_p99": 4297,
+        "cost_per_inference": 0.003194,
+        "scores": {
+          "relevance": 8.29,
+          "accuracy": 8.35,
+          "actionability": 7.89,
+          "coherence": 8.68,
+          "conciseness": 7.33
+        }
+      },
+      "model_b": {
+        "quality_score": 73.6,
+        "latency_p50": 1395,
+        "latency_p95": 2880,
+        "latency_p99": 4982,
+        "cost_per_inference": 0.000293,
+        "scores": {
+          "relevance": 7.93,
+          "accuracy": 7.37,
+          "actionability": 7.35,
+          "coherence": 8.05,
+          "conciseness": 8.15
+        }
+      }
+    },
+    {
+      "date": "2026-02-03",
+      "model_a": {
+        "quality_score": 80.8,
+        "latency_p50": 1197,
+        "latency_p95": 2169,
+        "latency_p99": 4327,
+        "cost_per_inference": 0.003048,
+        "scores": {
+          "relevance": 8.33,
+          "accuracy": 8.58,
+          "actionability": 7.84,
+          "coherence": 8.67,
+          "conciseness": 7.35
+        }
+      },
+      "model_b": {
+        "quality_score": 73.5,
+        "latency_p50": 1513,
+        "latency_p95": 2646,
+        "latency_p99": 4257,
+        "cost_per_inference": 0.000293,
+        "scores": {
+          "relevance": 7.53,
+          "accuracy": 7.66,
+          "actionability": 7.26,
+          "coherence": 7.88,
+          "conciseness": 8.47
+        }
+      }
+    },
+    {
+      "date": "2026-02-04",
+      "model_a": {
+        "quality_score": 80.3,
+        "latency_p50": 1172,
+        "latency_p95": 2246,
+        "latency_p99": 3396,
+        "cost_per_inference": 0.003116,
+        "scores": {
+          "relevance": 8.61,
+          "accuracy": 8.78,
+          "actionability": 7.89,
+          "coherence": 8.47,
+          "conciseness": 7.06
+        }
+      },
+      "model_b": {
+        "quality_score": 76.3,
+        "latency_p50": 1541,
+        "latency_p95": 2813,
+        "latency_p99": 4130,
+        "cost_per_inference": 0.00027,
+        "scores": {
+          "relevance": 7.8,
+          "accuracy": 7.52,
+          "actionability": 6.99,
+          "coherence": 8.27,
+          "conciseness": 8.54
+        }
+      }
+    },
+    {
+      "date": "2026-02-05",
+      "model_a": {
+        "quality_score": 76.9,
+        "latency_p50": 971,
+        "latency_p95": 2039,
+        "latency_p99": 4048,
+        "cost_per_inference": 0.00296,
+        "scores": {
+          "relevance": 8.59,
+          "accuracy": 8.64,
+          "actionability": 8.08,
+          "coherence": 8.55,
+          "conciseness": 7.43
+        }
+      },
+      "model_b": {
+        "quality_score": 75.6,
+        "latency_p50": 1406,
+        "latency_p95": 2569,
+        "latency_p99": 4409,
+        "cost_per_inference": 0.000284,
+        "scores": {
+          "relevance": 7.84,
+          "accuracy": 7.22,
+          "actionability": 7.35,
+          "coherence": 8.01,
+          "conciseness": 8.25
+        }
+      }
+    },
+    {
+      "date": "2026-02-06",
+      "model_a": {
+        "quality_score": 78.9,
+        "latency_p50": 1022,
+        "latency_p95": 2328,
+        "latency_p99": 3504,
+        "cost_per_inference": 0.003094,
+        "scores": {
+          "relevance": 8.43,
+          "accuracy": 8.48,
+          "actionability": 7.69,
+          "coherence": 8.75,
+          "conciseness": 7.35
+        }
+      },
+      "model_b": {
+        "quality_score": 72.2,
+        "latency_p50": 1575,
+        "latency_p95": 2412,
+        "latency_p99": 5023,
+        "cost_per_inference": 0.00029,
+        "scores": {
+          "relevance": 7.91,
+          "accuracy": 7.52,
+          "actionability": 7.27,
+          "coherence": 8.04,
+          "conciseness": 8.3
+        }
+      }
+    },
+    {
+      "date": "2026-02-07",
+      "model_a": {
+        "quality_score": 76,
+        "latency_p50": 1204,
+        "latency_p95": 2387,
+        "latency_p99": 3288,
+        "cost_per_inference": 0.003025,
+        "scores": {
+          "relevance": 8.08,
+          "accuracy": 8.34,
+          "actionability": 7.95,
+          "coherence": 8.76,
+          "conciseness": 7.14
+        }
+      },
+      "model_b": {
+        "quality_score": 71.7,
+        "latency_p50": 1292,
+        "latency_p95": 2729,
+        "latency_p99": 5053,
+        "cost_per_inference": 0.000277,
+        "scores": {
+          "relevance": 7.85,
+          "accuracy": 7.59,
+          "actionability": 6.86,
+          "coherence": 7.94,
+          "conciseness": 8.08
+        }
+      }
+    },
+    {
+      "date": "2026-02-08",
+      "model_a": {
+        "quality_score": 81.3,
+        "latency_p50": 1014,
+        "latency_p95": 1957,
+        "latency_p99": 4227,
+        "cost_per_inference": 0.003041,
+        "scores": {
+          "relevance": 8.2,
+          "accuracy": 8.58,
+          "actionability": 7.87,
+          "coherence": 8.73,
+          "conciseness": 7.39
+        }
+      },
+      "model_b": {
+        "quality_score": 71.5,
+        "latency_p50": 1590,
+        "latency_p95": 2412,
+        "latency_p99": 3973,
+        "cost_per_inference": 0.000283,
+        "scores": {
+          "relevance": 7.61,
+          "accuracy": 7.16,
+          "actionability": 6.86,
+          "coherence": 7.66,
+          "conciseness": 8.11
+        }
+      }
+    },
+    {
+      "date": "2026-02-09",
+      "model_a": {
+        "quality_score": 79.2,
+        "latency_p50": 1002,
+        "latency_p95": 2488,
+        "latency_p99": 3308,
+        "cost_per_inference": 0.003037,
+        "scores": {
+          "relevance": 8.14,
+          "accuracy": 8.77,
+          "actionability": 7.98,
+          "coherence": 8.64,
+          "conciseness": 7.33
+        }
+      },
+      "model_b": {
+        "quality_score": 76.1,
+        "latency_p50": 1252,
+        "latency_p95": 2387,
+        "latency_p99": 4875,
+        "cost_per_inference": 0.000286,
+        "scores": {
+          "relevance": 7.83,
+          "accuracy": 7.47,
+          "actionability": 7.09,
+          "coherence": 7.83,
+          "conciseness": 8.28
+        }
+      }
+    },
+    {
+      "date": "2026-02-10",
+      "model_a": {
+        "quality_score": 83.9,
+        "latency_p50": 1080,
+        "latency_p95": 2605,
+        "latency_p99": 3873,
+        "cost_per_inference": 0.003009,
+        "scores": {
+          "relevance": 8.66,
+          "accuracy": 8.66,
+          "actionability": 8.01,
+          "coherence": 8.98,
+          "conciseness": 7.74
+        }
+      },
+      "model_b": {
+        "quality_score": 78.7,
+        "latency_p50": 1365,
+        "latency_p95": 2974,
+        "latency_p99": 4463,
+        "cost_per_inference": 0.000286,
+        "scores": {
+          "relevance": 7.63,
+          "accuracy": 7.42,
+          "actionability": 7.51,
+          "coherence": 8.16,
+          "conciseness": 8.04
+        }
+      }
+    },
+    {
+      "date": "2026-02-11",
+      "model_a": {
+        "quality_score": 87.8,
+        "latency_p50": 1067,
+        "latency_p95": 2129,
+        "latency_p99": 3805,
+        "cost_per_inference": 0.003212,
+        "scores": {
+          "relevance": 8.86,
+          "accuracy": 8.53,
+          "actionability": 8.36,
+          "coherence": 8.59,
+          "conciseness": 7.68
+        }
+      },
+      "model_b": {
+        "quality_score": 74.6,
+        "latency_p50": 1318,
+        "latency_p95": 2816,
+        "latency_p99": 3942,
+        "cost_per_inference": 0.000272,
+        "scores": {
+          "relevance": 7.73,
+          "accuracy": 7.68,
+          "actionability": 7.05,
+          "coherence": 8,
+          "conciseness": 8.2
+        }
+      }
+    },
+    {
+      "date": "2026-02-12",
+      "model_a": {
+        "quality_score": 83.2,
+        "latency_p50": 1109,
+        "latency_p95": 2149,
+        "latency_p99": 4222,
+        "cost_per_inference": 0.003232,
+        "scores": {
+          "relevance": 8.4,
+          "accuracy": 8.62,
+          "actionability": 8.15,
+          "coherence": 8.76,
+          "conciseness": 7.68
+        }
+      },
+      "model_b": {
+        "quality_score": 77,
+        "latency_p50": 1376,
+        "latency_p95": 3065,
+        "latency_p99": 3992,
+        "cost_per_inference": 0.000276,
+        "scores": {
+          "relevance": 8.08,
+          "accuracy": 7.55,
+          "actionability": 7.24,
+          "coherence": 7.94,
+          "conciseness": 8.58
+        }
+      }
+    },
+    {
+      "date": "2026-02-13",
+      "model_a": {
+        "quality_score": 84.9,
+        "latency_p50": 1088,
+        "latency_p95": 1958,
+        "latency_p99": 3580,
+        "cost_per_inference": 0.003134,
+        "scores": {
+          "relevance": 8.41,
+          "accuracy": 8.77,
+          "actionability": 8.21,
+          "coherence": 8.8,
+          "conciseness": 7.39
+        }
+      },
+      "model_b": {
+        "quality_score": 76.7,
+        "latency_p50": 1371,
+        "latency_p95": 3091,
+        "latency_p99": 3885,
+        "cost_per_inference": 0.000282,
+        "scores": {
+          "relevance": 7.51,
+          "accuracy": 7.71,
+          "actionability": 6.99,
+          "coherence": 8.14,
+          "conciseness": 8.16
+        }
+      }
+    },
+    {
+      "date": "2026-02-14",
+      "model_a": {
+        "quality_score": 83.2,
+        "latency_p50": 1074,
+        "latency_p95": 2362,
+        "latency_p99": 3306,
+        "cost_per_inference": 0.003075,
+        "scores": {
+          "relevance": 8.51,
+          "accuracy": 8.74,
+          "actionability": 7.8,
+          "coherence": 8.48,
+          "conciseness": 7.62
+        }
+      },
+      "model_b": {
+        "quality_score": 68.8,
+        "latency_p50": 1340,
+        "latency_p95": 2945,
+        "latency_p99": 4500,
+        "cost_per_inference": 0.00028,
+        "scores": {
+          "relevance": 7.42,
+          "accuracy": 7.02,
+          "actionability": 7,
+          "coherence": 7.81,
+          "conciseness": 8.15
+        }
+      }
+    },
+    {
+      "date": "2026-02-15",
+      "model_a": {
+        "quality_score": 81,
+        "latency_p50": 1018,
+        "latency_p95": 2344,
+        "latency_p99": 3459,
+        "cost_per_inference": 0.003131,
+        "scores": {
+          "relevance": 8.12,
+          "accuracy": 8.59,
+          "actionability": 8.16,
+          "coherence": 8.69,
+          "conciseness": 7.54
+        }
+      },
+      "model_b": {
+        "quality_score": 66.7,
+        "latency_p50": 1410,
+        "latency_p95": 3130,
+        "latency_p99": 4040,
+        "cost_per_inference": 0.000271,
+        "scores": {
+          "relevance": 7.29,
+          "accuracy": 7.01,
+          "actionability": 7.2,
+          "coherence": 7.69,
+          "conciseness": 8.29
+        }
+      }
+    },
+    {
+      "date": "2026-02-16",
+      "model_a": {
+        "quality_score": 84.4,
+        "latency_p50": 1111,
+        "latency_p95": 2360,
+        "latency_p99": 3555,
+        "cost_per_inference": 0.003128,
+        "scores": {
+          "relevance": 8.31,
+          "accuracy": 8.83,
+          "actionability": 8.23,
+          "coherence": 8.54,
+          "conciseness": 7.47
+        }
+      },
+      "model_b": {
+        "quality_score": 68,
+        "latency_p50": 1336,
+        "latency_p95": 2448,
+        "latency_p99": 4768,
+        "cost_per_inference": 0.00027,
+        "scores": {
+          "relevance": 7.59,
+          "accuracy": 7.2,
+          "actionability": 7.01,
+          "coherence": 7.72,
+          "conciseness": 8.19
+        }
+      }
+    },
+    {
+      "date": "2026-02-17",
+      "model_a": {
+        "quality_score": 82.5,
+        "latency_p50": 1092,
+        "latency_p95": 2518,
+        "latency_p99": 3348,
+        "cost_per_inference": 0.00305,
+        "scores": {
+          "relevance": 8.53,
+          "accuracy": 8.57,
+          "actionability": 8.1,
+          "coherence": 8.86,
+          "conciseness": 7.69
+        }
+      },
+      "model_b": {
+        "quality_score": 63.8,
+        "latency_p50": 1195,
+        "latency_p95": 2853,
+        "latency_p99": 4162,
+        "cost_per_inference": 0.000292,
+        "scores": {
+          "relevance": 7.21,
+          "accuracy": 7.08,
+          "actionability": 6.74,
+          "coherence": 7.81,
+          "conciseness": 8.19
+        }
+      }
+    },
+    {
+      "date": "2026-02-18",
+      "model_a": {
+        "quality_score": 84.1,
+        "latency_p50": 1161,
+        "latency_p95": 2476,
+        "latency_p99": 3286,
+        "cost_per_inference": 0.00297,
+        "scores": {
+          "relevance": 8.52,
+          "accuracy": 8.75,
+          "actionability": 8.04,
+          "coherence": 8.94,
+          "conciseness": 7.48
+        }
+      },
+      "model_b": {
+        "quality_score": 67.9,
+        "latency_p50": 1305,
+        "latency_p95": 3204,
+        "latency_p99": 4726,
+        "cost_per_inference": 0.000285,
+        "scores": {
+          "relevance": 7.49,
+          "accuracy": 7.54,
+          "actionability": 6.85,
+          "coherence": 7.83,
+          "conciseness": 7.91
+        }
+      }
+    },
+    {
+      "date": "2026-02-19",
+      "model_a": {
+        "quality_score": 85,
+        "latency_p50": 1059,
+        "latency_p95": 2258,
+        "latency_p99": 4320,
+        "cost_per_inference": 0.003067,
+        "scores": {
+          "relevance": 8.49,
+          "accuracy": 8.53,
+          "actionability": 8.08,
+          "coherence": 8.59,
+          "conciseness": 7.23
+        }
+      },
+      "model_b": {
+        "quality_score": 64.2,
+        "latency_p50": 1448,
+        "latency_p95": 2949,
+        "latency_p99": 4347,
+        "cost_per_inference": 0.00029,
+        "scores": {
+          "relevance": 7.74,
+          "accuracy": 7.21,
+          "actionability": 6.98,
+          "coherence": 7.98,
+          "conciseness": 8.02
+        }
+      }
+    }
+  ],
+  "events": [
+    {
+      "type": "distribution_shift",
+      "start": "2026-01-31",
+      "end": "2026-02-08",
+      "resolved": true,
+      "resolved_at": "2026-02-11",
+      "status": "Resolved",
+      "label": "Distribution Shift",
+      "description": "Prompt difficulty mix skewed toward hard tier. Resolved via category rebalancing."
+    },
+    {
+      "type": "behaviour_shift",
+      "start": "2026-02-15",
+      "end": null,
+      "resolved": false,
+      "resolved_at": null,
+      "status": "Under Investigation",
+      "label": "Model Behaviour Shift",
+      "description": "Sharp quality drop on root-cause-analysis prompts for DeepSeek-V3. Under investigation."
+    }
+  ],
+  "prompts": []
+}

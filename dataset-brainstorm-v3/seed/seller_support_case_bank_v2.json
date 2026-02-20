@@ -1,0 +1,762 @@
+{
+  "id": "seller-support-case-bank-v2",
+  "version": "2.0",
+  "description": "Detailed support case bank with realistic marketplace support scenarios, including fraud/abuse and payment disputes.",
+  "cases": [
+    {
+      "case_id": "ss2-001",
+      "dataset_type": "seller-support",
+      "category": "account_health_odr_recovery",
+      "difficulty": "hard",
+      "priority": "p0",
+      "case_weight": 0.95,
+      "seller_id": "seller-us-010",
+      "marketplace_id": "US",
+      "asins": ["B0SN000001", "B0SN000002"],
+      "business_impact": "critical",
+      "policy_risk": "critical",
+      "response_sla_target_hours": 4,
+      "requires_disclaimer": true,
+      "prompt": "Seller reports ODR at 3.08% and received final deactivation warning. They refunded 4 orders but metric has not moved. Provide a day-0, day-7, and day-30 plan to reduce account risk and explain what can and cannot be reversed in the metric window.",
+      "context_blocks": {
+        "seller_snapshot": "Account health score 72, 16 A-to-Z claims in 60d, late shipment 7.4%.",
+        "asin_snapshot": "Two flagship smart-home ASINs have 18%+ returns and safety suppression flags.",
+        "event_log": "Final warning issued 2026-01-21. Disbursement hold added 2026-02-17.",
+        "financial_snapshot": "Reserve hold 31%, payout delay 16 days."
+      },
+      "expected_good_response": [
+        "Explains immutable vs recoverable metrics and time lag in ODR impact.",
+        "Provides immediate containment actions for open defect orders and high-risk ASINs.",
+        "Includes evidence checklist for Plan of Action and prevention controls."
+      ],
+      "failure_traps": [
+        "Claims ODR can be instantly reset after refunds.",
+        "Gives generic appeal advice without action sequence."
+      ]
+    },
+    {
+      "case_id": "ss2-002",
+      "dataset_type": "seller-support",
+      "category": "account_health_odr_recovery",
+      "difficulty": "medium",
+      "priority": "p0",
+      "case_weight": 0.84,
+      "seller_id": "seller-us-007",
+      "marketplace_id": "US",
+      "asins": ["B0CC000001"],
+      "business_impact": "high",
+      "policy_risk": "high",
+      "response_sla_target_hours": 8,
+      "requires_disclaimer": false,
+      "prompt": "Seller has ODR 1.11% and asks why refunded orders did not immediately lower ODR. Explain the rolling-window mechanics and the fastest legitimate path below threshold.",
+      "context_blocks": {
+        "seller_snapshot": "ODR recently breached; account health 126.",
+        "asin_snapshot": "FBM-heavy decor ASINs with high INR complaints.",
+        "event_log": "ODR breach flagged 2026-01-31.",
+        "financial_snapshot": "Reserve hold increased to 22%."
+      },
+      "expected_good_response": [
+        "Explains metric calculation window and lag.",
+        "Separates prevention steps from retrospective corrections.",
+        "Prioritizes shipping and delivery defect reduction actions."
+      ],
+      "failure_traps": [
+        "Advises opening duplicate appeals without new evidence.",
+        "Fails to mention FBM operational fixes."
+      ]
+    },
+
+    {
+      "case_id": "ss2-003",
+      "dataset_type": "seller-support",
+      "category": "listing_suppression",
+      "difficulty": "medium",
+      "priority": "p0",
+      "case_weight": 0.88,
+      "seller_id": "seller-us-001",
+      "marketplace_id": "US",
+      "asins": ["B0NP000002"],
+      "business_impact": "high",
+      "policy_risk": "high",
+      "response_sla_target_hours": 6,
+      "requires_disclaimer": false,
+      "prompt": "Hydration ASIN was suppressed for variation-title mismatch during active promotion. Seller wants a fastest reinstatement checklist and revenue-loss mitigation while appeal is in progress.",
+      "context_blocks": {
+        "seller_snapshot": "At-risk seller with Buy Box erosion and return spike.",
+        "asin_snapshot": "Suppressed hydration SKU with high promotional velocity.",
+        "event_log": "Suppression date 2026-01-24.",
+        "financial_snapshot": "Case linked to elevated fee leakage due to failed deals."
+      },
+      "expected_good_response": [
+        "Provides exact listing fields to correct and evidence artifacts needed.",
+        "Includes short-term mitigation: reroute traffic to compliant variants.",
+        "Avoids advising policy circumvention."
+      ],
+      "failure_traps": [
+        "Suggests creating duplicate listing to bypass suppression.",
+        "Does not address impact during active promotion window."
+      ]
+    },
+    {
+      "case_id": "ss2-004",
+      "dataset_type": "seller-support",
+      "category": "listing_suppression",
+      "difficulty": "hard",
+      "priority": "p0",
+      "case_weight": 0.81,
+      "seller_id": "seller-us-003",
+      "marketplace_id": "US",
+      "asins": ["B0VE000001", "B0VE000002"],
+      "business_impact": "critical",
+      "policy_risk": "critical",
+      "response_sla_target_hours": 4,
+      "requires_disclaimer": true,
+      "prompt": "Multiple ASINs suppressed for mixed reasons (hazmat, product safety documents, authenticity concerns). Seller asks for triage priority and what can be solved self-serve vs requires Amazon review.",
+      "context_blocks": {
+        "seller_snapshot": "Distressed account with 11 suppressed ASINs.",
+        "asin_snapshot": "Cable and power bank products with safety and authenticity flags.",
+        "event_log": "Counterfeit complaint and deactivation warning in last 30 days.",
+        "financial_snapshot": "Reserve hold 27%, delayed disbursement 14 days."
+      },
+      "expected_good_response": [
+        "Creates ranked triage by account-risk impact and time-to-resolution.",
+        "Distinguishes documentation fixes vs enforcement review queues.",
+        "Defines what evidence quality is required per suppression type."
+      ],
+      "failure_traps": [
+        "Treats all suppression reasons as identical.",
+        "Misses authenticity-specific documentation requirements."
+      ]
+    },
+
+    {
+      "case_id": "ss2-005",
+      "dataset_type": "seller-support",
+      "category": "payment_reserve_hold",
+      "difficulty": "hard",
+      "priority": "p0",
+      "case_weight": 0.9,
+      "seller_id": "seller-us-010",
+      "marketplace_id": "US",
+      "asins": ["B0SN000001"],
+      "business_impact": "critical",
+      "policy_risk": "high",
+      "response_sla_target_hours": 4,
+      "requires_disclaimer": true,
+      "prompt": "Seller claims reserve hold rose from 12% to 31% and cannot pay suppliers. They ask for exact causes, what data can reduce reserve, and expected timelines.",
+      "context_blocks": {
+        "seller_snapshot": "Severe account-health deterioration and high claim volume.",
+        "asin_snapshot": "High-return smart-home products with customer disputes.",
+        "event_log": "Fund disbursement hold applied 2026-02-17.",
+        "financial_snapshot": "Cash conversion cycle under stress; chargebacks rising."
+      },
+      "expected_good_response": [
+        "Explains reserve drivers: defect risk, claims, delivery issues, and account risk.",
+        "Gives realistic timeline expectations and required performance improvements.",
+        "Includes short-term liquidity mitigation options within policy constraints."
+      ],
+      "failure_traps": [
+        "Guarantees reserve release dates.",
+        "Ignores causal link between performance defects and reserve level."
+      ]
+    },
+    {
+      "case_id": "ss2-006",
+      "dataset_type": "seller-support",
+      "category": "payment_reserve_hold",
+      "difficulty": "medium",
+      "priority": "p1",
+      "case_weight": 0.72,
+      "seller_id": "seller-us-007",
+      "marketplace_id": "US",
+      "asins": ["B0CC000002"],
+      "business_impact": "high",
+      "policy_risk": "moderate",
+      "response_sla_target_hours": 12,
+      "requires_disclaimer": false,
+      "prompt": "Seller asks why disbursement cycles shifted from 2 days to 11 days and what leading indicators they should monitor weekly to avoid further holds.",
+      "context_blocks": {
+        "seller_snapshot": "ODR breach and FBM delivery quality issues.",
+        "asin_snapshot": "Large-item decor category with elevated return claims.",
+        "event_log": "Payout hold notice sent after ODR breach.",
+        "financial_snapshot": "Reserve hold now 22%."
+      },
+      "expected_good_response": [
+        "Lists weekly KPIs linked to payout risk.",
+        "Explains timeline for stabilization and review cadence.",
+        "Connects FBM reliability improvements to cash-flow normalization."
+      ],
+      "failure_traps": [
+        "Provides abstract finance advice without marketplace metrics.",
+        "Does not prioritize near-term metric corrections."
+      ]
+    },
+
+    {
+      "case_id": "ss2-007",
+      "dataset_type": "seller-support",
+      "category": "fee_dispute",
+      "difficulty": "medium",
+      "priority": "p1",
+      "case_weight": 0.77,
+      "seller_id": "seller-us-005",
+      "marketplace_id": "US",
+      "asins": ["B0KF000001", "B0KF000002"],
+      "business_impact": "high",
+      "policy_risk": "moderate",
+      "response_sla_target_hours": 24,
+      "requires_disclaimer": false,
+      "prompt": "Seller believes referral fees were reclassified to a higher category. They need a dispute package checklist and expected response cycle.",
+      "context_blocks": {
+        "seller_snapshot": "Stalling seller with margin pressure and fee disputes.",
+        "asin_snapshot": "Appliance ASINs with recent category mapping changes.",
+        "event_log": "Fee reclassification dispute opened 2026-02-03.",
+        "financial_snapshot": "11 fee disputes in 90d; margin compressed."
+      },
+      "expected_good_response": [
+        "Specifies fee-calculation evidence and prior category mapping proof.",
+        "Separates dispute submission from escalation path.",
+        "Advises tracking of decision SLA and impact quantification."
+      ],
+      "failure_traps": [
+        "No mention of SKU-level evidence requirements.",
+        "Suggests broad complaint without transaction detail."
+      ]
+    },
+    {
+      "case_id": "ss2-008",
+      "dataset_type": "seller-support",
+      "category": "fee_dispute",
+      "difficulty": "hard",
+      "priority": "p1",
+      "case_weight": 0.68,
+      "seller_id": "seller-us-012",
+      "marketplace_id": "US",
+      "asins": ["B0UO000001"],
+      "business_impact": "medium",
+      "policy_risk": "moderate",
+      "response_sla_target_hours": 24,
+      "requires_disclaimer": false,
+      "prompt": "Oversize re-measurement increased fees on a chair ASIN. Seller disputes dimensions and requests a reversible path with audit trail.",
+      "context_blocks": {
+        "seller_snapshot": "Healthy seller with occasional dimensions disputes.",
+        "asin_snapshot": "Oversize office chair with high freight sensitivity.",
+        "event_log": "Dimension remeasurement posted 2026-01-28.",
+        "financial_snapshot": "Fee delta materially impacts margin per unit."
+      },
+      "expected_good_response": [
+        "Outlines remeasurement dispute process and required packaging proofs.",
+        "Explains how fee adjustments propagate to past settlements if reversed.",
+        "Includes interim pricing/margin protection steps."
+      ],
+      "failure_traps": [
+        "Assumes fee reversals are automatic.",
+        "No mention of packaging dimension evidence."
+      ]
+    },
+
+    {
+      "case_id": "ss2-009",
+      "dataset_type": "seller-support",
+      "category": "counterfeit_claims",
+      "difficulty": "hard",
+      "priority": "p0",
+      "case_weight": 0.92,
+      "seller_id": "seller-us-003",
+      "marketplace_id": "US",
+      "asins": ["B0VE000001"],
+      "business_impact": "critical",
+      "policy_risk": "critical",
+      "response_sla_target_hours": 4,
+      "requires_disclaimer": true,
+      "prompt": "Brand owner filed counterfeit complaint on charging cable ASIN. Seller claims authentic inventory from distributor. Provide immediate containment and evidence package strategy.",
+      "context_blocks": {
+        "seller_snapshot": "Distressed seller with multiple authenticity flags.",
+        "asin_snapshot": "High-volume cable SKU with return and rating deterioration.",
+        "event_log": "Counterfeit complaint 2026-01-29.",
+        "financial_snapshot": "High chargeback exposure and reserve hold."
+      },
+      "expected_good_response": [
+        "Prioritizes inventory quarantine and listing containment steps.",
+        "Requests invoice chain, authorization letters, and lot traceability evidence.",
+        "Clarifies communication sequence with rights owner and platform channels."
+      ],
+      "failure_traps": [
+        "Suggests confronting rights owner without evidence.",
+        "Omits chain-of-custody documentation."
+      ]
+    },
+    {
+      "case_id": "ss2-010",
+      "dataset_type": "seller-support",
+      "category": "counterfeit_claims",
+      "difficulty": "medium",
+      "priority": "p0",
+      "case_weight": 0.74,
+      "seller_id": "seller-us-010",
+      "marketplace_id": "US",
+      "asins": ["B0SN000002"],
+      "business_impact": "critical",
+      "policy_risk": "critical",
+      "response_sla_target_hours": 6,
+      "requires_disclaimer": true,
+      "prompt": "Customer counterfeit complaints rose on smart doorbell listing. Seller wants to know whether to keep selling while appeal is reviewed and how to avoid worsening account action.",
+      "context_blocks": {
+        "seller_snapshot": "Seller already under final warning.",
+        "asin_snapshot": "Doorbell ASIN under investigation suppression.",
+        "event_log": "Counterfeit complaints escalated 2026-02-09.",
+        "financial_snapshot": "Reserve hold and payout delay already severe."
+      },
+      "expected_good_response": [
+        "Explains risk of continued sales under authenticity investigation.",
+        "Gives safe interim actions and evidence escalation path.",
+        "Links counterfeit risk to broader account-health recovery plan."
+      ],
+      "failure_traps": [
+        "Advises continuing sales without risk controls.",
+        "Does not connect to active warning status."
+      ]
+    },
+
+    {
+      "case_id": "ss2-011",
+      "dataset_type": "seller-support",
+      "category": "listing_hijack_buybox_abuse",
+      "difficulty": "medium",
+      "priority": "p0",
+      "case_weight": 0.79,
+      "seller_id": "seller-us-011",
+      "marketplace_id": "US",
+      "asins": ["B0PH000001"],
+      "business_impact": "high",
+      "policy_risk": "high",
+      "response_sla_target_hours": 8,
+      "requires_disclaimer": false,
+      "prompt": "Seller reports unauthorized offers on branded ASIN with sudden Buy Box loss and suspicious low pricing. Provide anti-hijack response plan with evidence requirements.",
+      "context_blocks": {
+        "seller_snapshot": "High-growth seller with normally stable Buy Box share.",
+        "asin_snapshot": "Top-selling supplement ASIN affected.",
+        "event_log": "Buy Box share dropped 18 points in 48 hours.",
+        "financial_snapshot": "Promo efficiency declined due to undercut offers."
+      },
+      "expected_good_response": [
+        "Includes buy-box and listing-abuse evidence checklist.",
+        "Covers brand registry and unauthorized seller reporting paths.",
+        "Recommends temporary price/protection strategy without policy violations."
+      ],
+      "failure_traps": [
+        "Suggests contacting hijacker directly with threats.",
+        "Ignores brand registry escalation mechanisms."
+      ]
+    },
+    {
+      "case_id": "ss2-012",
+      "dataset_type": "seller-support",
+      "category": "listing_hijack_buybox_abuse",
+      "difficulty": "hard",
+      "priority": "p0",
+      "case_weight": 0.7,
+      "seller_id": "seller-us-001",
+      "marketplace_id": "US",
+      "asins": ["B0NP000001"],
+      "business_impact": "high",
+      "policy_risk": "high",
+      "response_sla_target_hours": 6,
+      "requires_disclaimer": false,
+      "prompt": "Seller suspects hijack plus review sabotage on flagship backpack ASIN: Buy Box down, suspicious 1-star burst, and returns up. They need immediate triage and escalation order.",
+      "context_blocks": {
+        "seller_snapshot": "At-risk account with existing suppression pressure.",
+        "asin_snapshot": "Top ASIN has counterfeit and review abuse signals.",
+        "event_log": "Negative review burst after competitor joined listing.",
+        "financial_snapshot": "High-margin ASIN now below target margin due to discounting."
+      },
+      "expected_good_response": [
+        "Separates abuse hypotheses and assigns evidence-based actions.",
+        "Prioritizes actions by irreversible risk and response SLA.",
+        "Includes customer-experience remediation while investigation proceeds."
+      ],
+      "failure_traps": [
+        "Treats all negative reviews as fake without validation.",
+        "No guidance on preserving evidence snapshots."
+      ]
+    },
+
+    {
+      "case_id": "ss2-013",
+      "dataset_type": "seller-support",
+      "category": "review_abuse",
+      "difficulty": "medium",
+      "priority": "p1",
+      "case_weight": 0.58,
+      "seller_id": "seller-us-011",
+      "marketplace_id": "US",
+      "asins": ["B0PH000001"],
+      "business_impact": "medium",
+      "policy_risk": "moderate",
+      "response_sla_target_hours": 24,
+      "requires_disclaimer": false,
+      "prompt": "Seller sees sudden cluster of short-text 5-star reviews and worries this may trigger manipulation review. They want proactive cleanup advice.",
+      "context_blocks": {
+        "seller_snapshot": "High-growth seller with unusual review velocity event.",
+        "asin_snapshot": "Top pet supplement ASIN has review anomaly signal.",
+        "event_log": "Review velocity spike detected 2026-02-01.",
+        "financial_snapshot": "No material payment issues yet."
+      },
+      "expected_good_response": [
+        "Advises compliant review monitoring and documentation process.",
+        "Warns against prohibited review solicitation/removal behavior.",
+        "Suggests operational controls to avoid future anomalies."
+      ],
+      "failure_traps": [
+        "Suggests selectively deleting legitimate reviews.",
+        "No policy-safe language for review management."
+      ]
+    },
+    {
+      "case_id": "ss2-014",
+      "dataset_type": "seller-support",
+      "category": "review_abuse",
+      "difficulty": "hard",
+      "priority": "p1",
+      "case_weight": 0.52,
+      "seller_id": "seller-us-003",
+      "marketplace_id": "US",
+      "asins": ["B0VE000001"],
+      "business_impact": "high",
+      "policy_risk": "high",
+      "response_sla_target_hours": 12,
+      "requires_disclaimer": false,
+      "prompt": "Seller alleges coordinated negative-review attack by competitor after price drop. They ask for escalation template and proof standards.",
+      "context_blocks": {
+        "seller_snapshot": "Distressed seller with multiple trust issues.",
+        "asin_snapshot": "Cable ASIN has severe rating decline and abuse signals.",
+        "event_log": "Review abuse signal score 7 in last 90 days.",
+        "financial_snapshot": "Revenue volatility high; ad spend inefficiency rising."
+      },
+      "expected_good_response": [
+        "Requests specific behavioral evidence and timeline correlation.",
+        "Provides escalation format with clear non-accusatory language.",
+        "Separates abuse investigation from legitimate quality defects."
+      ],
+      "failure_traps": [
+        "Presents allegations as proven facts.",
+        "Ignores underlying product-quality issues."
+      ]
+    },
+
+    {
+      "case_id": "ss2-015",
+      "dataset_type": "seller-support",
+      "category": "chargeback_dispute",
+      "difficulty": "hard",
+      "priority": "p0",
+      "case_weight": 0.86,
+      "seller_id": "seller-us-010",
+      "marketplace_id": "US",
+      "asins": ["B0SN000001"],
+      "business_impact": "critical",
+      "policy_risk": "high",
+      "response_sla_target_hours": 6,
+      "requires_disclaimer": true,
+      "prompt": "Chargebacks jumped to 31 in 90 days. Seller asks when to fight chargebacks vs accept loss and how this intersects with ODR/suspension risk.",
+      "context_blocks": {
+        "seller_snapshot": "Distressed account with active suspension risk.",
+        "asin_snapshot": "High-return camera ASIN with delivery and quality disputes.",
+        "event_log": "Chargeback cluster linked to INR + defective product claims.",
+        "financial_snapshot": "Gross margin near zero after dispute losses."
+      },
+      "expected_good_response": [
+        "Creates decision tree for representment vs concession.",
+        "Links chargeback response to defect prevention and account health strategy.",
+        "Includes evidence requirements and deadlines."
+      ],
+      "failure_traps": [
+        "Treats all chargebacks as winnable.",
+        "Ignores timeline constraints and documentation quality."
+      ]
+    },
+    {
+      "case_id": "ss2-016",
+      "dataset_type": "seller-support",
+      "category": "chargeback_dispute",
+      "difficulty": "medium",
+      "priority": "p1",
+      "case_weight": 0.64,
+      "seller_id": "seller-us-005",
+      "marketplace_id": "US",
+      "asins": ["B0KF000001"],
+      "business_impact": "high",
+      "policy_risk": "moderate",
+      "response_sla_target_hours": 24,
+      "requires_disclaimer": false,
+      "prompt": "Seller sees chargeback spike on one appliance SKU after holiday promotions. They request root-cause hypothesis and prevention controls for next promo cycle.",
+      "context_blocks": {
+        "seller_snapshot": "Stalling seller with fee and claim pressure.",
+        "asin_snapshot": "Air fryer SKU had aggressive discount and returns spike.",
+        "event_log": "Chargebacks concentrated in 2-week promo period.",
+        "financial_snapshot": "Promo gains offset by post-sale dispute losses."
+      },
+      "expected_good_response": [
+        "Identifies likely dispute drivers across fulfillment, listing, and quality.",
+        "Outlines prevention controls for upcoming promotion windows.",
+        "Provides monitoring plan with thresholds."
+      ],
+      "failure_traps": [
+        "Blames only fraud without operational diagnosis.",
+        "No measurable prevention KPIs."
+      ]
+    },
+
+    {
+      "case_id": "ss2-017",
+      "dataset_type": "seller-support",
+      "category": "fba_reimbursement_missing_inventory",
+      "difficulty": "medium",
+      "priority": "p1",
+      "case_weight": 0.69,
+      "seller_id": "seller-us-009",
+      "marketplace_id": "US",
+      "asins": ["B0TN000001"],
+      "business_impact": "high",
+      "policy_risk": "none",
+      "response_sla_target_hours": 24,
+      "requires_disclaimer": false,
+      "prompt": "Seller shipped 667 units, FC received 400 units. They want reimbursement path, evidence list, and expected aging windows before claim eligibility.",
+      "context_blocks": {
+        "seller_snapshot": "Seasonal toy seller with FC short-receipt history.",
+        "asin_snapshot": "Q4 peak ASIN impacted by inbound discrepancy.",
+        "event_log": "Short receipt event noted 2026-01-10.",
+        "financial_snapshot": "Pending reimbursements creating PO cash pressure."
+      },
+      "expected_good_response": [
+        "Explains investigation windows and claim timing.",
+        "Lists required shipment and carton-level evidence.",
+        "Includes follow-up escalation path if initial claim denied."
+      ],
+      "failure_traps": [
+        "Suggests filing claim immediately before eligibility window.",
+        "No mention of reconciliation report evidence."
+      ]
+    },
+    {
+      "case_id": "ss2-018",
+      "dataset_type": "seller-support",
+      "category": "fba_reimbursement_missing_inventory",
+      "difficulty": "hard",
+      "priority": "p1",
+      "case_weight": 0.56,
+      "seller_id": "seller-us-003",
+      "marketplace_id": "US",
+      "asins": ["B0VE000001", "B0VE000002"],
+      "business_impact": "high",
+      "policy_risk": "moderate",
+      "response_sla_target_hours": 12,
+      "requires_disclaimer": false,
+      "prompt": "Seller has repeated FC discrepancy and reimbursement denials citing insufficient proof. They request a claim-quality upgrade framework.",
+      "context_blocks": {
+        "seller_snapshot": "Distressed seller with repeated documentation gaps.",
+        "asin_snapshot": "High-volume electronics with frequent inbound variance.",
+        "event_log": "Three recent reimbursement denials for proof quality.",
+        "financial_snapshot": "Pending reimbursements >22K USD."
+      },
+      "expected_good_response": [
+        "Defines minimum proof stack and common denial causes.",
+        "Suggests process controls to improve inbound traceability.",
+        "Prioritizes high-value claims with strongest evidence first."
+      ],
+      "failure_traps": [
+        "Generic guidance without denial-cause mapping.",
+        "No plan to improve future evidence hygiene."
+      ]
+    },
+
+    {
+      "case_id": "ss2-019",
+      "dataset_type": "seller-support",
+      "category": "stranded_inventory_removals",
+      "difficulty": "medium",
+      "priority": "p1",
+      "case_weight": 0.61,
+      "seller_id": "seller-us-009",
+      "marketplace_id": "US",
+      "asins": ["B0TN000002"],
+      "business_impact": "medium",
+      "policy_risk": "moderate",
+      "response_sla_target_hours": 24,
+      "requires_disclaimer": false,
+      "prompt": "Seller has rising stranded units after variation relation errors. They need correction sequence to relist inventory and prevent future strandings.",
+      "context_blocks": {
+        "seller_snapshot": "Stalling toy seller with catalog consistency issues.",
+        "asin_snapshot": "Puzzle ASIN experiencing parent-child mapping errors.",
+        "event_log": "Stranded inventory spike on 2026-02-05.",
+        "financial_snapshot": "Capital tied up in unsellable units."
+      },
+      "expected_good_response": [
+        "Provides variation correction and relisting workflow.",
+        "Separates listing-fix path from removal-order fallback.",
+        "Recommends ongoing catalog QA checks."
+      ],
+      "failure_traps": [
+        "Suggests deleting parent ASIN without migration plan.",
+        "Misses stranded-inventory fee implications."
+      ]
+    },
+    {
+      "case_id": "ss2-020",
+      "dataset_type": "seller-support",
+      "category": "stranded_inventory_removals",
+      "difficulty": "hard",
+      "priority": "p2",
+      "case_weight": 0.48,
+      "seller_id": "seller-us-001",
+      "marketplace_id": "US",
+      "asins": ["B0NP000002"],
+      "business_impact": "medium",
+      "policy_risk": "moderate",
+      "response_sla_target_hours": 48,
+      "requires_disclaimer": false,
+      "prompt": "Removal order marked shipped 3 weeks ago but inventory not received by seller. Need investigation flow with carrier, FC, and reimbursement decision points.",
+      "context_blocks": {
+        "seller_snapshot": "At-risk seller managing both suppression and inventory issues.",
+        "asin_snapshot": "Hydration SKU with stranded units and suppression overlap.",
+        "event_log": "Removal shipment status mismatch unresolved >21 days.",
+        "financial_snapshot": "Pending claim blocks restock cycle."
+      },
+      "expected_good_response": [
+        "Details track-and-trace and reconciliation checkpoints.",
+        "Defines when to open reimbursement claim and what evidence to attach.",
+        "Includes interim demand management suggestion while stock remains missing."
+      ],
+      "failure_traps": [
+        "No escalation timeline.",
+        "Assumes carrier loss without reconciliation proof."
+      ]
+    },
+
+    {
+      "case_id": "ss2-021",
+      "dataset_type": "seller-support",
+      "category": "ip_complaint_appeal",
+      "difficulty": "hard",
+      "priority": "p0",
+      "case_weight": 0.75,
+      "seller_id": "seller-us-003",
+      "marketplace_id": "US",
+      "asins": ["B0VE000001"],
+      "business_impact": "critical",
+      "policy_risk": "critical",
+      "response_sla_target_hours": 8,
+      "requires_disclaimer": true,
+      "prompt": "Seller received IP complaint and says products are genuine gray-market inventory. They ask how to respond without admitting infringement.",
+      "context_blocks": {
+        "seller_snapshot": "Multiple policy flags and rights-owner tension.",
+        "asin_snapshot": "High-volume charger SKU with mixed authenticity signals.",
+        "event_log": "IP complaint active with takedown risk.",
+        "financial_snapshot": "Revenue concentration on affected ASIN."
+      },
+      "expected_good_response": [
+        "Explains evidence-first response framework and neutral language.",
+        "Clarifies difference between authenticity proof and authorization rights.",
+        "Recommends legal review where appropriate without giving legal guarantees."
+      ],
+      "failure_traps": [
+        "Provides definitive legal advice.",
+        "Encourages misleading statements in appeal narrative."
+      ]
+    },
+    {
+      "case_id": "ss2-022",
+      "dataset_type": "seller-support",
+      "category": "ip_complaint_appeal",
+      "difficulty": "medium",
+      "priority": "p1",
+      "case_weight": 0.54,
+      "seller_id": "seller-us-012",
+      "marketplace_id": "US",
+      "asins": ["B0UO000001"],
+      "business_impact": "medium",
+      "policy_risk": "high",
+      "response_sla_target_hours": 24,
+      "requires_disclaimer": true,
+      "prompt": "Seller received trademark complaint from competitor on listing imagery. Needs compliant appeal structure and image-remediation plan.",
+      "context_blocks": {
+        "seller_snapshot": "Generally healthy seller with occasional catalog risk.",
+        "asin_snapshot": "Chair ASIN with recently updated image pack.",
+        "event_log": "Trademark complaint filed after image refresh.",
+        "financial_snapshot": "No immediate payout risk, but listing visibility affected."
+      },
+      "expected_good_response": [
+        "Provides remediation + appeal sequence with timestamped evidence.",
+        "Avoids admitting fault while showing corrective action.",
+        "Sets practical response timeline expectations."
+      ],
+      "failure_traps": [
+        "No distinction between trademark and copyright pathways.",
+        "Missing corrected-image proof requirements."
+      ]
+    },
+
+    {
+      "case_id": "ss2-023",
+      "dataset_type": "seller-support",
+      "category": "suspension_appeal_poa",
+      "difficulty": "hard",
+      "priority": "p0",
+      "case_weight": 0.89,
+      "seller_id": "seller-us-010",
+      "marketplace_id": "US",
+      "asins": ["B0SN000001", "B0SN000002"],
+      "business_impact": "critical",
+      "policy_risk": "critical",
+      "response_sla_target_hours": 4,
+      "requires_disclaimer": true,
+      "prompt": "Seller account suspended. Draft framework for Plan of Action with root cause, corrective actions already taken, and preventive controls tied to measurable KPIs.",
+      "context_blocks": {
+        "seller_snapshot": "Suspension risk converted to active suspension state.",
+        "asin_snapshot": "Core ASINs tied to returns, authenticity, and delivery defects.",
+        "event_log": "Final warning not remediated in required period.",
+        "financial_snapshot": "High reserve hold and frozen disbursement exposure."
+      },
+      "expected_good_response": [
+        "Uses clear POA structure with specific operational controls.",
+        "References evidence and KPI commitments with owners/timelines.",
+        "Avoids generic blame and demonstrates accountability."
+      ],
+      "failure_traps": [
+        "Generic template with no seller-specific actions.",
+        "No measurable prevention controls."
+      ]
+    },
+    {
+      "case_id": "ss2-024",
+      "dataset_type": "seller-support",
+      "category": "suspension_appeal_poa",
+      "difficulty": "hard",
+      "priority": "p0",
+      "case_weight": 0.73,
+      "seller_id": "seller-us-003",
+      "marketplace_id": "US",
+      "asins": ["B0VE000001", "B0VE000002"],
+      "business_impact": "critical",
+      "policy_risk": "critical",
+      "response_sla_target_hours": 6,
+      "requires_disclaimer": true,
+      "prompt": "Seller received pre-suspension notice and requests a proactive POA before account action. They need sequencing by what can be fixed in 48 hours vs 2 weeks.",
+      "context_blocks": {
+        "seller_snapshot": "Distressed account with multi-domain policy risk.",
+        "asin_snapshot": "Two electronics ASINs with suppression and authenticity issues.",
+        "event_log": "Deactivation warning issued with 14-day remediation timeline.",
+        "financial_snapshot": "Chargebacks and reserve hold threaten operating liquidity."
+      },
+      "expected_good_response": [
+        "Creates phased remediation plan with explicit 48h/2w actions.",
+        "Prioritizes high-risk policy defects and account-health KPIs.",
+        "Defines follow-up cadence and evidence milestones."
+      ],
+      "failure_traps": [
+        "No timeline segmentation.",
+        "Focuses only on appeal narrative without operational fixes."
+      ]
+    }
+  ]
+}

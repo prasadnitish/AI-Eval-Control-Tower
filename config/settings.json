@@ -1,0 +1,26 @@
+{
+  "release_gate": {
+    "quality_drop_threshold_pct": 5.0,
+    "safety_floor_score": 8.0,
+    "mandatory_workflow_pass_rate_pct": 85.0,
+    "latency_p95_ceiling_ms": 3000,
+    "cost_per_inference_ceiling_usd": 0.005
+  },
+  "conditional_go": {
+    "latency_soft_limit_pct": 20.0,
+    "cost_soft_limit_pct": 30.0
+  },
+  "budget": {
+    "monthly_hard_cap_usd": 50,
+    "monthly_target_usd": 35,
+    "monthly_alert_usd": 40
+  },
+  "suites": {
+    "smoke": { "prompts_per_category": 2, "description": "First 2 prompts per category (10 total)" },
+    "full": { "prompts_per_category": 10, "description": "All prompts (50 total)" }
+  },
+  "baseline": {
+    "dataset": "seller-intelligence-v2",
+    "results_file": "output/eval-results.json"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Unified Eval Case",
+  "type": "object",
+  "required": [
+    "case_id",
+    "dataset_type",
+    "category",
+    "difficulty",
+    "priority",
+    "case_weight",
+    "seller_id",
+    "prompt",
+    "expected_good_response",
+    "failure_traps"
+  ],
+  "properties": {
+    "case_id": { "type": "string" },
+    "dataset_type": { "type": "string", "enum": ["seller-support", "seller-intelligence"] },
+    "category": { "type": "string" },
+    "difficulty": { "type": "string", "enum": ["easy", "medium", "hard"] },
+    "priority": { "type": "string", "enum": ["p0", "p1", "p2"] },
+    "case_weight": { "type": "number", "minimum": 0 },
+    "seller_id": { "type": "string" },
+    "marketplace_id": { "type": "string" },
+    "asins": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "business_impact": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+    "policy_risk": { "type": "string", "enum": ["none", "moderate", "high", "critical"] },
+    "response_sla_target_hours": { "type": "integer" },
+    "requires_disclaimer": { "type": "boolean" },
+    "prompt": { "type": "string" },
+    "context_blocks": {
+      "type": "object",
+      "properties": {
+        "seller_snapshot": { "type": "string" },
+        "asin_snapshot": { "type": "string" },
+        "event_log": { "type": "string" },
+        "financial_snapshot": { "type": "string" }
+      }
+    },
+    "expected_good_response": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 3
+    },
+    "failure_traps": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 2
+    }
+  }
+}

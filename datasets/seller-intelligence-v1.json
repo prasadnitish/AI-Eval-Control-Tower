@@ -1,0 +1,358 @@
+{
+  "id": "seller-intelligence-v1",
+  "version": "1.0",
+  "description": "50 AM-facing prompts — insight generation, call preparation, and strategic recommendation",
+  "categories": ["performance-summary", "root-cause-analysis", "am-call-prep", "risk-identification", "recommendation-engine"],
+  "prompts": [
+    {
+      "id": "si-001",
+      "category": "performance-summary",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-b",
+      "prompt": "Using the seller data below, write a concise Q4 performance summary for Home Essentials Plus that an Account Manager could use to open a business review meeting.\n\nSeller data: {{seller-b}}"
+    },
+    {
+      "id": "si-002",
+      "category": "performance-summary",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-d",
+      "prompt": "Summarise Beauty Bliss Brands' Q4 performance in 3-4 bullet points. Focus on the metrics that matter most for a category health conversation.\n\nSeller data: {{seller-d}}"
+    },
+    {
+      "id": "si-003",
+      "category": "performance-summary",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-f",
+      "prompt": "Write a one-paragraph Q4 highlight summary for Peak Performance Apparel. The audience is an AM about to speak with the seller for the first time this quarter.\n\nSeller data: {{seller-f}}"
+    },
+    {
+      "id": "si-004",
+      "category": "performance-summary",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-a",
+      "prompt": "Compare Outdoor Gear Co and Beauty Bliss Brands across these five metrics: GMV growth, Buy Box percentage, return rate vs category average, review rating, and Account Health Score. Identify which seller is performing better overall and why.\n\nSeller A data: {{seller-a}}\nSeller B data: {{seller-d}}"
+    },
+    {
+      "id": "si-005",
+      "category": "performance-summary",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-e",
+      "prompt": "Gourmet Kitchen Direct's Q4 results show near-flat GMV growth but declining sessions. Draft a performance snapshot that highlights the tension between top-line stability and underlying metric deterioration. The AM needs this for a senior leadership review.\n\nSeller data: {{seller-e}}"
+    },
+    {
+      "id": "si-006",
+      "category": "performance-summary",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-h",
+      "prompt": "NutriCore Supplements has 41 negative reviews in the last 60 days despite strong overall metrics. Write a balanced performance summary that acknowledges the strengths while flagging the review risk for an AM preparing for a seller call.\n\nSeller data: {{seller-h}}"
+    },
+    {
+      "id": "si-007",
+      "category": "performance-summary",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-c",
+      "prompt": "Tech Accessories World shows dramatic decline across multiple metrics. Prepare a performance summary that clearly communicates urgency without being alarmist — the AM will use this to open a difficult conversation with the seller.\n\nSeller data: {{seller-c}}"
+    },
+    {
+      "id": "si-008",
+      "category": "performance-summary",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-i",
+      "prompt": "ToyWorld Express underperformed during Q4 — peak season for their category — with negative YoY GMV, accelerating session decline, and Buy Box erosion. Analyse this in the context of Q4 being their most critical quarter. What does peak-season underperformance specifically signal about this business that a regular quarter decline would not?\n\nSeller data: {{seller-i}}"
+    },
+    {
+      "id": "si-009",
+      "category": "performance-summary",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-j",
+      "prompt": "SmartHome Innovations has an Account Health Score of 72, 3 A-to-Z claims, ODR at 3.1%, and 31% Buy Box. These metrics are each individually alarming. Write a structured analysis that explains how these metrics interact and compound each other — not just a list of problems, but a narrative of cascading failure.\n\nSeller data: {{seller-j}}"
+    },
+    {
+      "id": "si-010",
+      "category": "performance-summary",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-g",
+      "prompt": "Coastal Living Imports has conflicting signals: Buy Box has dropped 14 points but no policy violations in the current quarter, ODR is just above threshold at 1.1%, and GMV is declining but the seller still has a 421-review base. Provide an analysis that resolves these conflicting signals into a clear risk assessment. What is the most likely root cause of their trajectory?\n\nSeller data: {{seller-g}}"
+    },
+    {
+      "id": "si-011",
+      "category": "root-cause-analysis",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-a",
+      "prompt": "Outdoor Gear Co's sessions dropped 8% QoQ. List 3 likely causes for this session decline based on what you know about how Amazon search and traffic work.\n\nSeller data: {{seller-a}}"
+    },
+    {
+      "id": "si-012",
+      "category": "root-cause-analysis",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-g",
+      "prompt": "Coastal Living Imports has a 55% FBM mix and an above-average return rate of 9.1%. Explain how these two facts are likely connected.\n\nSeller data: {{seller-g}}"
+    },
+    {
+      "id": "si-013",
+      "category": "root-cause-analysis",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-c",
+      "prompt": "Tech Accessories World's review rating is 3.6 with 187 negative reviews in the last 60 days. What are the most common causes of this pattern in the electronics accessories category?\n\nSeller data: {{seller-c}}"
+    },
+    {
+      "id": "si-014",
+      "category": "root-cause-analysis",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-a",
+      "prompt": "Outdoor Gear Co's Buy Box percentage dropped from 82% to 61% in one quarter. Identify the three most plausible causes for a Buy Box drop of this magnitude and size, and explain what data you would need to confirm which cause is primary.\n\nSeller data: {{seller-a}}"
+    },
+    {
+      "id": "si-015",
+      "category": "root-cause-analysis",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-e",
+      "prompt": "Gourmet Kitchen Direct has one suppressed ASIN and a return rate of 5.8% against a 4.2% category average. The AM suspects a listing accuracy problem. What are the 2-3 most likely root causes, and what specific checks should the AM ask the seller to run?\n\nSeller data: {{seller-e}}"
+    },
+    {
+      "id": "si-016",
+      "category": "root-cause-analysis",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-i",
+      "prompt": "ToyWorld Express had accelerating session decline (-11% QoQ) during Q4 peak season. Given this is their highest-traffic period, what are the most likely causes? Consider both supply-side (inventory, FBM mix) and demand-side (listing quality, advertising) factors.\n\nSeller data: {{seller-i}}"
+    },
+    {
+      "id": "si-017",
+      "category": "root-cause-analysis",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-c",
+      "prompt": "Tech Accessories World has 7 suppressed ASINs and an ODR of 2.3%. Walk through how ASIN suppression and high ODR are likely related in this account, and what sequence of events most likely led to this state.\n\nSeller data: {{seller-c}}"
+    },
+    {
+      "id": "si-018",
+      "category": "root-cause-analysis",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-j",
+      "prompt": "SmartHome Innovations has a return rate of 18.2% against a 7.4% category average, combined with 3 A-to-Z claims and a Buy Box collapse from 55% to 31%. Analyse the fee and margin impact of this return rate on the seller's economics, and explain how high returns can create a self-reinforcing cycle of metric degradation.\n\nSeller data: {{seller-j}}"
+    },
+    {
+      "id": "si-019",
+      "category": "root-cause-analysis",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-g",
+      "prompt": "Coastal Living Imports has ODR at 1.1% — just above the 1% threshold that risks account action. Their 55% FBM mix and 9.1% return rate are both above average. Model the most likely sequence of events that brought this account to exactly this point, and identify which single intervention would have had the greatest impact if made 90 days ago.\n\nSeller data: {{seller-g}}"
+    },
+    {
+      "id": "si-020",
+      "category": "root-cause-analysis",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-c",
+      "prompt": "Tech Accessories World's metrics show a broad, multi-dimensional failure: GMV (-18% YoY), sessions (-22% QoQ), Buy Box (43%), reviews (3.6★), returns (12.4%), and 7 suppressed ASINs. Perform a root cause analysis that differentiates between symptoms and causes. What is the single most likely primary cause driving the cascade, and what evidence from the data supports this conclusion?\n\nSeller data: {{seller-c}}"
+    },
+    {
+      "id": "si-021",
+      "category": "am-call-prep",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-b",
+      "prompt": "Generate 3 talking points for an AM opening a quarterly business review with Home Essentials Plus. The tone should be positive and growth-focused.\n\nSeller data: {{seller-b}}"
+    },
+    {
+      "id": "si-022",
+      "category": "am-call-prep",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-f",
+      "prompt": "An AM is calling Peak Performance Apparel for the first time this quarter. Write 3 conversation starters that acknowledge their strong growth and pivot to expansion opportunities.\n\nSeller data: {{seller-f}}"
+    },
+    {
+      "id": "si-023",
+      "category": "am-call-prep",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-h",
+      "prompt": "Prepare 3 bullet-point talking points for an AM's call with NutriCore Supplements. Focus on the things worth celebrating before raising the review trend.\n\nSeller data: {{seller-h}}"
+    },
+    {
+      "id": "si-024",
+      "category": "am-call-prep",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-a",
+      "prompt": "An AM needs to discuss Outdoor Gear Co's 3 suppressed ASINs and Buy Box drop on a call today. The seller has historically been resistant to compliance feedback. Prepare the AM with a conversation approach: how to open, how to present the data, and how to handle pushback.\n\nSeller data: {{seller-a}}"
+    },
+    {
+      "id": "si-025",
+      "category": "am-call-prep",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-e",
+      "prompt": "Gourmet Kitchen Direct is stalling and the seller may not fully recognize the severity. Prepare an AM for a conversation that uses data to create urgency without causing the seller to feel attacked or defensive. Include specific data points to reference and how to frame them.\n\nSeller data: {{seller-e}}"
+    },
+    {
+      "id": "si-026",
+      "category": "am-call-prep",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-i",
+      "prompt": "ToyWorld Express underperformed during their most critical quarter. The seller is likely frustrated and may be questioning their Amazon investment. Prepare the AM with a balanced call agenda: acknowledge the Q4 difficulty, diagnose the causes collaboratively, and maintain the relationship for Q1.\n\nSeller data: {{seller-i}}"
+    },
+    {
+      "id": "si-027",
+      "category": "am-call-prep",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-c",
+      "prompt": "Tech Accessories World has an Account Health Score of 89 — approaching a critical threshold. The AM needs to communicate the seriousness of this without triggering panic or causing the seller to disengage. Draft the key messages the AM should deliver, in order.\n\nSeller data: {{seller-c}}"
+    },
+    {
+      "id": "si-028",
+      "category": "am-call-prep",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-g",
+      "prompt": "Coastal Living Imports has ODR at 1.1% and has signalled they may reduce their Amazon investment and focus on their own website. The AM has one call to make the case for staying and provide a credible path back to health. Write a complete call guide: opening, data presentation, action plan proposal, and response to the seller's likely objection that 'Amazon's algorithm is working against us'.\n\nSeller data: {{seller-g}}"
+    },
+    {
+      "id": "si-029",
+      "category": "am-call-prep",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-j",
+      "prompt": "SmartHome Innovations is facing potential account deactivation with an Account Health Score of 72 and ODR at 3.1%. The AM must communicate this severity clearly but cannot be seen as threatening the seller. Write a call preparation guide that includes: how to open, exact language to use when explaining deactivation risk, a proposed 30-day action plan, and how to close with commitment to action.\n\nSeller data: {{seller-j}}"
+    },
+    {
+      "id": "si-030",
+      "category": "am-call-prep",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-c",
+      "prompt": "Tech Accessories World's seller has sent a pre-call email saying they believe Amazon's Buy Box algorithm is 'broken' and 'favouring competitors unfairly'. The actual data shows their Buy Box loss is consistent with their declining review score and rising return rate. Prepare the AM to have a fact-based, constructive conversation that reframes the seller's narrative without being dismissive, and redirects to actions the seller can control.\n\nSeller data: {{seller-c}}"
+    },
+    {
+      "id": "si-031",
+      "category": "risk-identification",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-f",
+      "prompt": "Peak Performance Apparel has only 189 reviews despite strong growth. What single risk does this create for the seller, and what should the AM recommend to address it?\n\nSeller data: {{seller-f}}"
+    },
+    {
+      "id": "si-032",
+      "category": "risk-identification",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-d",
+      "prompt": "Beauty Bliss Brands uses 15% FBM. Identify the primary risk this creates and what category-specific concern makes it more significant for a beauty seller.\n\nSeller data: {{seller-d}}"
+    },
+    {
+      "id": "si-033",
+      "category": "risk-identification",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-h",
+      "prompt": "NutriCore Supplements operates in Health & Wellness. Identify the one category-specific risk factor that makes their 41 negative reviews in 60 days more concerning than the same number would be for a home goods seller.\n\nSeller data: {{seller-h}}"
+    },
+    {
+      "id": "si-034",
+      "category": "risk-identification",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-g",
+      "prompt": "Coastal Living Imports shows 2 sellers at potential churn risk based on the data. Identify which specific metrics are the leading indicators of churn for this account, and explain how each metric is likely to evolve over the next 60 days without intervention.\n\nSeller data: {{seller-g}}"
+    },
+    {
+      "id": "si-035",
+      "category": "risk-identification",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-e",
+      "prompt": "Gourmet Kitchen Direct is stalling. Identify the 2 metrics that are most likely to trigger a compliance action from Amazon in the next 90 days if current trends continue, and explain the threshold each would need to cross.\n\nSeller data: {{seller-e}}"
+    },
+    {
+      "id": "si-036",
+      "category": "risk-identification",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-a",
+      "prompt": "Outdoor Gear Co's account shows 3 ASINs suppressed for policy violations and a return rate nearly double the category average. Rate the overall compliance risk level (Low / Medium / High / Critical) and justify your rating with specific data points.\n\nSeller data: {{seller-a}}"
+    },
+    {
+      "id": "si-037",
+      "category": "risk-identification",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-i",
+      "prompt": "An AM manages a portfolio that includes ToyWorld Express. Given their Q4 underperformance, what is the risk to the AM's overall portfolio performance target, and what early warning signs should the AM track weekly going into Q1?\n\nSeller data: {{seller-i}}"
+    },
+    {
+      "id": "si-038",
+      "category": "risk-identification",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-j",
+      "prompt": "Score SmartHome Innovations across the following risk dimensions and provide a composite risk rating: (1) deactivation risk, (2) churn risk, (3) revenue impact to the AM's portfolio, (4) reputation risk for Amazon. For each dimension, score 1-5 and provide a one-sentence rationale.\n\nSeller data: {{seller-j}}"
+    },
+    {
+      "id": "si-039",
+      "category": "risk-identification",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-c",
+      "prompt": "Tech Accessories World has the highest GMV in the portfolio but is in distress. An AM must decide whether to invest significant time in recovery efforts or acknowledge this account may be unrecoverable. Assess the risk-return tradeoff of AM investment in this account, using the specific metrics to estimate the probability of recovery within 90 days.\n\nSeller data: {{seller-c}}"
+    },
+    {
+      "id": "si-040",
+      "category": "risk-identification",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-j",
+      "prompt": "SmartHome Innovations has an Account Health Score of 72. At Amazon, accounts below 100 are at elevated review risk and below 75 triggers proactive seller coaching. Model the 3 most likely scenarios for this account over the next 60 days, assign a probability to each, and recommend which scenario the AM should plan for.\n\nSeller data: {{seller-j}}"
+    },
+    {
+      "id": "si-041",
+      "category": "recommendation-engine",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-g",
+      "prompt": "Coastal Living Imports has a 55% FBM mix. Suggest the single most impactful improvement action the AM should recommend in the next call.\n\nSeller data: {{seller-g}}"
+    },
+    {
+      "id": "si-042",
+      "category": "recommendation-engine",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-e",
+      "prompt": "Gourmet Kitchen Direct has one suppressed ASIN and a return rate above category average. Recommend one improvement action the seller can take in the next 7 days.\n\nSeller data: {{seller-e}}"
+    },
+    {
+      "id": "si-043",
+      "category": "recommendation-engine",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-f",
+      "prompt": "Peak Performance Apparel is high-growth with very few reviews relative to their GMV. Suggest one proactive program or action the AM should recommend to protect and accelerate their growth.\n\nSeller data: {{seller-f}}"
+    },
+    {
+      "id": "si-044",
+      "category": "recommendation-engine",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-a",
+      "prompt": "Outdoor Gear Co needs to recover their Buy Box from 61% and resolve their suppressed ASINs. Provide the top 3 prioritised actions for the next 30 days, with a brief rationale for the priority order.\n\nSeller data: {{seller-a}}"
+    },
+    {
+      "id": "si-045",
+      "category": "recommendation-engine",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-i",
+      "prompt": "ToyWorld Express has underperformed in Q4. Provide 3 prioritised recommendations for Q1 recovery, considering their 22% FBM mix, rising negative reviews, and the post-peak-season traffic environment.\n\nSeller data: {{seller-i}}"
+    },
+    {
+      "id": "si-046",
+      "category": "recommendation-engine",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-h",
+      "prompt": "NutriCore Supplements is healthy but has 41 negative reviews in 60 days. Recommend 3 actions in priority order: one to address the immediate review risk, one to strengthen their position in the Health & Wellness category, and one to protect against future compliance exposure.\n\nSeller data: {{seller-h}}"
+    },
+    {
+      "id": "si-047",
+      "category": "recommendation-engine",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-c",
+      "prompt": "Tech Accessories World needs an immediate intervention plan. Recommend the top 3 actions to stabilise this account — not long-term growth actions, but immediate steps to stop the metric deterioration. Prioritise by impact on Account Health Score.\n\nSeller data: {{seller-c}}"
+    },
+    {
+      "id": "si-048",
+      "category": "recommendation-engine",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-j",
+      "prompt": "SmartHome Innovations is at deactivation risk. Build a complete 90-day recovery roadmap with specific milestones at Day 14, Day 30, Day 60, and Day 90. Each milestone should include a specific metric target and the action required to hit it. The roadmap must be realistic given the current state of the account.\n\nSeller data: {{seller-j}}"
+    },
+    {
+      "id": "si-049",
+      "category": "recommendation-engine",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-e",
+      "prompt": "Gourmet Kitchen Direct is stalling and the seller is considering reducing their Amazon investment in favour of DTC channels. Build a 90-day action plan that makes the case for Amazon as the primary channel, with specific growth levers, projected metric improvements, and a month-by-month action sequence.\n\nSeller data: {{seller-e}}"
+    },
+    {
+      "id": "si-050",
+      "category": "recommendation-engine",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-a",
+      "prompt": "Outdoor Gear Co has strong YoY GMV growth but deteriorating operational metrics. Design a prioritised action plan that balances two competing objectives: (1) protecting the account health in the short term (90 days), and (2) sustaining the GMV growth trajectory into the next year. Where these objectives conflict, explicitly state the tradeoff and recommend which to prioritise and why.\n\nSeller data: {{seller-a}}"
+    }
+  ]
+}

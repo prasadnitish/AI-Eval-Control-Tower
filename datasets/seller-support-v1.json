@@ -1,0 +1,358 @@
+{
+  "id": "seller-support-v1",
+  "version": "1.0",
+  "description": "50 seller-facing prompts — policy explanation, issue resolution, and account health support",
+  "categories": ["policy-explanation", "issue-resolution", "communication-drafting", "account-health", "shipping-fulfilment"],
+  "prompts": [
+    {
+      "id": "ss-001",
+      "category": "policy-explanation",
+      "difficulty": "easy",
+      "seller_profile_id": null,
+      "prompt": "A seller asks: 'What is Amazon's return policy for electronics? How long do customers have to return a product, and who pays for return shipping?' Explain this clearly and accurately."
+    },
+    {
+      "id": "ss-002",
+      "category": "policy-explanation",
+      "difficulty": "easy",
+      "seller_profile_id": null,
+      "prompt": "A seller wants to know: 'What is the Order Defect Rate (ODR) and what happens if it goes above 1%?' Explain what ODR is, how it's calculated, and the consequences of breaching the threshold."
+    },
+    {
+      "id": "ss-003",
+      "category": "policy-explanation",
+      "difficulty": "easy",
+      "seller_profile_id": null,
+      "prompt": "A seller asks: 'What does it mean when Amazon says my listing is suppressed? Why would Amazon suppress a listing?' Give a clear, jargon-free explanation with the most common causes."
+    },
+    {
+      "id": "ss-004",
+      "category": "policy-explanation",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-a",
+      "prompt": "Outdoor Gear Co has 3 suppressed ASINs. The seller asks: 'Amazon suppressed 3 of my listings but I don't understand why — the notification just says policy violation. What are the most likely reasons, and what exactly do I need to do to get them reinstated?'\n\nSeller data: {{seller-a}}"
+    },
+    {
+      "id": "ss-005",
+      "category": "policy-explanation",
+      "difficulty": "medium",
+      "seller_profile_id": null,
+      "prompt": "A seller in the Health & Wellness category asks: 'I've been told my listings have restricted claims. What counts as a restricted claim for health products, and how do I update my listings to be compliant without losing conversion?' Explain clearly with examples."
+    },
+    {
+      "id": "ss-006",
+      "category": "policy-explanation",
+      "difficulty": "medium",
+      "seller_profile_id": null,
+      "prompt": "A seller asks: 'I keep losing the Buy Box even though I have the lowest price. Can you explain exactly how the Buy Box algorithm works and what factors Amazon considers beyond price?' Provide an accurate, complete explanation."
+    },
+    {
+      "id": "ss-007",
+      "category": "policy-explanation",
+      "difficulty": "medium",
+      "seller_profile_id": null,
+      "prompt": "A seller asks: 'Amazon charged me a long-term storage fee that I wasn't expecting. How does FBA long-term storage work, what are the fee thresholds, and how can I avoid these charges in future?' Answer completely and practically."
+    },
+    {
+      "id": "ss-008",
+      "category": "policy-explanation",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-j",
+      "prompt": "SmartHome Innovations has an Account Health Score of 72 and ODR at 3.1%. The seller contacts support asking: 'I received a warning that my account may be deactivated. Can you walk me through exactly what the account suspension and appeal process looks like, what my rights are, and realistically what my chances are of being reinstated if I am suspended?'\n\nSeller data: {{seller-j}}"
+    },
+    {
+      "id": "ss-009",
+      "category": "policy-explanation",
+      "difficulty": "hard",
+      "seller_profile_id": null,
+      "prompt": "A seller asks: 'I want to appeal a policy decision that I think is wrong. What is the full appeals process from start to finish, including the Plan of Action structure Amazon expects, typical timelines, escalation paths if my appeal is rejected, and what actually makes appeals succeed or fail?' Provide a comprehensive, accurate guide."
+    },
+    {
+      "id": "ss-010",
+      "category": "policy-explanation",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-c",
+      "prompt": "Tech Accessories World operates 39% FBM and has an ODR of 2.3% with 1 A-to-Z claim. The seller asks: 'I've heard that Amazon treats FBM and FBA sellers differently in terms of A-to-Z claims and ODR. Is this true? And can you explain how A-to-Z claims specifically affect my metrics and what my obligations are when one is filed?'\n\nSeller data: {{seller-c}}"
+    },
+    {
+      "id": "ss-011",
+      "category": "issue-resolution",
+      "difficulty": "easy",
+      "seller_profile_id": null,
+      "prompt": "A seller contacts support: 'A customer says their order never arrived, but the tracking shows it was delivered. What should I do? The customer is asking for a refund.' Provide clear step-by-step guidance on how to resolve this."
+    },
+    {
+      "id": "ss-012",
+      "category": "issue-resolution",
+      "difficulty": "easy",
+      "seller_profile_id": null,
+      "prompt": "A seller asks: 'I have inventory stuck in a removal order that was created 3 weeks ago. Amazon says it was shipped but I haven't received it. How do I find out what happened and get my inventory or a reimbursement?' Guide them through the resolution process."
+    },
+    {
+      "id": "ss-013",
+      "category": "issue-resolution",
+      "difficulty": "easy",
+      "seller_profile_id": null,
+      "prompt": "A seller says: 'I just noticed that a competitor is hijacking my listing — they're selling on my ASIN but it's not my product. What can I do about this immediately?' Provide actionable steps."
+    },
+    {
+      "id": "ss-014",
+      "category": "issue-resolution",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-g",
+      "prompt": "Coastal Living Imports contacts support: 'Amazon charged me a seller fee that I don't recognise — a referral fee adjustment from last month. I've checked my original fee schedule and the rate seems higher than what I agreed to. How do I dispute this charge and what information do I need to provide?'\n\nSeller data: {{seller-g}}"
+    },
+    {
+      "id": "ss-015",
+      "category": "issue-resolution",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-a",
+      "prompt": "Outdoor Gear Co says: 'My Buy Box percentage dropped from 82% to 61% in the last 90 days and I can't figure out why — my price hasn't changed significantly. I've looked at my metrics and I think it might be related to my return rate or fulfillment performance, but I'm not sure. Can you help me diagnose this and tell me what steps to take?'\n\nSeller data: {{seller-a}}"
+    },
+    {
+      "id": "ss-016",
+      "category": "issue-resolution",
+      "difficulty": "medium",
+      "seller_profile_id": null,
+      "prompt": "A seller asks: 'Amazon sent me a notification that one of my ASINs has been flagged for a potential intellectual property complaint from a brand owner. I sell genuine products and I'm not infringing anything. What are my rights, what should I do immediately, and how do I respond to protect my listing?'"
+    },
+    {
+      "id": "ss-017",
+      "category": "issue-resolution",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-i",
+      "prompt": "ToyWorld Express contacts support during Q4: 'I had a large FBA shipment arrive at the fulfillment center but only 60% of the units were received. Amazon is showing 400 units but I shipped 667. What's the process for investigating missing units and getting reimbursed for the discrepancy?'\n\nSeller data: {{seller-i}}"
+    },
+    {
+      "id": "ss-018",
+      "category": "issue-resolution",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-c",
+      "prompt": "Tech Accessories World has 7 suppressed ASINs and contacts support: 'Half my catalog is suppressed and I'm losing thousands of dollars a day. Amazon's messages are all different — some say policy violation, some say quality issue, some say restricted product. I don't know where to start. Can you give me a prioritised action plan to get my listings back as fast as possible, and tell me which of these I can resolve myself versus which needs Amazon to act?'\n\nSeller data: {{seller-c}}"
+    },
+    {
+      "id": "ss-019",
+      "category": "issue-resolution",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-j",
+      "prompt": "SmartHome Innovations has 3 A-to-Z claims and ODR at 3.1%. The seller contacts support: 'I've received 3 A-to-Z claims in the last 30 days. I've refunded 2 of them already but my ODR is still above 3%. I understand the threshold is 1%. Amazon has sent a warning. What is my absolute best path forward right now, given where my metrics are, to avoid suspension? What should I do today, this week, and this month?'\n\nSeller data: {{seller-j}}"
+    },
+    {
+      "id": "ss-020",
+      "category": "issue-resolution",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-j",
+      "prompt": "SmartHome Innovations has been suspended. The seller contacts support: 'My account was just suspended. I have $340,000 in FBA inventory and ongoing orders. What happens to my inventory, my pending orders, and my seller funds? What are my rights and what should I do in the next 24 hours?' Provide accurate, complete guidance.\n\nSeller data: {{seller-j}}"
+    },
+    {
+      "id": "ss-021",
+      "category": "communication-drafting",
+      "difficulty": "easy",
+      "seller_profile_id": null,
+      "prompt": "A seller received a 1-star review that says 'arrived damaged, terrible packaging'. Draft a professional, empathetic public response to this review that follows Amazon's guidelines and positions the seller positively to future customers."
+    },
+    {
+      "id": "ss-022",
+      "category": "communication-drafting",
+      "difficulty": "easy",
+      "seller_profile_id": null,
+      "prompt": "A seller needs to send a message to a customer whose order is delayed by 5 days due to a carrier issue. Draft a professional, empathetic customer message that explains the situation, apologises appropriately, and includes a clear next step."
+    },
+    {
+      "id": "ss-023",
+      "category": "communication-drafting",
+      "difficulty": "easy",
+      "seller_profile_id": null,
+      "prompt": "A seller wants to respond to a customer who left a 2-star review saying the product was 'not as described'. The product listing is accurate and the seller believes the customer misread it. Draft a measured, professional public response."
+    },
+    {
+      "id": "ss-024",
+      "category": "communication-drafting",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-e",
+      "prompt": "Gourmet Kitchen Direct had a late shipment issue affecting 34 orders due to a carrier delay. Draft an apology email to the affected customers that is empathetic, takes appropriate responsibility, explains the cause briefly, states what has been done to resolve it, and includes a goodwill gesture.\n\nSeller data: {{seller-e}}"
+    },
+    {
+      "id": "ss-025",
+      "category": "communication-drafting",
+      "difficulty": "medium",
+      "seller_profile_id": null,
+      "prompt": "A seller needs to respond to a customer complaint where the customer claims the product is counterfeit. The seller is an authorised reseller and the product is genuine. Draft a response to the customer and a separate internal note to the seller support team with the evidence they should gather."
+    },
+    {
+      "id": "ss-026",
+      "category": "communication-drafting",
+      "difficulty": "medium",
+      "seller_profile_id": null,
+      "prompt": "A seller received multiple 1-star reviews in one week, all with suspiciously similar wording, and believes they are fake reviews from a competitor. Draft a professional message to Amazon Seller Performance reporting the suspected review manipulation, including what evidence to reference and what outcome to request."
+    },
+    {
+      "id": "ss-027",
+      "category": "communication-drafting",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-a",
+      "prompt": "Outdoor Gear Co received a policy warning about their suppressed ASINs. Draft an internal action summary the seller can use to brief their operations team — what the violation is, what needs to be fixed on each ASIN, who is responsible, and what the deadline is before further action is taken.\n\nSeller data: {{seller-a}}"
+    },
+    {
+      "id": "ss-028",
+      "category": "communication-drafting",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-j",
+      "prompt": "SmartHome Innovations needs to submit a Plan of Action (POA) to Amazon Seller Performance in response to an account health warning about ODR exceeding 3%. Draft a complete, professional POA that includes: (1) root cause analysis of why ODR reached this level, (2) immediate corrective actions already taken, (3) preventative measures to ensure it doesn't recur. The POA must be in the format Amazon expects and be specific, not generic.\n\nSeller data: {{seller-j}}"
+    },
+    {
+      "id": "ss-029",
+      "category": "communication-drafting",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-c",
+      "prompt": "Tech Accessories World has received a final warning before potential account deactivation. The seller wants to write a personal escalation letter to Amazon's Seller Experience team (not the standard appeal form). Draft a compelling, professional escalation letter that: acknowledges the seriousness, presents a credible narrative of what went wrong, demonstrates accountability, and makes a clear ask. The letter should be authentic, not formulaic.\n\nSeller data: {{seller-c}}"
+    },
+    {
+      "id": "ss-030",
+      "category": "communication-drafting",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-g",
+      "prompt": "Coastal Living Imports has ODR at 1.1% and is at risk of a formal account health review. They need to proactively communicate to Amazon before a warning is issued. Draft a proactive outreach to their Account Manager explaining: current metrics and trend, root cause analysis of the ODR increase, specific steps being taken, and a commitment with timeline. The goal is to demonstrate proactive ownership before Amazon acts.\n\nSeller data: {{seller-g}}"
+    },
+    {
+      "id": "ss-031",
+      "category": "account-health",
+      "difficulty": "easy",
+      "seller_profile_id": null,
+      "prompt": "A new seller asks: 'What does my Account Health Score actually mean? I have a score of 200 — is that good or bad, and what affects it?' Give a clear, jargon-free explanation."
+    },
+    {
+      "id": "ss-032",
+      "category": "account-health",
+      "difficulty": "easy",
+      "seller_profile_id": null,
+      "prompt": "A seller asks: 'My Account Health page shows a yellow warning next to my Late Shipment Rate. What does this mean, and what do I need to do to clear it?' Explain the threshold and the steps to resolve it."
+    },
+    {
+      "id": "ss-033",
+      "category": "account-health",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-b",
+      "prompt": "Home Essentials Plus has an Account Health Score of 296. The seller asks: 'My score is high but I want to understand what would make it go down. What are the top 3 things I should watch to protect my score?'\n\nSeller data: {{seller-b}}"
+    },
+    {
+      "id": "ss-034",
+      "category": "account-health",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-g",
+      "prompt": "Coastal Living Imports has ODR at 1.1% — just above the 1% threshold. The seller asks: 'My ODR went above 1% last month. I've already refunded all the orders involved, but my metric hasn't improved. Why isn't it going down, and what do I need to do to get it below 1% as fast as possible?'\n\nSeller data: {{seller-g}}"
+    },
+    {
+      "id": "ss-035",
+      "category": "account-health",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-c",
+      "prompt": "Tech Accessories World has a return rate of 12.4% — more than double the category average of 5.2%. The seller asks: 'My return rate is way above the category average. I've been told this could affect my account health. What is Amazon's actual threshold for return rates in electronics accessories, and how does a high return rate affect my metrics and standing?'\n\nSeller data: {{seller-c}}"
+    },
+    {
+      "id": "ss-036",
+      "category": "account-health",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-a",
+      "prompt": "Outdoor Gear Co asks: 'I have 3 suppressed ASINs due to policy violations. My Account Health Score is 142. How much will resolving these suppressed listings improve my score, and are there other factors dragging my score down that I might be missing?'\n\nSeller data: {{seller-a}}"
+    },
+    {
+      "id": "ss-037",
+      "category": "account-health",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-i",
+      "prompt": "ToyWorld Express has 52 negative reviews in the last 60 days and ODR at 0.7%. The seller asks: 'My negative reviews are increasing but my ODR is still OK. Can you explain the difference between review-related metrics and order defect metrics, and whether my review trend puts me at risk even if my ODR stays below 1%?'\n\nSeller data: {{seller-i}}"
+    },
+    {
+      "id": "ss-038",
+      "category": "account-health",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-j",
+      "prompt": "SmartHome Innovations has an Account Health Score of 72 with ODR at 3.1%, 3 A-to-Z claims, 4 suppressed ASINs, and 143 negative reviews in 60 days. Provide a full diagnostic of this account's health — explain which metrics are in violation, what each violation means for account standing, which issues are most urgent to fix first, and what the realistic timeline to recovery looks like if everything is addressed correctly.\n\nSeller data: {{seller-j}}"
+    },
+    {
+      "id": "ss-039",
+      "category": "account-health",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-c",
+      "prompt": "Tech Accessories World is in account health distress on multiple dimensions simultaneously. The seller asks: 'I'm overwhelmed — I have too many problems. If I can only fix one thing this week, what should it be, and why? Then give me a week-by-week sequence for the next 4 weeks.' Provide a specific, prioritised action sequence with rationale.\n\nSeller data: {{seller-c}}"
+    },
+    {
+      "id": "ss-040",
+      "category": "account-health",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-j",
+      "prompt": "SmartHome Innovations asks: 'My Account Health Score is 72. I've heard scores below 75 trigger mandatory seller coaching calls. What happens during these calls, what does Amazon expect me to demonstrate, and how should I prepare to give myself the best outcome?'\n\nSeller data: {{seller-j}}"
+    },
+    {
+      "id": "ss-041",
+      "category": "shipping-fulfilment",
+      "difficulty": "easy",
+      "seller_profile_id": null,
+      "prompt": "A seller asks: 'I want to send products back from Amazon's warehouse to my own facility. How do I create a removal order, and how long does it usually take?' Provide clear, step-by-step guidance."
+    },
+    {
+      "id": "ss-042",
+      "category": "shipping-fulfilment",
+      "difficulty": "easy",
+      "seller_profile_id": null,
+      "prompt": "A seller notices some of their FBA inventory is showing as 'stranded' in Seller Central. They ask: 'What does stranded inventory mean and how do I fix it?' Explain clearly."
+    },
+    {
+      "id": "ss-043",
+      "category": "shipping-fulfilment",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-d",
+      "prompt": "Beauty Bliss Brands uses 15% FBM. They ask: 'For my FBM orders, what are the shipping time requirements Amazon sets, and what happens if I miss them?' Explain the requirements and consequences.\n\nSeller data: {{seller-d}}"
+    },
+    {
+      "id": "ss-044",
+      "category": "shipping-fulfilment",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-i",
+      "prompt": "ToyWorld Express had 400 units received against 667 shipped to FBA. They ask: 'Amazon received significantly fewer units than I sent in my FBA shipment. I've submitted a reconciliation request but it's been 2 weeks with no response. What are my next steps, what information do I need to escalate this, and how does the reimbursement calculation work?'\n\nSeller data: {{seller-i}}"
+    },
+    {
+      "id": "ss-045",
+      "category": "shipping-fulfilment",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-g",
+      "prompt": "Coastal Living Imports has 55% FBM and asks: 'My FBM orders have been generating more returns than my FBA orders — my return rate is 9.1% overall. I think my shipping partner is the main issue. How do I analyse whether FBM vs FBA is driving my returns, and what's the business case for converting more inventory to FBA?'\n\nSeller data: {{seller-g}}"
+    },
+    {
+      "id": "ss-046",
+      "category": "shipping-fulfilment",
+      "difficulty": "medium",
+      "seller_profile_id": null,
+      "prompt": "A seller asks: 'It's October and I'm planning my Q4 inventory strategy. Amazon has announced FBA capacity limits for the peak period. How should I calculate how much inventory to send in, and what options do I have if I hit my FBA capacity limit during peak?' Provide a practical planning framework."
+    },
+    {
+      "id": "ss-047",
+      "category": "shipping-fulfilment",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-c",
+      "prompt": "Tech Accessories World operates 39% FBM and has ODR at 2.3%. They ask: 'I know FBM is riskier for my metrics than FBA, but I can't convert all my inventory because some ASINs are suppressed. In this situation, how should I manage my FBM operations to minimise further ODR damage while I work on the ASIN issues?'\n\nSeller data: {{seller-c}}"
+    },
+    {
+      "id": "ss-048",
+      "category": "shipping-fulfilment",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-i",
+      "prompt": "ToyWorld Express has 22% FBM and is planning Q1 fulfilment strategy after Q4 underperformance. Design a practical fulfilment strategy for Q1 that: (1) recommends the right FBA vs FBM split based on their metrics, (2) sets inventory level targets given their session trajectory, (3) identifies which ASINs to prioritise for FBA conversion, and (4) explains the process and timeline for executing the transition.\n\nSeller data: {{seller-i}}"
+    },
+    {
+      "id": "ss-049",
+      "category": "shipping-fulfilment",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-g",
+      "prompt": "Coastal Living Imports is considering converting from 55% FBM to 80%+ FBA. Build a complete business case analysis for this transition including: estimated Buy Box improvement, projected return rate reduction, net fee impact (FBA fees vs current shipping costs), risk during transition period, and a 90-day conversion timeline with milestones.\n\nSeller data: {{seller-g}}"
+    },
+    {
+      "id": "ss-050",
+      "category": "shipping-fulfilment",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-j",
+      "prompt": "SmartHome Innovations has 60% FBM, an 18.2% return rate, and 3 A-to-Z claims, with their account at deactivation risk. Their FBM operations are a major contributor to their metric failures. Design an emergency fulfilment intervention plan for the next 30 days that prioritises stopping metric deterioration over business optimisation. Be specific about which orders, ASINs, and processes to address first.\n\nSeller data: {{seller-j}}"
+    }
+  ]
+}

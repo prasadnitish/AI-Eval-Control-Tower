@@ -1,0 +1,757 @@
+{
+  "id": "seller-support-v2",
+  "version": "2.0",
+  "description": "50-prompt seller support eval dataset for support advisor skill assessment across 12 marketplace support categories. Context injected via context_blocks.",
+  "prompts": [
+    {
+      "id": "ss-001",
+      "category": "account_health_odr_recovery",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-008",
+      "asins": ["B0NA000001"],
+      "requires_disclaimer": false,
+      "prompt": "What is Amazon's Order Defect Rate (ODR), how is it calculated, and what are the 3 components that contribute to it? What is the minimum threshold and what action does Amazon take when a seller crosses it?",
+      "context_blocks": {
+        "seller_snapshot": "NutriAxis: healthy, ODR 0.18% — well within threshold. Used as baseline education example.",
+        "asin_snapshot": "Immune supplement: 0 A-to-Z claims, 0 chargebacks, 0.18% negative feedback rate in 60d.",
+        "event_log": "No account health events. Clean 90-day record.",
+        "financial_snapshot": "Reserve hold 5%, healthy payout. No ODR risk."
+      }
+    },
+    {
+      "id": "ss-002",
+      "category": "account_health_odr_recovery",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-007",
+      "asins": ["B0CC000001"],
+      "requires_disclaimer": false,
+      "prompt": "CoastalCasa's ODR is 1.11% and they want to understand which order types are contributing most. Describe how an AM should guide the seller through ODR root-cause analysis using Seller Central reports, and identify the 3 most common operational drivers for FBM sellers.",
+      "context_blocks": {
+        "seller_snapshot": "CoastalCasa: ODR 1.11%, account health 126, FBM-heavy decor seller.",
+        "asin_snapshot": "Large-item decor products — high INR complaint rate due to freight delivery issues.",
+        "event_log": "ODR breach flagged 2026-01-31.",
+        "financial_snapshot": "Reserve hold increased to 22% post-breach."
+      }
+    },
+    {
+      "id": "ss-003",
+      "category": "account_health_odr_recovery",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-007",
+      "asins": ["B0CC000001"],
+      "requires_disclaimer": false,
+      "prompt": "Seller has ODR 1.11% and asks why refunded orders did not immediately lower ODR. Explain the rolling-window mechanics and the fastest legitimate path below threshold.",
+      "context_blocks": {
+        "seller_snapshot": "ODR recently breached; account health 126.",
+        "asin_snapshot": "FBM-heavy decor ASINs with high INR complaints.",
+        "event_log": "ODR breach flagged 2026-01-31.",
+        "financial_snapshot": "Reserve hold increased to 22%."
+      }
+    },
+    {
+      "id": "ss-004",
+      "category": "account_health_odr_recovery",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-us-010",
+      "asins": ["B0SN000001", "B0SN000002"],
+      "requires_disclaimer": true,
+      "prompt": "Seller reports ODR at 3.08% and received final deactivation warning. They refunded 4 orders but metric has not moved. Provide a day-0, day-7, and day-30 plan to reduce account risk and explain what can and cannot be reversed in the metric window.",
+      "context_blocks": {
+        "seller_snapshot": "Account health score 72, 16 A-to-Z claims in 60d, late shipment 7.4%.",
+        "asin_snapshot": "Two flagship smart-home ASINs have 18%+ returns and safety suppression flags.",
+        "event_log": "Final warning issued 2026-01-21. Disbursement hold added 2026-02-17.",
+        "financial_snapshot": "Reserve hold 31%, payout delay 16 days."
+      }
+    },
+    {
+      "id": "ss-005",
+      "category": "listing_suppression",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-011",
+      "asins": ["B0PH000001"],
+      "requires_disclaimer": false,
+      "prompt": "What are the 3 most common reasons Amazon suppresses a product listing? For each reason, describe what the seller sees in Seller Central and the standard resolution path.",
+      "context_blocks": {
+        "seller_snapshot": "PetHarbor: healthy, zero suppressed ASINs, account health 281.",
+        "asin_snapshot": "Calming chews: no suppression risk. Used as contrast for education.",
+        "event_log": "No listing events. Clean compliance record.",
+        "financial_snapshot": "No financial impact from suppression. Healthy payout."
+      }
+    },
+    {
+      "id": "ss-006",
+      "category": "listing_suppression",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-001",
+      "asins": ["B0NP000001", "B0NP000002"],
+      "requires_disclaimer": false,
+      "prompt": "NorthPeak has 5 suppressed ASINs for a mix of reasons: variation title mismatch, missing safety documents, and image compliance issues. Create a suppression triage checklist that categorizes each ASIN by resolution pathway (self-serve vs Amazon review) and estimated time to reinstate.",
+      "context_blocks": {
+        "seller_snapshot": "NorthPeak: at-risk, 5 suppressed ASINs, account health 139.",
+        "asin_snapshot": "Backpack and hydration ASINs — different suppression reasons require different resolution paths.",
+        "event_log": "Suppression Jan 24 — active for 27 days.",
+        "financial_snapshot": "Reserve hold 18%. Each suppressed ASIN represents lost revenue and promo ROI."
+      }
+    },
+    {
+      "id": "ss-007",
+      "category": "listing_suppression",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-001",
+      "asins": ["B0NP000002"],
+      "requires_disclaimer": false,
+      "prompt": "Hydration ASIN was suppressed for variation-title mismatch during active promotion. Seller wants a fastest reinstatement checklist and revenue-loss mitigation while appeal is in progress.",
+      "context_blocks": {
+        "seller_snapshot": "At-risk seller with Buy Box erosion and return spike.",
+        "asin_snapshot": "Suppressed hydration SKU with high promotional velocity.",
+        "event_log": "Suppression date 2026-01-24.",
+        "financial_snapshot": "Case linked to elevated fee leakage due to failed deals."
+      }
+    },
+    {
+      "id": "ss-008",
+      "category": "listing_suppression",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-us-003",
+      "asins": ["B0VE000001", "B0VE000002"],
+      "requires_disclaimer": true,
+      "prompt": "Multiple ASINs suppressed for mixed reasons (hazmat, product safety documents, authenticity concerns). Seller asks for triage priority and what can be solved self-serve vs requires Amazon review.",
+      "context_blocks": {
+        "seller_snapshot": "Distressed account with 11 suppressed ASINs.",
+        "asin_snapshot": "Cable and power bank products with safety and authenticity flags.",
+        "event_log": "Counterfeit complaint and deactivation warning in last 30 days.",
+        "financial_snapshot": "Reserve hold 27%, delayed disbursement 14 days."
+      }
+    },
+    {
+      "id": "ss-009",
+      "category": "payment_reserve_hold",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-006",
+      "asins": ["B0PS000001"],
+      "requires_disclaimer": false,
+      "prompt": "What is an Amazon payment reserve hold, how is the percentage determined, and what are the 3 most common triggers? Explain how long a standard reserve cycle runs and what a seller can do to reduce their hold rate.",
+      "context_blocks": {
+        "seller_snapshot": "PeakStride: high-growth, reserve hold 1%, payout delay 2 days — low risk example.",
+        "asin_snapshot": "Private label apparel — clean compliance record, no defect claims.",
+        "event_log": "No reserve events. Viral demand spike Feb 16 is positive.",
+        "financial_snapshot": "Reserve hold 1%. Strong margins 43-47%. Healthy payout cycle."
+      }
+    },
+    {
+      "id": "ss-010",
+      "category": "payment_reserve_hold",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-001",
+      "asins": ["B0NP000001", "B0NP000002"],
+      "requires_disclaimer": false,
+      "prompt": "NorthPeak's reserve hold increased from 8% to 18% in 6 weeks. Identify the 4 weekly KPIs they should track to understand whether the hold is stabilizing or escalating, and describe how each KPI influences Amazon's reserve calculation.",
+      "context_blocks": {
+        "seller_snapshot": "NorthPeak: at-risk, reserve hold 18%, payout delay 6 days, account health 139.",
+        "asin_snapshot": "Buy Box declining, chargebacks elevated, 5 suppressed ASINs.",
+        "event_log": "Reserve hold increase Feb 12 — third increase in 6 weeks.",
+        "financial_snapshot": "Reserve hold 18% now. At 25%+ threshold, disbursement hold risk activates."
+      }
+    },
+    {
+      "id": "ss-011",
+      "category": "payment_reserve_hold",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-007",
+      "asins": ["B0CC000002"],
+      "requires_disclaimer": false,
+      "prompt": "Seller asks why disbursement cycles shifted from 2 days to 11 days and what leading indicators they should monitor weekly to avoid further holds.",
+      "context_blocks": {
+        "seller_snapshot": "ODR breach and FBM delivery quality issues.",
+        "asin_snapshot": "Large-item decor category with elevated return claims.",
+        "event_log": "Payout hold notice sent after ODR breach.",
+        "financial_snapshot": "Reserve hold now 22%."
+      }
+    },
+    {
+      "id": "ss-012",
+      "category": "payment_reserve_hold",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-us-010",
+      "asins": ["B0SN000001"],
+      "requires_disclaimer": true,
+      "prompt": "Seller claims reserve hold rose from 12% to 31% and cannot pay suppliers. They ask for exact causes, what data can reduce reserve, and expected timelines.",
+      "context_blocks": {
+        "seller_snapshot": "Severe account-health deterioration and high claim volume.",
+        "asin_snapshot": "High-return smart-home products with customer disputes.",
+        "event_log": "Fund disbursement hold applied 2026-02-17.",
+        "financial_snapshot": "Cash conversion cycle under stress; chargebacks rising."
+      }
+    },
+    {
+      "id": "ss-013",
+      "category": "fee_dispute",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-012",
+      "asins": ["B0UO000001"],
+      "requires_disclaimer": false,
+      "prompt": "What are the 4 main categories of Amazon fees that sellers commonly dispute? For each, describe what evidence is needed to open a dispute and what the standard resolution timeline is.",
+      "context_blocks": {
+        "seller_snapshot": "UrbanOffice: healthy, active oversize fee dispute, account health 221.",
+        "asin_snapshot": "Ergonomic chair ASIN — oversize tier reclassification is active dispute.",
+        "event_log": "Dimension remeasurement posted 2026-01-28. Fee delta applied since.",
+        "financial_snapshot": "Fee delta impacts per-unit margin. Reserve hold 7%, healthy payout."
+      }
+    },
+    {
+      "id": "ss-014",
+      "category": "fee_dispute",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-005",
+      "asins": ["B0KF000001", "B0KF000002"],
+      "requires_disclaimer": false,
+      "prompt": "KitchenForge has 11 fee disputes in 90 days. Help them build a dispute tracking system that prioritizes open disputes by dollar amount, age, and evidence quality, and define the escalation trigger if initial disputes are denied.",
+      "context_blocks": {
+        "seller_snapshot": "KitchenForge: stalling, 11 fee disputes in 90d, margin under pressure.",
+        "asin_snapshot": "Appliance ASINs with recent category mapping changes and elevated return costs.",
+        "event_log": "Fee reclassification dispute opened 2026-02-03.",
+        "financial_snapshot": "Gross margin 22.4% — fee recovery is material. Chargebacks 7 in 90d adding pressure."
+      }
+    },
+    {
+      "id": "ss-015",
+      "category": "fee_dispute",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-005",
+      "asins": ["B0KF000001", "B0KF000002"],
+      "requires_disclaimer": false,
+      "prompt": "Seller believes referral fees were reclassified to a higher category. They need a dispute package checklist and expected response cycle.",
+      "context_blocks": {
+        "seller_snapshot": "Stalling seller with margin pressure and fee disputes.",
+        "asin_snapshot": "Appliance ASINs with recent category mapping changes.",
+        "event_log": "Fee reclassification dispute opened 2026-02-03.",
+        "financial_snapshot": "11 fee disputes in 90d; margin compressed."
+      }
+    },
+    {
+      "id": "ss-016",
+      "category": "fee_dispute",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-us-012",
+      "asins": ["B0UO000001"],
+      "requires_disclaimer": false,
+      "prompt": "Oversize re-measurement increased fees on a chair ASIN. Seller disputes dimensions and requests a reversible path with audit trail.",
+      "context_blocks": {
+        "seller_snapshot": "Healthy seller with occasional dimensions disputes.",
+        "asin_snapshot": "Oversize office chair with high freight sensitivity.",
+        "event_log": "Dimension remeasurement posted 2026-01-28.",
+        "financial_snapshot": "Fee delta materially impacts margin per unit."
+      }
+    },
+    {
+      "id": "ss-017",
+      "category": "counterfeit_claims",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-008",
+      "asins": ["B0NA000001"],
+      "requires_disclaimer": false,
+      "prompt": "What is the difference between a counterfeit claim and an authenticity complaint on Amazon? Who can file each type, what does Amazon do upon receipt, and what is the seller's response window?",
+      "context_blocks": {
+        "seller_snapshot": "NutriAxis: healthy, zero counterfeit claims, brand registry enrolled.",
+        "asin_snapshot": "Immune supplement — private label brand owned by seller. No third-party sellers on listing.",
+        "event_log": "No IP or authenticity events. Clean policy record.",
+        "financial_snapshot": "Strong margins 42-44%, reserve hold 5%. No authenticity risk."
+      }
+    },
+    {
+      "id": "ss-018",
+      "category": "counterfeit_claims",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-006",
+      "asins": ["B0PS000001"],
+      "requires_disclaimer": false,
+      "prompt": "PeakStride sells private-label athletic wear under a brand they own and have registered. What types of IP and authenticity complaints could still be filed against a private-label seller, and what 3 preventive actions should they take to minimize risk?",
+      "context_blocks": {
+        "seller_snapshot": "PeakStride: high-growth, zero IP complaints, brand registry enrolled.",
+        "asin_snapshot": "Private label apparel — PeakStride brand owned and registered by seller.",
+        "event_log": "No IP events. Viral demand spike Feb 16 increases brand visibility and exposure.",
+        "financial_snapshot": "Strong margins 43-47%, reserve hold 1%. Growth trajectory increases IP risk surface."
+      }
+    },
+    {
+      "id": "ss-019",
+      "category": "counterfeit_claims",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-001",
+      "asins": ["B0NP000001"],
+      "requires_disclaimer": false,
+      "prompt": "NorthPeak has 1 counterfeit claim in 90 days on their backpack ASIN. They believe the claimant may have purchased from a gray-market source. Outline a 4-step response strategy using evidence they can realistically gather from their manufacturing chain.",
+      "context_blocks": {
+        "seller_snapshot": "NorthPeak: at-risk, 1 counterfeit claim, 2 review abuse signals, private label brand.",
+        "asin_snapshot": "Backpack ASIN: buy box 58.1%, some third-party offers detected on listing.",
+        "event_log": "Counterfeit claim in 90-day window. Reserve hold recently increased.",
+        "financial_snapshot": "Reserve hold 18% — unresolved claim could trigger further hold increase."
+      }
+    },
+    {
+      "id": "ss-020",
+      "category": "counterfeit_claims",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-010",
+      "asins": ["B0SN000002"],
+      "requires_disclaimer": true,
+      "prompt": "Customer counterfeit complaints rose on smart doorbell listing. Seller wants to know whether to keep selling while appeal is reviewed and how to avoid worsening account action.",
+      "context_blocks": {
+        "seller_snapshot": "SmartNest: under final warning, account health 72.",
+        "asin_snapshot": "Doorbell ASIN: under investigation-suppression, buy box 31.7%, 7 counterfeit claims in 90d.",
+        "event_log": "Counterfeit complaints escalated 2026-02-09.",
+        "financial_snapshot": "Reserve hold 31% and payout delay 16 days already severe."
+      }
+    },
+    {
+      "id": "ss-021",
+      "category": "counterfeit_claims",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-us-003",
+      "asins": ["B0VE000001"],
+      "requires_disclaimer": true,
+      "prompt": "Brand owner filed counterfeit complaint on charging cable ASIN. Seller claims authentic inventory from distributor. Provide immediate containment and evidence package strategy.",
+      "context_blocks": {
+        "seller_snapshot": "VoltEdge: distressed, multiple authenticity flags, account health 84.",
+        "asin_snapshot": "Cable ASIN: high-volume, 6 counterfeit claims in 90d, 7 review abuse signals, suppressed.",
+        "event_log": "Counterfeit complaint filed 2026-01-29 by brand owner.",
+        "financial_snapshot": "High chargeback exposure and reserve hold 27%."
+      }
+    },
+    {
+      "id": "ss-022",
+      "category": "listing_hijack_buybox_abuse",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-008",
+      "asins": ["B0NA000001"],
+      "requires_disclaimer": false,
+      "prompt": "What is listing hijacking, how does it differ from a normal reseller joining a listing, and what is the first action a brand-registered seller should take when they detect an unauthorized offer on their branded ASIN?",
+      "context_blocks": {
+        "seller_snapshot": "NutriAxis: healthy, buy box 84.7%, brand registry enrolled.",
+        "asin_snapshot": "Supplement ASINs with strong brand protection. Buy Box historically stable.",
+        "event_log": "No hijack events. Review velocity anomaly is separate.",
+        "financial_snapshot": "Healthy margins 44-45%. Buy Box loss would materially impact revenue."
+      }
+    },
+    {
+      "id": "ss-023",
+      "category": "listing_hijack_buybox_abuse",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-004",
+      "asins": ["B0AB000002"],
+      "requires_disclaimer": false,
+      "prompt": "Aurelia Beauty's serum ASIN dropped from 86.1% to 71% Buy Box share in 2 weeks, with 3 new third-party offers appearing at 18% below Aurelia's price. Create an investigation and response checklist for the AM to work through with the seller.",
+      "context_blocks": {
+        "seller_snapshot": "Aurelia: healthy, brand registry enrolled, private label brand.",
+        "asin_snapshot": "Serum ASIN: buy box was 86.1%, now 71%. Three unauthorized offers at $19.99 vs Aurelia's $24.49.",
+        "event_log": "Price undercut appeared over 2 weeks. No listing quality changes made.",
+        "financial_snapshot": "Gross margin 43%, reserve hold 4%. Revenue at risk if Buy Box not recovered."
+      }
+    },
+    {
+      "id": "ss-024",
+      "category": "listing_hijack_buybox_abuse",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-011",
+      "asins": ["B0PH000001"],
+      "requires_disclaimer": false,
+      "prompt": "Seller reports unauthorized offers on branded ASIN with sudden Buy Box loss and suspicious low pricing. Provide anti-hijack response plan with evidence requirements.",
+      "context_blocks": {
+        "seller_snapshot": "High-growth seller with normally stable Buy Box share.",
+        "asin_snapshot": "Top-selling supplement ASIN affected.",
+        "event_log": "Buy Box share dropped 18 points in 48 hours.",
+        "financial_snapshot": "Promo efficiency declined due to undercut offers."
+      }
+    },
+    {
+      "id": "ss-025",
+      "category": "listing_hijack_buybox_abuse",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-us-001",
+      "asins": ["B0NP000001"],
+      "requires_disclaimer": false,
+      "prompt": "Seller suspects hijack plus review sabotage on flagship backpack ASIN: Buy Box down, suspicious 1-star burst, and returns up. They need immediate triage and escalation order.",
+      "context_blocks": {
+        "seller_snapshot": "At-risk account with existing suppression pressure.",
+        "asin_snapshot": "Top ASIN has counterfeit and review abuse signals.",
+        "event_log": "Negative review burst after competitor joined listing.",
+        "financial_snapshot": "High-margin ASIN now below target margin due to discounting."
+      }
+    },
+    {
+      "id": "ss-026",
+      "category": "review_abuse",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-012",
+      "asins": ["B0UO000001"],
+      "requires_disclaimer": false,
+      "prompt": "What is Amazon's review request policy? Explain what is explicitly allowed, what is prohibited, and what the consequences are for non-compliant review solicitation.",
+      "context_blocks": {
+        "seller_snapshot": "UrbanOffice: healthy, 4.3 avg rating, 12,200 total reviews, 0 review abuse signals.",
+        "asin_snapshot": "Office furniture — B2B purchase patterns with longer review cycles.",
+        "event_log": "No review abuse signals. Clean review history.",
+        "financial_snapshot": "Healthy account. No payout or performance risk related to reviews."
+      }
+    },
+    {
+      "id": "ss-027",
+      "category": "review_abuse",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-009",
+      "asins": ["B0TN000001"],
+      "requires_disclaimer": false,
+      "prompt": "ToyNova received 2 text-identical coordinated 1-star reviews within 24 hours, appearing after a competing ASIN was delisted. Build an escalation evidence package: what to include, how to format it, and what outcome is realistically achievable.",
+      "context_blocks": {
+        "seller_snapshot": "ToyNova: stalling, review abuse signals 2 in 90d.",
+        "asin_snapshot": "STEM toy: avg rating 4.0, two text-identical 1-star reviews posted within same 24-hour window.",
+        "event_log": "Both reviews appeared after competitor ASIN delisting event.",
+        "financial_snapshot": "Already under margin and inventory pressure — negative review spike worsens conversion."
+      }
+    },
+    {
+      "id": "ss-028",
+      "category": "review_abuse",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-011",
+      "asins": ["B0PH000001"],
+      "requires_disclaimer": false,
+      "prompt": "Seller sees sudden cluster of short-text 5-star reviews and worries this may trigger a manipulation review. They want proactive cleanup advice.",
+      "context_blocks": {
+        "seller_snapshot": "High-growth seller with unusual review velocity event.",
+        "asin_snapshot": "Top pet supplement ASIN has review anomaly signal.",
+        "event_log": "Review velocity spike detected 2026-02-01.",
+        "financial_snapshot": "No material payment issues yet."
+      }
+    },
+    {
+      "id": "ss-029",
+      "category": "review_abuse",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-us-003",
+      "asins": ["B0VE000001"],
+      "requires_disclaimer": false,
+      "prompt": "Seller alleges coordinated negative-review attack by competitor after price drop. They ask for escalation template and proof standards.",
+      "context_blocks": {
+        "seller_snapshot": "Distressed seller with multiple trust issues.",
+        "asin_snapshot": "Cable ASIN has severe rating decline and abuse signals.",
+        "event_log": "Review abuse signal score 7 in last 90 days.",
+        "financial_snapshot": "Revenue volatility high; ad spend inefficiency rising."
+      }
+    },
+    {
+      "id": "ss-030",
+      "category": "chargeback_dispute",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-002",
+      "asins": ["B0HG000001"],
+      "requires_disclaimer": false,
+      "prompt": "What happens when a buyer initiates a payment chargeback on an Amazon order? Explain the process timeline from buyer claim to resolution, when a seller should contest vs accept, and what documentation strengthens a dispute.",
+      "context_blocks": {
+        "seller_snapshot": "HomeGrid: healthy, chargebacks 1 in 90d, strong order fulfillment metrics.",
+        "asin_snapshot": "Storage bins with 2.1% return rate and high customer satisfaction.",
+        "event_log": "No chargeback escalations. Single isolated case.",
+        "financial_snapshot": "Healthy reserve, low risk exposure. Chargeback represents minimal financial impact."
+      }
+    },
+    {
+      "id": "ss-031",
+      "category": "chargeback_dispute",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-001",
+      "asins": ["B0NP000001", "B0NP000002"],
+      "requires_disclaimer": false,
+      "prompt": "NorthPeak has 6 chargebacks in 90 days: 3 'item not received' (INR) and 3 'not as described' (NAD). Build two separate evidence packages — one for INR, one for NAD — and recommend contestation priority based on win probability.",
+      "context_blocks": {
+        "seller_snapshot": "NorthPeak: at-risk, chargebacks 6, FBA 88%, late shipment 3.7%.",
+        "asin_snapshot": "Backpack (FBA, strong delivery) and hydration ASIN (suppressed, returns elevated).",
+        "event_log": "Chargeback cluster Feb 7 on two high-volume SKUs.",
+        "financial_snapshot": "Reserve hold 18%, reimbursements $8,420 pending. Chargeback resolution affects both."
+      }
+    },
+    {
+      "id": "ss-032",
+      "category": "chargeback_dispute",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-005",
+      "asins": ["B0KF000001"],
+      "requires_disclaimer": false,
+      "prompt": "Seller sees chargeback spike on one appliance SKU after holiday promotions. They request root-cause hypothesis and prevention controls for next promo cycle.",
+      "context_blocks": {
+        "seller_snapshot": "Stalling seller with fee and claim pressure.",
+        "asin_snapshot": "Air fryer SKU had aggressive discount and returns spike.",
+        "event_log": "Chargebacks concentrated in 2-week promo period.",
+        "financial_snapshot": "Promo gains offset by post-sale dispute losses."
+      }
+    },
+    {
+      "id": "ss-033",
+      "category": "chargeback_dispute",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-us-010",
+      "asins": ["B0SN000001"],
+      "requires_disclaimer": true,
+      "prompt": "Chargebacks jumped to 31 in 90 days. Seller asks when to fight chargebacks vs accept loss and how this intersects with ODR/suspension risk.",
+      "context_blocks": {
+        "seller_snapshot": "Distressed account with active suspension risk.",
+        "asin_snapshot": "High-return camera ASIN with delivery and quality disputes.",
+        "event_log": "Chargeback cluster linked to INR + defective product claims.",
+        "financial_snapshot": "Gross margin near zero after dispute losses."
+      }
+    },
+    {
+      "id": "ss-034",
+      "category": "fba_reimbursement_missing_inventory",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-002",
+      "asins": ["B0HG000001"],
+      "requires_disclaimer": false,
+      "prompt": "HomeGrid's inbound shipment shows a discrepancy of 3 units on one container. Explain the FBA inbound reconciliation process: what the investigation window is, when a seller can file a claim, and what the minimum evidence requirement is.",
+      "context_blocks": {
+        "seller_snapshot": "HomeGrid: healthy, FC discrepancy 3 units in 30d — very low variance.",
+        "asin_snapshot": "Storage bins with minimal inbound variance historically.",
+        "event_log": "Port delay on container — received 5 days late but count variance minimal.",
+        "financial_snapshot": "Reimbursements $640 pending. Low-urgency but good process to understand."
+      }
+    },
+    {
+      "id": "ss-035",
+      "category": "fba_reimbursement_missing_inventory",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-007",
+      "asins": ["B0CC000001", "B0CC000002"],
+      "requires_disclaimer": false,
+      "prompt": "CoastalCasa has $11,120 in pending reimbursements across multiple mirror and lamp shipments. Create a triage system for their open claims: which to prioritize, what evidence quality upgrades improve approval chances, and how to prevent future denials.",
+      "context_blocks": {
+        "seller_snapshot": "CoastalCasa: at-risk, reimbursements $11,120 pending across multiple shipments.",
+        "asin_snapshot": "Large-item decor products with FC handling discrepancies — mirror 13 units, lamp set 8 units.",
+        "event_log": "Payout hold adds urgency — every reimbursement recovered helps cash position.",
+        "financial_snapshot": "Reserve hold 22%, disbursement delayed. Reimbursements represent meaningful portion of working capital."
+      }
+    },
+    {
+      "id": "ss-036",
+      "category": "fba_reimbursement_missing_inventory",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-009",
+      "asins": ["B0TN000001"],
+      "requires_disclaimer": false,
+      "prompt": "Seller shipped 667 units, FC received 400 units. They want reimbursement path, evidence list, and expected aging windows before claim eligibility.",
+      "context_blocks": {
+        "seller_snapshot": "Seasonal toy seller with FC short-receipt history.",
+        "asin_snapshot": "Q4 peak ASIN impacted by inbound discrepancy.",
+        "event_log": "Short receipt event noted 2026-01-10.",
+        "financial_snapshot": "Pending reimbursements creating PO cash pressure."
+      }
+    },
+    {
+      "id": "ss-037",
+      "category": "fba_reimbursement_missing_inventory",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-us-003",
+      "asins": ["B0VE000001", "B0VE000002"],
+      "requires_disclaimer": false,
+      "prompt": "Seller has repeated FC discrepancy and reimbursement denials citing insufficient proof. They request a claim-quality upgrade framework.",
+      "context_blocks": {
+        "seller_snapshot": "Distressed seller with repeated documentation gaps.",
+        "asin_snapshot": "High-volume electronics with frequent inbound variance.",
+        "event_log": "Three recent reimbursement denials for proof quality.",
+        "financial_snapshot": "Pending reimbursements >22K USD."
+      }
+    },
+    {
+      "id": "ss-038",
+      "category": "stranded_inventory_removals",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-008",
+      "asins": ["B0NA000001"],
+      "requires_disclaimer": false,
+      "prompt": "NutriAxis has 11 stranded units out of 10,900 on-hand. Explain what stranded inventory is, why Amazon restricts these units from sale, and the 2 standard ways a seller can resolve a stranding issue.",
+      "context_blocks": {
+        "seller_snapshot": "NutriAxis: healthy, 11 stranded units, zero suppressed ASINs, account health 236.",
+        "asin_snapshot": "Immune capsules: 10,900 on-hand, 11 stranded — negligible impact at this scale.",
+        "event_log": "No stranding-related events. Labeling query Feb 2 is unrelated.",
+        "financial_snapshot": "Strong cash flow. Stranded units represent minimal financial exposure."
+      }
+    },
+    {
+      "id": "ss-039",
+      "category": "stranded_inventory_removals",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-007",
+      "asins": ["B0CC000001"],
+      "requires_disclaimer": false,
+      "prompt": "CoastalCasa has 27 stranded units of their arched mirror ASIN after a price band violation. Their relisting attempt failed due to automated pricing restriction. Outline the 3-step resolution path for price-rule-related stranding and estimate storage cost if resolution takes 2 weeks.",
+      "context_blocks": {
+        "seller_snapshot": "CoastalCasa: at-risk, stranded units 27 on mirror ASIN, reserve hold 22%.",
+        "asin_snapshot": "Mirror ASIN: current price $127.99, min guardrail $119.99 — price band narrow. Oversize product.",
+        "event_log": "Stranding linked to price band rule violation.",
+        "financial_snapshot": "Reserve hold 22% — stranded inventory adds storage cost on top of cash pressure."
+      }
+    },
+    {
+      "id": "ss-040",
+      "category": "stranded_inventory_removals",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-009",
+      "asins": ["B0TN000002"],
+      "requires_disclaimer": false,
+      "prompt": "Seller has rising stranded units after variation relation errors. They need correction sequence to relist inventory and prevent future strandings.",
+      "context_blocks": {
+        "seller_snapshot": "Stalling toy seller with catalog consistency issues.",
+        "asin_snapshot": "Puzzle ASIN experiencing parent-child mapping errors.",
+        "event_log": "Stranded inventory spike on 2026-02-05.",
+        "financial_snapshot": "Capital tied up in unsellable units."
+      }
+    },
+    {
+      "id": "ss-041",
+      "category": "stranded_inventory_removals",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-us-001",
+      "asins": ["B0NP000002"],
+      "requires_disclaimer": false,
+      "prompt": "Removal order marked shipped 3 weeks ago but inventory not received by seller. Need investigation flow with carrier, FC, and reimbursement decision points.",
+      "context_blocks": {
+        "seller_snapshot": "At-risk seller managing both suppression and inventory issues.",
+        "asin_snapshot": "Hydration SKU with stranded units and suppression overlap.",
+        "event_log": "Removal shipment status mismatch unresolved >21 days.",
+        "financial_snapshot": "Pending claim blocks restock cycle."
+      }
+    },
+    {
+      "id": "ss-042",
+      "category": "ip_complaint_appeal",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-006",
+      "asins": ["B0PS000001"],
+      "requires_disclaimer": false,
+      "prompt": "What types of IP complaints can be filed against Amazon sellers? Explain the difference between a trademark complaint, copyright complaint, and patent complaint in terms of who files, what triggers them, and what the seller's response options are.",
+      "context_blocks": {
+        "seller_snapshot": "PeakStride: high-growth, zero IP complaints, brand registry enrolled.",
+        "asin_snapshot": "Private label apparel — PeakStride brand owned and registered by seller.",
+        "event_log": "No IP events. Clean policy record.",
+        "financial_snapshot": "Strong margins 43-47%, reserve hold 1%. Low risk profile."
+      }
+    },
+    {
+      "id": "ss-043",
+      "category": "ip_complaint_appeal",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-004",
+      "asins": ["B0AB000001"],
+      "requires_disclaimer": true,
+      "prompt": "Aurelia Beauty received a copyright complaint on a product image that was licensed from a stock photo platform. They have proof of license. Build a 3-step appeal response sequence including documentation to submit and language guidance for the appeal body.",
+      "context_blocks": {
+        "seller_snapshot": "Aurelia: healthy, no prior IP complaints, health score 247.",
+        "asin_snapshot": "Vitamin C cream image pack recently updated — includes licensed stock photo from registered provider.",
+        "event_log": "Copyright complaint received after image refresh.",
+        "financial_snapshot": "No payout risk. Listing visibility temporarily affected — proactive resolution recommended."
+      }
+    },
+    {
+      "id": "ss-044",
+      "category": "ip_complaint_appeal",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-012",
+      "asins": ["B0UO000001"],
+      "requires_disclaimer": true,
+      "prompt": "Seller received trademark complaint from competitor on listing imagery. Needs compliant appeal structure and image-remediation plan.",
+      "context_blocks": {
+        "seller_snapshot": "Generally healthy seller with occasional catalog risk.",
+        "asin_snapshot": "Chair ASIN with recently updated image pack.",
+        "event_log": "Trademark complaint filed after image refresh.",
+        "financial_snapshot": "No immediate payout risk, but listing visibility affected."
+      }
+    },
+    {
+      "id": "ss-045",
+      "category": "ip_complaint_appeal",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-us-003",
+      "asins": ["B0VE000001"],
+      "requires_disclaimer": true,
+      "prompt": "Seller received IP complaint and says products are genuine gray-market inventory. They ask how to respond without admitting infringement.",
+      "context_blocks": {
+        "seller_snapshot": "Multiple policy flags and rights-owner tension.",
+        "asin_snapshot": "High-volume charger SKU with mixed authenticity signals.",
+        "event_log": "IP complaint active with takedown risk.",
+        "financial_snapshot": "Revenue concentration on affected ASIN."
+      }
+    },
+    {
+      "id": "ss-046",
+      "category": "suspension_appeal_poa",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-012",
+      "asins": [],
+      "requires_disclaimer": false,
+      "prompt": "What are the 3 required components of an Amazon Plan of Action (POA) for a suspended account? Give a 2-sentence definition of each component and explain why a vague or incomplete POA is typically rejected.",
+      "context_blocks": {
+        "seller_snapshot": "UrbanOffice: healthy — this is an education and preparedness scenario.",
+        "asin_snapshot": "Well-managed office products catalog. No compliance risk currently.",
+        "event_log": "No suspension risk. Hypothetical scenario for seller education.",
+        "financial_snapshot": "Strong standing. No payout or account risk."
+      }
+    },
+    {
+      "id": "ss-047",
+      "category": "suspension_appeal_poa",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-008",
+      "asins": ["B0NA000001"],
+      "requires_disclaimer": false,
+      "prompt": "NutriAxis received a policy warning for a restricted claim in their supplement listing. Explain the difference between a policy warning and an account suspension, and what immediate actions a seller must take in the next 24 hours to prevent escalation.",
+      "context_blocks": {
+        "seller_snapshot": "NutriAxis: account health 236, 1 policy violation in 90d — first ever.",
+        "asin_snapshot": "Immunity capsule ASIN with labeling compliance query — restricted claim wording.",
+        "event_log": "Labeling query Feb 2. Health claim flag Jan 20.",
+        "financial_snapshot": "Reserve hold 5%, healthy payout. No immediate financial risk."
+      }
+    },
+    {
+      "id": "ss-048",
+      "category": "suspension_appeal_poa",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-001",
+      "asins": ["B0NP000001", "B0NP000002"],
+      "requires_disclaimer": false,
+      "prompt": "NorthPeak has received 3 policy violations in 90 days (listing suppression, chargeback spike, and reserve hold increase). Draft a proactive POA template that anticipates Amazon's concern points and demonstrates a credible remediation timeline before the account reaches suspension risk.",
+      "context_blocks": {
+        "seller_snapshot": "NorthPeak: at-risk, health score 139, 3 policy violations, 5 suppressed ASINs.",
+        "asin_snapshot": "Core outdoor gear with compliance and operational issues across two key ASINs.",
+        "event_log": "Suppression Jan 24. Chargeback cluster Feb 7. Reserve hold increase Feb 12.",
+        "financial_snapshot": "Reserve hold 18%, reimbursements $8,420, cash flow stress. Account not yet suspended."
+      }
+    },
+    {
+      "id": "ss-049",
+      "category": "suspension_appeal_poa",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-us-003",
+      "asins": ["B0VE000001", "B0VE000002"],
+      "requires_disclaimer": true,
+      "prompt": "Seller received pre-suspension notice and requests a proactive POA before account action. They need sequencing by what can be fixed in 48 hours vs 2 weeks.",
+      "context_blocks": {
+        "seller_snapshot": "Distressed account with multi-domain policy risk.",
+        "asin_snapshot": "Two electronics ASINs with suppression and authenticity issues.",
+        "event_log": "Deactivation warning issued with 14-day remediation timeline.",
+        "financial_snapshot": "Chargebacks and reserve hold threaten operating liquidity."
+      }
+    },
+    {
+      "id": "ss-050",
+      "category": "suspension_appeal_poa",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-us-010",
+      "asins": ["B0SN000001", "B0SN000002"],
+      "requires_disclaimer": true,
+      "prompt": "Seller account suspended. Draft framework for Plan of Action with root cause, corrective actions already taken, and preventive controls tied to measurable KPIs.",
+      "context_blocks": {
+        "seller_snapshot": "Suspension risk converted to active suspension state, account health 72.",
+        "asin_snapshot": "Core smart-home ASINs tied to returns, authenticity, and delivery defects.",
+        "event_log": "Final warning not remediated in required period. Disbursement hold Feb 17.",
+        "financial_snapshot": "Reserve hold 31%, frozen disbursement — every day suspended is direct cash impact."
+      }
+    }
+  ]
+}

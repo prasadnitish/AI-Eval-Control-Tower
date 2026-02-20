@@ -1,0 +1,102 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ASIN Catalog Item",
+  "type": "object",
+  "required": [
+    "asin",
+    "seller_id",
+    "sku",
+    "title",
+    "brand",
+    "category",
+    "pricing",
+    "inventory",
+    "listing_quality",
+    "compliance"
+  ],
+  "properties": {
+    "asin": { "type": "string", "pattern": "^B[0-9A-Z]{9}$" },
+    "seller_id": { "type": "string" },
+    "marketplace_id": { "type": "string" },
+    "sku": { "type": "string" },
+    "parent_asin": { "type": ["string", "null"] },
+    "title": { "type": "string" },
+    "brand": { "type": "string" },
+    "category": { "type": "string" },
+    "subcategory": { "type": "string" },
+    "product_attributes": {
+      "type": "object",
+      "properties": {
+        "color": { "type": ["string", "null"] },
+        "size": { "type": ["string", "null"] },
+        "material": { "type": ["string", "null"] },
+        "pack_size": { "type": ["string", "null"] },
+        "warranty_months": { "type": ["integer", "null"] }
+      }
+    },
+    "pricing": {
+      "type": "object",
+      "required": ["list_price_usd", "buy_box_price_usd", "landed_cost_usd", "gross_margin_pct"],
+      "properties": {
+        "list_price_usd": { "type": "number" },
+        "buy_box_price_usd": { "type": "number" },
+        "min_price_guardrail_usd": { "type": "number" },
+        "max_price_guardrail_usd": { "type": "number" },
+        "landed_cost_usd": { "type": "number" },
+        "gross_margin_pct": { "type": "number" },
+        "buy_box_share_pct": { "type": "number" },
+        "promo_active": { "type": "boolean" },
+        "promo_type": { "type": ["string", "null"] },
+        "promo_discount_pct": { "type": ["number", "null"] }
+      }
+    },
+    "inventory": {
+      "type": "object",
+      "required": ["on_hand_units", "inbound_units", "reserved_units", "days_of_cover"],
+      "properties": {
+        "on_hand_units": { "type": "integer" },
+        "inbound_units": { "type": "integer" },
+        "reserved_units": { "type": "integer" },
+        "stranded_units": { "type": "integer" },
+        "aged_90d_plus_units": { "type": "integer" },
+        "days_of_cover": { "type": "number" },
+        "stockout_days_30d": { "type": "integer" },
+        "fc_receive_discrepancy_units_30d": { "type": "integer" }
+      }
+    },
+    "listing_quality": {
+      "type": "object",
+      "properties": {
+        "title_score": { "type": "number" },
+        "bullet_score": { "type": "number" },
+        "image_count": { "type": "integer" },
+        "a_plus_content": { "type": "boolean" },
+        "search_terms_filled": { "type": "boolean" },
+        "suppressed": { "type": "boolean" },
+        "suppression_reason": { "type": ["string", "null"] }
+      }
+    },
+    "compliance": {
+      "type": "object",
+      "properties": {
+        "restricted_product": { "type": "boolean" },
+        "hazmat_class": { "type": ["string", "null"] },
+        "ip_complaints_90d": { "type": "integer" },
+        "counterfeit_claims_90d": { "type": "integer" },
+        "review_abuse_signals_90d": { "type": "integer" }
+      }
+    },
+    "performance_30d": {
+      "type": "object",
+      "properties": {
+        "sessions": { "type": "integer" },
+        "units_sold": { "type": "integer" },
+        "conversion_rate_pct": { "type": "number" },
+        "return_rate_pct": { "type": "number" },
+        "avg_rating": { "type": "number" },
+        "acos_pct": { "type": "number" },
+        "roas": { "type": "number" }
+      }
+    }
+  }
+}

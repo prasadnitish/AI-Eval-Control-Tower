@@ -1,0 +1,25 @@
+# Environment
+.env
+.env.local
+.env.*
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+src/dist/
+
+# CI run output (not committed — only baked eval-results.json is committed)
+output/ci-results.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log

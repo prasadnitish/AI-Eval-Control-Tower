@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Seller Profile",
+  "type": "object",
+  "required": [
+    "seller_id",
+    "marketplace_id",
+    "legal_name",
+    "seller_type",
+    "launch_date",
+    "health_tier",
+    "account_health",
+    "performance",
+    "financial",
+    "risk_tags"
+  ],
+  "properties": {
+    "seller_id": { "type": "string" },
+    "marketplace_id": { "type": "string", "enum": ["US", "CA", "UK", "DE", "JP"] },
+    "legal_name": { "type": "string" },
+    "display_name": { "type": "string" },
+    "seller_type": { "type": "string", "enum": ["private_label", "reseller", "hybrid"] },
+    "launch_date": { "type": "string", "format": "date" },
+    "primary_categories": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "health_tier": {
+      "type": "string",
+      "enum": ["healthy", "high-growth", "stalling", "at-risk", "distressed"]
+    },
+    "performance": {
+      "type": "object",
+      "required": ["ttm_gmv_usd", "units_ttm", "sessions_qoq_pct", "conversion_rate_pct", "buy_box_pct"],
+      "properties": {
+        "ttm_gmv_usd": { "type": "number" },
+        "units_ttm": { "type": "integer" },
+        "sessions_qoq_pct": { "type": "number" },
+        "conversion_rate_pct": { "type": "number" },
+        "buy_box_pct": { "type": "number" },
+        "return_rate_pct": { "type": "number" },
+        "negative_feedback_rate_pct": { "type": "number" },
+        "avg_rating": { "type": "number" },
+        "rating_count": { "type": "integer" }
+      }
+    },
+    "account_health": {
+      "type": "object",
+      "required": ["account_health_score", "odr_pct", "late_shipment_rate_pct", "valid_tracking_rate_pct"],
+      "properties": {
+        "account_health_score": { "type": "number" },
+        "odr_pct": { "type": "number" },
+        "late_shipment_rate_pct": { "type": "number" },
+        "valid_tracking_rate_pct": { "type": "number" },
+        "a_to_z_claims_60d": { "type": "integer" },
+        "policy_violations_90d": { "type": "integer" },
+        "suppressed_asins": { "type": "integer" }
+      }
+    },
+    "logistics": {
+      "type": "object",
+      "properties": {
+        "fba_share_pct": { "type": "number" },
+        "fbm_share_pct": { "type": "number" },
+        "avg_delivery_days": { "type": "number" },
+        "stockout_rate_pct": { "type": "number" }
+      }
+    },
+    "financial": {
+      "type": "object",
+      "required": ["gross_margin_pct", "reserve_hold_pct", "chargebacks_90d", "fee_disputes_90d"],
+      "properties": {
+        "gross_margin_pct": { "type": "number" },
+        "reserve_hold_pct": { "type": "number" },
+        "payout_delay_days": { "type": "integer" },
+        "chargebacks_90d": { "type": "integer" },
+        "fee_disputes_90d": { "type": "integer" },
+        "reimbursements_pending_usd": { "type": "number" }
+      }
+    },
+    "risk_tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "recent_events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["event_date", "event_type", "severity", "description"],
+        "properties": {
+          "event_date": { "type": "string", "format": "date" },
+          "event_type": { "type": "string" },
+          "severity": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+          "description": { "type": "string" }
+        }
+      }
+    }
+  }
+}

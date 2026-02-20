@@ -1,0 +1,48 @@
+name: Eval Gate
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  eval-gate:
+    name: AI Eval Quality Gate
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run smoke eval (Model A vs Model B)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: |
+          node eval/eval-runner.js \
+            --model-a claude-sonnet-4-5 \
+            --model-b deepseek-chat \
+            --dataset datasets/seller-intelligence-v1.json \
+            --suite smoke \
+            --output output/ci-results.json
+
+      - name: Check gate verdict
+        run: |
+          node eval/check-gate.js output/ci-results.json \
+            --baseline output/eval-results.json
+
+      - name: Upload eval results artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-results-${{ github.sha }}
+          path: output/ci-results.json
+          retention-days: 30

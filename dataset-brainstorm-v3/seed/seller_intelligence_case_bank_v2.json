@@ -1,0 +1,762 @@
+{
+  "id": "seller-intelligence-case-bank-v2",
+  "version": "2.0",
+  "description": "Detailed AM and commercial intelligence case bank with realistic constraints and tradeoff-driven decisions.",
+  "cases": [
+    {
+      "case_id": "si2-001",
+      "dataset_type": "seller-intelligence",
+      "category": "portfolio_risk_triage",
+      "difficulty": "hard",
+      "priority": "p0",
+      "case_weight": 0.91,
+      "seller_id": "seller-us-010",
+      "marketplace_id": "US",
+      "asins": ["B0SN000001", "B0SN000002"],
+      "business_impact": "critical",
+      "policy_risk": "critical",
+      "response_sla_target_hours": 24,
+      "requires_disclaimer": false,
+      "prompt": "You are an Account Manager with only one weekly intervention slot. Decide whether SmartNest should get priority over other at-risk sellers, and justify using business impact, suspension risk, and salvageability. Output: ranked recommendation + rationale + 14-day plan.",
+      "context_blocks": {
+        "seller_snapshot": "Account health 72, ODR 3.08%, reserve hold 31%, Buy Box 33.4%.",
+        "asin_snapshot": "Two top ASINs show 18%+ returns and suppression history.",
+        "event_log": "Final warning and disbursement hold in last 30 days.",
+        "financial_snapshot": "Margin compressed to near break-even after chargebacks."
+      },
+      "expected_good_response": [
+        "Ranks intervention priority using explicit criteria.",
+        "Balances risk of suspension with potential recovery upside.",
+        "Includes tightly scoped 14-day action sequence with owners."
+      ],
+      "failure_traps": [
+        "Recommends generic outreach without triage logic.",
+        "Ignores salvageability and time-to-impact tradeoff."
+      ]
+    },
+    {
+      "case_id": "si2-002",
+      "dataset_type": "seller-intelligence",
+      "category": "portfolio_risk_triage",
+      "difficulty": "medium",
+      "priority": "p0",
+      "case_weight": 0.78,
+      "seller_id": "seller-us-007",
+      "marketplace_id": "US",
+      "asins": ["B0CC000001", "B0CC000002"],
+      "business_impact": "high",
+      "policy_risk": "high",
+      "response_sla_target_hours": 24,
+      "requires_disclaimer": false,
+      "prompt": "Create a portfolio risk memo comparing CoastalCasa (ODR breach) and NorthPeak (suppression + returns risk). Recommend which seller gets AM escalation this week and why.",
+      "context_blocks": {
+        "seller_snapshot": "CoastalCasa ODR above threshold; NorthPeak close to threshold with stronger topline.",
+        "asin_snapshot": "Both have top ASIN volatility and Buy Box pressure.",
+        "event_log": "Both sellers had high-severity events in last 21 days.",
+        "financial_snapshot": "Coastal has heavier reserve hold pressure than NorthPeak."
+      },
+      "expected_good_response": [
+        "Compares urgency and intervention ROI, not just risk severity.",
+        "Uses account-health and revenue concentration together.",
+        "Produces clear recommendation with fallback action for non-priority seller."
+      ],
+      "failure_traps": [
+        "Picks based on single metric only.",
+        "No contingency plan for second seller."
+      ]
+    },
+
+    {
+      "case_id": "si2-003",
+      "dataset_type": "seller-intelligence",
+      "category": "buy_box_pricing_strategy",
+      "difficulty": "hard",
+      "priority": "p1",
+      "case_weight": 0.82,
+      "seller_id": "seller-us-001",
+      "marketplace_id": "US",
+      "asins": ["B0NP000001"],
+      "business_impact": "high",
+      "policy_risk": "moderate",
+      "response_sla_target_hours": 48,
+      "requires_disclaimer": false,
+      "prompt": "NorthPeak lost Buy Box despite price cuts. Propose a strategy that restores Buy Box without violating minimum margin guardrail. Output: 3-step plan + price corridor + service metric targets.",
+      "context_blocks": {
+        "seller_snapshot": "Buy Box 62.3% with rising returns and claims.",
+        "asin_snapshot": "Backpack ASIN margin 29.6%, active coupons compressing net contribution.",
+        "event_log": "Chargeback cluster and suppression incidents in same period.",
+        "financial_snapshot": "Reserve hold now 18%."
+      },
+      "expected_good_response": [
+        "Separates price competitiveness from service-quality drivers.",
+        "Maintains explicit margin floor and guardrails.",
+        "Provides measurable targets for Buy Box-relevant metrics."
+      ],
+      "failure_traps": [
+        "Recommends blanket price cuts below margin guardrail.",
+        "No mention of fulfillment/defect contribution to Buy Box."
+      ]
+    },
+    {
+      "case_id": "si2-004",
+      "dataset_type": "seller-intelligence",
+      "category": "buy_box_pricing_strategy",
+      "difficulty": "medium",
+      "priority": "p1",
+      "case_weight": 0.69,
+      "seller_id": "seller-us-005",
+      "marketplace_id": "US",
+      "asins": ["B0KF000001"],
+      "business_impact": "high",
+      "policy_risk": "moderate",
+      "response_sla_target_hours": 48,
+      "requires_disclaimer": false,
+      "prompt": "Air fryer ASIN has Buy Box decline and high promo dependency. Build a price/promo policy for next 6 weeks that protects margin while lifting conversion.",
+      "context_blocks": {
+        "seller_snapshot": "Stalling seller with fee leakage.",
+        "asin_snapshot": "Air fryer with 17.3% margin and 12% promo discount currently active.",
+        "event_log": "Post-promo claim volume elevated.",
+        "financial_snapshot": "Chargebacks and fee disputes reducing contribution margin."
+      },
+      "expected_good_response": [
+        "Uses cadence-based promo policy instead of constant discounting.",
+        "Defines margin and conversion targets by week.",
+        "Includes stop-loss trigger if claims rise."
+      ],
+      "failure_traps": [
+        "Assumes conversion gains always offset margin loss.",
+        "No risk controls tied to claims."
+      ]
+    },
+
+    {
+      "case_id": "si2-005",
+      "dataset_type": "seller-intelligence",
+      "category": "inventory_replenishment",
+      "difficulty": "hard",
+      "priority": "p1",
+      "case_weight": 0.8,
+      "seller_id": "seller-us-002",
+      "marketplace_id": "US",
+      "asins": ["B0HG000001", "B0HG000002"],
+      "business_impact": "high",
+      "policy_risk": "none",
+      "response_sla_target_hours": 72,
+      "requires_disclaimer": false,
+      "prompt": "HomeGrid is in hyper-growth with inbound delays. Design a replenishment strategy for next 8 weeks to avoid stockouts and aged inventory build. Include reorder points and inbound buffer logic.",
+      "context_blocks": {
+        "seller_snapshot": "High-growth seller with 24% sessions QoQ growth.",
+        "asin_snapshot": "Two top ASINs with strong velocity and low return rates.",
+        "event_log": "Port delay created temporary inbound disruption.",
+        "financial_snapshot": "Healthy margin profile supports buffer inventory."
+      },
+      "expected_good_response": [
+        "Defines demand forecast bands and safety stock assumptions.",
+        "Balances stockout prevention against aged inventory cost.",
+        "Includes trigger thresholds for expedite vs normal replenishment."
+      ],
+      "failure_traps": [
+        "Uses fixed reorder quantity with no demand variance handling.",
+        "Ignores inbound lead-time uncertainty."
+      ]
+    },
+    {
+      "case_id": "si2-006",
+      "dataset_type": "seller-intelligence",
+      "category": "inventory_replenishment",
+      "difficulty": "medium",
+      "priority": "p1",
+      "case_weight": 0.66,
+      "seller_id": "seller-us-009",
+      "marketplace_id": "US",
+      "asins": ["B0TN000001"],
+      "business_impact": "medium",
+      "policy_risk": "none",
+      "response_sla_target_hours": 72,
+      "requires_disclaimer": false,
+      "prompt": "ToyNova has seasonal demand spikes and FC short receipts. Propose inventory policy that protects Q4 peak while limiting stranded and aged stock in Q1.",
+      "context_blocks": {
+        "seller_snapshot": "Stalling seller with seasonal concentration risk.",
+        "asin_snapshot": "STEM toy ASIN with high Q4 volatility.",
+        "event_log": "Short-receipt and stranded inventory events in prior cycle.",
+        "financial_snapshot": "Working capital sensitive to inventory lockups."
+      },
+      "expected_good_response": [
+        "Segments policy by season and FC reliability risk.",
+        "Includes receipt-variance adjustment in reorder logic.",
+        "Defines aged-inventory exit plan post-peak."
+      ],
+      "failure_traps": [
+        "Applies uniform policy across peak and non-peak periods.",
+        "No mitigation for FC short-receipt risk."
+      ]
+    },
+
+    {
+      "case_id": "si2-007",
+      "dataset_type": "seller-intelligence",
+      "category": "margin_bridge_fee_leakage",
+      "difficulty": "hard",
+      "priority": "p0",
+      "case_weight": 0.87,
+      "seller_id": "seller-us-003",
+      "marketplace_id": "US",
+      "asins": ["B0VE000001", "B0VE000002"],
+      "business_impact": "critical",
+      "policy_risk": "high",
+      "response_sla_target_hours": 48,
+      "requires_disclaimer": false,
+      "prompt": "Build a margin bridge for VoltEdge: starting from gross GMV, quantify likely leakage from promotions, returns, chargebacks, reserve holds, and fee disputes. Recommend top 3 levers with estimated recovery impact.",
+      "context_blocks": {
+        "seller_snapshot": "Distressed account with severe claims and suppression.",
+        "asin_snapshot": "Electronics ASINs with high return and promo intensity.",
+        "event_log": "Counterfeit complaint and deactivation warning recently issued.",
+        "financial_snapshot": "Gross margin <17%, reserve hold 27%, chargebacks 24."
+      },
+      "expected_good_response": [
+        "Produces structured bridge with explicit leakage buckets.",
+        "Prioritizes interventions by impact and feasibility.",
+        "Connects commercial fixes to policy-risk reduction."
+      ],
+      "failure_traps": [
+        "Only discusses topline GMV without contribution leakage.",
+        "No quantified prioritization."
+      ]
+    },
+    {
+      "case_id": "si2-008",
+      "dataset_type": "seller-intelligence",
+      "category": "margin_bridge_fee_leakage",
+      "difficulty": "medium",
+      "priority": "p1",
+      "case_weight": 0.7,
+      "seller_id": "seller-us-005",
+      "marketplace_id": "US",
+      "asins": ["B0KF000001", "B0KF000002"],
+      "business_impact": "high",
+      "policy_risk": "moderate",
+      "response_sla_target_hours": 72,
+      "requires_disclaimer": false,
+      "prompt": "KitchenForge reports flat GMV but profit decline. Draft a margin diagnostic focused on fee reclassification, return-rate inflation, and promo overuse.",
+      "context_blocks": {
+        "seller_snapshot": "Stalling account with recurring fee disputes.",
+        "asin_snapshot": "Appliance ASINs have elevated return rates and promo costs.",
+        "event_log": "Fee reclassification disputes active in last 30 days.",
+        "financial_snapshot": "Gross margin 22.4% but net outcome deteriorating."
+      },
+      "expected_good_response": [
+        "Separates structural vs temporary margin headwinds.",
+        "Suggests data validation path for disputed fees.",
+        "Includes practical margin-recovery playbook."
+      ],
+      "failure_traps": [
+        "Equates revenue stability with healthy profitability.",
+        "No sequencing of quick wins vs structural fixes."
+      ]
+    },
+
+    {
+      "case_id": "si2-009",
+      "dataset_type": "seller-intelligence",
+      "category": "promotion_roi_cannibalization",
+      "difficulty": "medium",
+      "priority": "p1",
+      "case_weight": 0.73,
+      "seller_id": "seller-us-001",
+      "marketplace_id": "US",
+      "asins": ["B0NP000002"],
+      "business_impact": "high",
+      "policy_risk": "moderate",
+      "response_sla_target_hours": 72,
+      "requires_disclaimer": false,
+      "prompt": "Hydration SKU promotions increased units but worsened returns and Buy Box. Diagnose promo ROI quality and propose a guardrailed deal strategy.",
+      "context_blocks": {
+        "seller_snapshot": "At-risk seller with claims pressure.",
+        "asin_snapshot": "Deal-heavy hydration ASIN with suppression and returns issues.",
+        "event_log": "Promotion overlap with suppression event.",
+        "financial_snapshot": "Margin compression plus chargeback uptick."
+      },
+      "expected_good_response": [
+        "Evaluates incremental profitable units, not gross units only.",
+        "Adds guardrails for return-rate and claim thresholds.",
+        "Recommends promo cadence aligned with inventory health."
+      ],
+      "failure_traps": [
+        "Treats all promo lift as positive.",
+        "No linkage between promo cohort quality and returns."
+      ]
+    },
+    {
+      "case_id": "si2-010",
+      "dataset_type": "seller-intelligence",
+      "category": "promotion_roi_cannibalization",
+      "difficulty": "hard",
+      "priority": "p1",
+      "case_weight": 0.62,
+      "seller_id": "seller-us-006",
+      "marketplace_id": "US",
+      "asins": ["B0PS000001", "B0PS000002"],
+      "business_impact": "medium",
+      "policy_risk": "none",
+      "response_sla_target_hours": 72,
+      "requires_disclaimer": false,
+      "prompt": "PeakStride wants to run aggressive promo calendar after viral growth spike. Build a plan to avoid margin erosion and stockouts while sustaining rank momentum.",
+      "context_blocks": {
+        "seller_snapshot": "High-growth apparel seller with strong account health.",
+        "asin_snapshot": "Leggings and tee SKUs with high conversion and tight inventory windows.",
+        "event_log": "Viral demand spike in prior cycle.",
+        "financial_snapshot": "Strong margin allows tactical, not blanket, discounting."
+      },
+      "expected_good_response": [
+        "Balances growth acceleration with inventory and margin controls.",
+        "Uses staged promo design with holdout periods.",
+        "Defines stockout risk triggers and stop conditions."
+      ],
+      "failure_traps": [
+        "Pushes always-on discounts.",
+        "No inventory-aware promo pacing."
+      ]
+    },
+
+    {
+      "case_id": "si2-011",
+      "dataset_type": "seller-intelligence",
+      "category": "returns_root_cause_analysis",
+      "difficulty": "hard",
+      "priority": "p0",
+      "case_weight": 0.88,
+      "seller_id": "seller-us-010",
+      "marketplace_id": "US",
+      "asins": ["B0SN000001"],
+      "business_impact": "critical",
+      "policy_risk": "high",
+      "response_sla_target_hours": 48,
+      "requires_disclaimer": false,
+      "prompt": "Return rate is 19.2% on smart camera ASIN with complaints spanning defects, setup friction, and false expectations. Build a root-cause tree and top 5 fixes by expected defect reduction.",
+      "context_blocks": {
+        "seller_snapshot": "Distressed seller, account health near deactivation risk.",
+        "asin_snapshot": "Camera ASIN with low rating, high returns, and safety concerns.",
+        "event_log": "A-to-Z and counterfeit complaints increased in same window.",
+        "financial_snapshot": "Each point of return-rate reduction materially improves survival odds."
+      },
+      "expected_good_response": [
+        "Separates product defect, listing expectation, and fulfillment causes.",
+        "Prioritizes actions by expected impact and time-to-implement.",
+        "Includes instrumentation plan to verify causal improvement."
+      ],
+      "failure_traps": [
+        "Single-cause diagnosis for multi-factor problem.",
+        "No measurement plan for fix validation."
+      ]
+    },
+    {
+      "case_id": "si2-012",
+      "dataset_type": "seller-intelligence",
+      "category": "returns_root_cause_analysis",
+      "difficulty": "medium",
+      "priority": "p1",
+      "case_weight": 0.71,
+      "seller_id": "seller-us-005",
+      "marketplace_id": "US",
+      "asins": ["B0KF000001"],
+      "business_impact": "high",
+      "policy_risk": "moderate",
+      "response_sla_target_hours": 72,
+      "requires_disclaimer": false,
+      "prompt": "Air fryer return rate is above category norms. Create a focused diagnostic plan using customer reason codes and listing/content checks.",
+      "context_blocks": {
+        "seller_snapshot": "Stalling seller with claims and margin pressure.",
+        "asin_snapshot": "Appliance SKU with elevated return and complaints.",
+        "event_log": "Promotion periods overlap with return spikes.",
+        "financial_snapshot": "Returns materially reducing net contribution."
+      },
+      "expected_good_response": [
+        "Defines reason-code segmentation and hypothesis tests.",
+        "Includes listing content and packaging quality checks.",
+        "Outputs prioritized remediation roadmap."
+      ],
+      "failure_traps": [
+        "No use of reason-code segmentation.",
+        "Only advises customer service scripts without product/listing fixes."
+      ]
+    },
+
+    {
+      "case_id": "si2-013",
+      "dataset_type": "seller-intelligence",
+      "category": "ads_efficiency_reallocation",
+      "difficulty": "medium",
+      "priority": "p1",
+      "case_weight": 0.67,
+      "seller_id": "seller-us-002",
+      "marketplace_id": "US",
+      "asins": ["B0HG000001", "B0HG000002"],
+      "business_impact": "medium",
+      "policy_risk": "none",
+      "response_sla_target_hours": 72,
+      "requires_disclaimer": false,
+      "prompt": "HomeGrid has high ROAS but wants to scale spend without efficiency collapse. Recommend budget reallocation rules and expansion criteria.",
+      "context_blocks": {
+        "seller_snapshot": "Healthy growth and strong conversion baseline.",
+        "asin_snapshot": "Core storage products with good inventory depth.",
+        "event_log": "Recent inbound delays create supply constraints for one SKU.",
+        "financial_snapshot": "Healthy margin supports controlled expansion."
+      },
+      "expected_good_response": [
+        "Uses guardrails for incremental spend by inventory and conversion health.",
+        "Defines criteria to graduate campaigns to scale tier.",
+        "Includes downside controls for ACOS drift."
+      ],
+      "failure_traps": [
+        "Recommends linear budget increase with no checks.",
+        "Ignores inventory constraints in spend plan."
+      ]
+    },
+    {
+      "case_id": "si2-014",
+      "dataset_type": "seller-intelligence",
+      "category": "ads_efficiency_reallocation",
+      "difficulty": "hard",
+      "priority": "p1",
+      "case_weight": 0.59,
+      "seller_id": "seller-us-003",
+      "marketplace_id": "US",
+      "asins": ["B0VE000001"],
+      "business_impact": "high",
+      "policy_risk": "moderate",
+      "response_sla_target_hours": 48,
+      "requires_disclaimer": false,
+      "prompt": "VoltEdge is overspending on ads while conversion and rating decline. Build a survival-mode ad strategy that preserves discoverability but cuts waste.",
+      "context_blocks": {
+        "seller_snapshot": "Distressed account with low Buy Box share and high returns.",
+        "asin_snapshot": "Cable ASIN has high sessions but poor quality outcomes.",
+        "event_log": "Suppression and authenticity events hurt conversion quality.",
+        "financial_snapshot": "Cash constraints require rapid efficiency correction."
+      },
+      "expected_good_response": [
+        "Prioritizes branded and high-intent pockets; cuts wasteful broad spend.",
+        "Ties bid strategy to listing readiness and buy-box stability.",
+        "Defines minimum viable visibility thresholds."
+      ],
+      "failure_traps": [
+        "Turns off all ads without recovery bridge.",
+        "No tie between ad strategy and listing quality constraints."
+      ]
+    },
+
+    {
+      "case_id": "si2-015",
+      "dataset_type": "seller-intelligence",
+      "category": "catalog_quality_program",
+      "difficulty": "medium",
+      "priority": "p1",
+      "case_weight": 0.63,
+      "seller_id": "seller-us-001",
+      "marketplace_id": "US",
+      "asins": ["B0NP000002"],
+      "business_impact": "high",
+      "policy_risk": "high",
+      "response_sla_target_hours": 72,
+      "requires_disclaimer": false,
+      "prompt": "Design a catalog quality sprint for NorthPeak to address title/variation defects and reduce suppression risk in 30 days.",
+      "context_blocks": {
+        "seller_snapshot": "At-risk seller with suppression and return issues.",
+        "asin_snapshot": "Hydration ASIN is suppressed for variation title mismatch.",
+        "event_log": "Multiple listing quality incidents in quarter.",
+        "financial_snapshot": "Suppression materially impacts promo ROI and cash flow."
+      },
+      "expected_good_response": [
+        "Creates weekly sprint plan with QA checkpoints.",
+        "Includes owner model for content, compliance, and operations.",
+        "Defines defect-rate KPIs to track improvement."
+      ],
+      "failure_traps": [
+        "No owner/timeline assignment.",
+        "Treats catalog cleanup as one-time action only."
+      ]
+    },
+    {
+      "case_id": "si2-016",
+      "dataset_type": "seller-intelligence",
+      "category": "catalog_quality_program",
+      "difficulty": "hard",
+      "priority": "p0",
+      "case_weight": 0.74,
+      "seller_id": "seller-us-003",
+      "marketplace_id": "US",
+      "asins": ["B0VE000001", "B0VE000002"],
+      "business_impact": "critical",
+      "policy_risk": "critical",
+      "response_sla_target_hours": 48,
+      "requires_disclaimer": false,
+      "prompt": "Build a 45-day catalog remediation program for VoltEdge across safety docs, authenticity evidence, and listing quality to prevent deactivation.",
+      "context_blocks": {
+        "seller_snapshot": "Distressed seller with suppression and authenticity risk.",
+        "asin_snapshot": "Core electronics ASINs under hazmat/authenticity pressure.",
+        "event_log": "Deactivation warning and counterfeit complaint active.",
+        "financial_snapshot": "High concentration risk on problematic ASINs."
+      },
+      "expected_good_response": [
+        "Phases workstream by compliance criticality and due dates.",
+        "Includes document governance and evidence repository standards.",
+        "Links remediation milestones to account-health risk reduction."
+      ],
+      "failure_traps": [
+        "Focuses only on copy edits, ignoring compliance artifacts.",
+        "No milestone governance mechanism."
+      ]
+    },
+
+    {
+      "case_id": "si2-017",
+      "dataset_type": "seller-intelligence",
+      "category": "working_capital_strategy",
+      "difficulty": "hard",
+      "priority": "p0",
+      "case_weight": 0.83,
+      "seller_id": "seller-us-007",
+      "marketplace_id": "US",
+      "asins": ["B0CC000001", "B0CC000002"],
+      "business_impact": "high",
+      "policy_risk": "high",
+      "response_sla_target_hours": 48,
+      "requires_disclaimer": false,
+      "prompt": "CoastalCasa is facing reserve holds, high returns, and stuck inventory. Create a 60-day working-capital stabilization plan with cash preservation levers and risk controls.",
+      "context_blocks": {
+        "seller_snapshot": "At-risk account with ODR breach and payout constraints.",
+        "asin_snapshot": "Large-item decor SKUs with return and delivery issues.",
+        "event_log": "Payout hold and ODR threshold breach recent.",
+        "financial_snapshot": "Reserve hold 22%, reimbursements pending >11K."
+      },
+      "expected_good_response": [
+        "Prioritizes liquidity-preserving actions with impact/risk tradeoffs.",
+        "Includes inventory liquidation and procurement controls.",
+        "Connects operational quality fixes to cash-flow recovery."
+      ],
+      "failure_traps": [
+        "Pure finance advice without operational levers.",
+        "No short-term vs medium-term split."
+      ]
+    },
+    {
+      "case_id": "si2-018",
+      "dataset_type": "seller-intelligence",
+      "category": "working_capital_strategy",
+      "difficulty": "medium",
+      "priority": "p1",
+      "case_weight": 0.65,
+      "seller_id": "seller-us-009",
+      "marketplace_id": "US",
+      "asins": ["B0TN000001"],
+      "business_impact": "medium",
+      "policy_risk": "moderate",
+      "response_sla_target_hours": 72,
+      "requires_disclaimer": false,
+      "prompt": "ToyNova has cash tied in aged and stranded Q4 inventory. Recommend recovery actions to improve working capital before next buying cycle.",
+      "context_blocks": {
+        "seller_snapshot": "Seasonal seller with post-peak inventory drag.",
+        "asin_snapshot": "STEM toy SKU has elevated aged inventory and FC variance.",
+        "event_log": "Stranded inventory spike in February.",
+        "financial_snapshot": "Pending reimbursements and fee leakage reduce cash flexibility."
+      },
+      "expected_good_response": [
+        "Builds aging-bucket liquidation + relisting strategy.",
+        "Sets procurement constraints tied to sell-through recovery.",
+        "Tracks cash unlock metrics by week."
+      ],
+      "failure_traps": [
+        "No quantifiable cash unlock plan.",
+        "Ignores next-cycle procurement implications."
+      ]
+    },
+
+    {
+      "case_id": "si2-019",
+      "dataset_type": "seller-intelligence",
+      "category": "seller_churn_prevention",
+      "difficulty": "hard",
+      "priority": "p0",
+      "case_weight": 0.76,
+      "seller_id": "seller-us-007",
+      "marketplace_id": "US",
+      "asins": ["B0CC000001"],
+      "business_impact": "high",
+      "policy_risk": "high",
+      "response_sla_target_hours": 24,
+      "requires_disclaimer": false,
+      "prompt": "Seller signaled they may shift volume off-platform due to perceived algorithm unfairness. Build a retention strategy combining data transparency, quick wins, and trust restoration.",
+      "context_blocks": {
+        "seller_snapshot": "At-risk seller with ODR and payout pressure.",
+        "asin_snapshot": "Core decor ASIN seeing Buy Box and rating pressure.",
+        "event_log": "Escalation from seller management after ODR breach.",
+        "financial_snapshot": "High reserve hold worsens seller sentiment."
+      },
+      "expected_good_response": [
+        "Addresses sentiment and economics, not just policy explanation.",
+        "Proposes immediate wins plus medium-term confidence plan.",
+        "Defines success signals for churn-risk reduction."
+      ],
+      "failure_traps": [
+        "Dismisses seller concerns as purely emotional.",
+        "No measurable retention milestones."
+      ]
+    },
+    {
+      "case_id": "si2-020",
+      "dataset_type": "seller-intelligence",
+      "category": "seller_churn_prevention",
+      "difficulty": "medium",
+      "priority": "p1",
+      "case_weight": 0.57,
+      "seller_id": "seller-us-001",
+      "marketplace_id": "US",
+      "asins": ["B0NP000001", "B0NP000002"],
+      "business_impact": "high",
+      "policy_risk": "moderate",
+      "response_sla_target_hours": 48,
+      "requires_disclaimer": false,
+      "prompt": "NorthPeak remains commercially strong but confidence is declining due to suppression and chargeback friction. Create a 30-day trust-rebuild AM plan.",
+      "context_blocks": {
+        "seller_snapshot": "At-risk but recoverable seller with meaningful GMV base.",
+        "asin_snapshot": "Core SKUs still have demand but operational instability.",
+        "event_log": "Recent suppression + reserve-hold increase.",
+        "financial_snapshot": "Cash flow stress but not yet critical."
+      },
+      "expected_good_response": [
+        "Combines operational fixes with proactive communication rhythm.",
+        "Defines weekly milestones visible to seller leadership.",
+        "Includes escalation path if metrics worsen."
+      ],
+      "failure_traps": [
+        "High-level relationship advice without metric-backed actions.",
+        "No contingency plan for continued deterioration."
+      ]
+    },
+
+    {
+      "case_id": "si2-021",
+      "dataset_type": "seller-intelligence",
+      "category": "qbr_narrative_and_commitments",
+      "difficulty": "medium",
+      "priority": "p1",
+      "case_weight": 0.6,
+      "seller_id": "seller-us-012",
+      "marketplace_id": "US",
+      "asins": ["B0UO000001", "B0UO000002"],
+      "business_impact": "medium",
+      "policy_risk": "none",
+      "response_sla_target_hours": 72,
+      "requires_disclaimer": false,
+      "prompt": "Draft QBR storyline for UrbanOffice: what improved, what deteriorated, and 3 commitments for next quarter with measurable outcomes.",
+      "context_blocks": {
+        "seller_snapshot": "Healthy account with moderate fee and fulfillment variance.",
+        "asin_snapshot": "Desk/chair portfolio with solid Buy Box and stable demand.",
+        "event_log": "Oversize fee adjustment impacted one SKU.",
+        "financial_snapshot": "Margins stable but sensitive to fee reclassifications."
+      },
+      "expected_good_response": [
+        "Uses balanced narrative with evidence and clear priorities.",
+        "Defines commitments with owners and target metrics.",
+        "Separates operational hygiene from growth bets."
+      ],
+      "failure_traps": [
+        "Purely celebratory narrative with no risks.",
+        "Commitments without measurable success criteria."
+      ]
+    },
+    {
+      "case_id": "si2-022",
+      "dataset_type": "seller-intelligence",
+      "category": "qbr_narrative_and_commitments",
+      "difficulty": "hard",
+      "priority": "p1",
+      "case_weight": 0.55,
+      "seller_id": "seller-us-005",
+      "marketplace_id": "US",
+      "asins": ["B0KF000001", "B0KF000002"],
+      "business_impact": "high",
+      "policy_risk": "moderate",
+      "response_sla_target_hours": 72,
+      "requires_disclaimer": false,
+      "prompt": "Prepare a difficult QBR narrative for KitchenForge where GMV is flat but account quality and margins are eroding. Include how AM should frame urgency without triggering defensiveness.",
+      "context_blocks": {
+        "seller_snapshot": "Stalling seller with structural pressure signs.",
+        "asin_snapshot": "Core appliance SKUs showing return and fee stress.",
+        "event_log": "Category fee reclassification dispute unresolved.",
+        "financial_snapshot": "Profitability trend negative despite stable topline."
+      },
+      "expected_good_response": [
+        "Frames tension clearly: stable revenue vs declining quality economics.",
+        "Prioritizes 3 high-impact corrective commitments.",
+        "Uses communication framing to maintain seller engagement."
+      ],
+      "failure_traps": [
+        "Blunt risk framing without relationship strategy.",
+        "No operational detail behind commitments."
+      ]
+    },
+
+    {
+      "case_id": "si2-023",
+      "dataset_type": "seller-intelligence",
+      "category": "what_if_scenario_planning",
+      "difficulty": "hard",
+      "priority": "p0",
+      "case_weight": 0.72,
+      "seller_id": "seller-us-003",
+      "marketplace_id": "US",
+      "asins": ["B0VE000001", "B0VE000002"],
+      "business_impact": "critical",
+      "policy_risk": "critical",
+      "response_sla_target_hours": 48,
+      "requires_disclaimer": false,
+      "prompt": "Run three what-if scenarios for VoltEdge: (A) no action, (B) compliance-first remediation, (C) portfolio pruning to top safe ASINs. Compare likely impact on account health, cash flow, and GMV over 60 days.",
+      "context_blocks": {
+        "seller_snapshot": "Distressed account with severe policy and performance risk.",
+        "asin_snapshot": "Two problematic but high-volume ASINs drive most revenue.",
+        "event_log": "Active warnings and unresolved authenticity concerns.",
+        "financial_snapshot": "High reserve hold and chargeback pressure constrain options."
+      },
+      "expected_good_response": [
+        "Builds scenario comparison with explicit assumptions and risk levels.",
+        "Identifies dominant strategy under survival constraints.",
+        "Provides decision criteria and trigger points for pivot."
+      ],
+      "failure_traps": [
+        "Presents one scenario without alternatives.",
+        "No assumptions transparency."
+      ]
+    },
+    {
+      "case_id": "si2-024",
+      "dataset_type": "seller-intelligence",
+      "category": "what_if_scenario_planning",
+      "difficulty": "medium",
+      "priority": "p1",
+      "case_weight": 0.53,
+      "seller_id": "seller-us-002",
+      "marketplace_id": "US",
+      "asins": ["B0HG000001"],
+      "business_impact": "medium",
+      "policy_risk": "none",
+      "response_sla_target_hours": 72,
+      "requires_disclaimer": false,
+      "prompt": "Evaluate two expansion options for HomeGrid: launch 4 new ASINs now vs defer launch until inbound reliability improves. Include demand upside, stockout risk, and operational complexity.",
+      "context_blocks": {
+        "seller_snapshot": "High-growth seller with strong baseline metrics.",
+        "asin_snapshot": "Core ASIN inventory healthy but lead-time volatility present.",
+        "event_log": "Recent port delay disrupted one inbound cycle.",
+        "financial_snapshot": "Capital available for expansion but reputation risk if launch fails."
+      },
+      "expected_good_response": [
+        "Compares upside and operational risk using clear assumptions.",
+        "Recommends phased rollout with gate criteria.",
+        "Includes fallback if lead times worsen."
+      ],
+      "failure_traps": [
+        "Binary recommendation without phased option.",
+        "No risk mitigation for inbound volatility."
+      ]
+    }
+  ]
+}

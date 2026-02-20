@@ -1,0 +1,757 @@
+{
+  "id": "seller-intelligence-v2",
+  "version": "2.0",
+  "description": "50-prompt seller intelligence eval dataset for AM advisory skill assessment across 12 commercial categories. Context injected via context_blocks.",
+  "prompts": [
+    {
+      "id": "si-001",
+      "category": "portfolio_risk_triage",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-008",
+      "asins": ["B0NA000001"],
+      "requires_disclaimer": false,
+      "prompt": "What are the 3 most important health metrics an Account Manager should review first during a weekly portfolio check? Explain what each metric signals about seller risk level and how it should influence AM prioritization.",
+      "context_blocks": {
+        "seller_snapshot": "NutriAxis: healthy tier, account health 236, ODR 0.18%, Buy Box 84.7%.",
+        "asin_snapshot": "Immune supplement and vitamin D ASINs — high inventory depth, low return rates.",
+        "event_log": "No high-severity events. Labeling query Feb 2 is low priority.",
+        "financial_snapshot": "Reserve hold 5%, payout delay 2 days, margins 42-44%."
+      }
+    },
+    {
+      "id": "si-002",
+      "category": "portfolio_risk_triage",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-011",
+      "asins": ["B0PH000001"],
+      "requires_disclaimer": false,
+      "prompt": "PetHarbor has a 4.7-star average rating, 92.6% Buy Box share, and an account health score of 281. How should an AM categorize this seller in a risk-tier framework, and what is a typical intervention cadence for sellers in this tier?",
+      "context_blocks": {
+        "seller_snapshot": "PetHarbor: high-growth, account health 281, zero policy violations, FBA 94%.",
+        "asin_snapshot": "Calming chews buy box 92.6%, low return rate 1.8%, strong ROAS 5.4.",
+        "event_log": "Review velocity anomaly Feb 1 — monitoring flag only, not yet actionable.",
+        "financial_snapshot": "Reserve hold 3%, healthy margins 42-45%, growing GMV trajectory."
+      }
+    },
+    {
+      "id": "si-003",
+      "category": "portfolio_risk_triage",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-007",
+      "asins": ["B0CC000001", "B0CC000002"],
+      "requires_disclaimer": false,
+      "prompt": "Create a portfolio risk memo comparing CoastalCasa (ODR breach) and NorthPeak (suppression + returns risk). Recommend which seller gets AM escalation this week and why.",
+      "context_blocks": {
+        "seller_snapshot": "CoastalCasa ODR above threshold; NorthPeak close to threshold with stronger topline.",
+        "asin_snapshot": "Both have top ASIN volatility and Buy Box pressure.",
+        "event_log": "Both sellers had high-severity events in last 21 days.",
+        "financial_snapshot": "Coastal has heavier reserve hold pressure than NorthPeak."
+      }
+    },
+    {
+      "id": "si-004",
+      "category": "portfolio_risk_triage",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-011",
+      "asins": ["B0PH000001", "B0PH000002"],
+      "requires_disclaimer": false,
+      "prompt": "PetHarbor is high-growth with account health 281 but a review velocity anomaly and sudden Buy Box share drop were flagged in the last week. Despite strong baseline metrics, assess whether proactive AM intervention is warranted and propose a watchlist protocol for fast-movers.",
+      "context_blocks": {
+        "seller_snapshot": "PetHarbor: high-growth, account health 281, normally strong Buy Box at 92.6%.",
+        "asin_snapshot": "Calming chews Buy Box dropped from 92.6% — monitoring flag raised. Joint supplement trending up.",
+        "event_log": "Review velocity spike Feb 1. Buy Box anomaly detected same week.",
+        "financial_snapshot": "No financial stress. Reserve hold 3%, strong margins. Anomaly is operational, not financial."
+      }
+    },
+    {
+      "id": "si-005",
+      "category": "portfolio_risk_triage",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-us-010",
+      "asins": ["B0SN000001", "B0SN000002"],
+      "requires_disclaimer": false,
+      "prompt": "You are an Account Manager with only one weekly intervention slot. Decide whether SmartNest should get priority over other at-risk sellers, and justify using business impact, suspension risk, and salvageability. Output: ranked recommendation + rationale + 14-day plan.",
+      "context_blocks": {
+        "seller_snapshot": "Account health 72, ODR 3.08%, reserve hold 31%, Buy Box 33.4%.",
+        "asin_snapshot": "Two top ASINs show 18%+ returns and suppression history.",
+        "event_log": "Final warning and disbursement hold in last 30 days.",
+        "financial_snapshot": "Margin compressed to near break-even after chargebacks."
+      }
+    },
+    {
+      "id": "si-006",
+      "category": "buy_box_pricing_strategy",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-002",
+      "asins": ["B0HG000001"],
+      "requires_disclaimer": false,
+      "prompt": "Explain the 4 main factors Amazon's algorithm uses to determine Buy Box eligibility. How does FBA fulfillment improve a seller's chances compared to FBM, and what is the minimum account health threshold for Buy Box consideration?",
+      "context_blocks": {
+        "seller_snapshot": "HomeGrid: healthy tier, FBA 97%, account health 271, Buy Box 81.4%.",
+        "asin_snapshot": "Storage bins — well-optimized listing, 2.1% return rate, fast fulfillment.",
+        "event_log": "No Buy Box disruption events. Port delay resolved.",
+        "financial_snapshot": "Healthy margin 32-34%, no reserve pressure."
+      }
+    },
+    {
+      "id": "si-007",
+      "category": "buy_box_pricing_strategy",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-004",
+      "asins": ["B0AB000001"],
+      "requires_disclaimer": false,
+      "prompt": "Aurelia Beauty's vitamin C cream ASIN currently holds 73.5% Buy Box share. A new competitor entered at $2 below their floor price this week. Propose a competitive response strategy that defends Buy Box share while protecting Aurelia's 43% gross margin guardrail.",
+      "context_blocks": {
+        "seller_snapshot": "Aurelia: healthy, FBA 100%, Buy Box 73.5%, account health 247.",
+        "asin_snapshot": "Vitamin C cream: current price $24.99, landed cost $14.26, guardrail floor $21.99.",
+        "event_log": "Competitor undercut appeared 5 days ago at $22.99.",
+        "financial_snapshot": "Gross margin 43%, reserve hold 4%. Floor guardrail limits room to respond on price alone."
+      }
+    },
+    {
+      "id": "si-008",
+      "category": "buy_box_pricing_strategy",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-005",
+      "asins": ["B0KF000001"],
+      "requires_disclaimer": false,
+      "prompt": "Air fryer ASIN has Buy Box decline and high promo dependency. Build a price/promo policy for next 6 weeks that protects margin while lifting conversion.",
+      "context_blocks": {
+        "seller_snapshot": "Stalling seller with fee leakage.",
+        "asin_snapshot": "Air fryer with 17.3% margin and 12% promo discount currently active.",
+        "event_log": "Post-promo claim volume elevated.",
+        "financial_snapshot": "Chargebacks and fee disputes reducing contribution margin."
+      }
+    },
+    {
+      "id": "si-009",
+      "category": "buy_box_pricing_strategy",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-us-001",
+      "asins": ["B0NP000001"],
+      "requires_disclaimer": false,
+      "prompt": "NorthPeak lost Buy Box despite price cuts. Propose a strategy that restores Buy Box without violating minimum margin guardrail. Output: 3-step plan + price corridor + service metric targets.",
+      "context_blocks": {
+        "seller_snapshot": "Buy Box 62.3% with rising returns and claims.",
+        "asin_snapshot": "Backpack ASIN margin 29.6%, active coupons compressing net contribution.",
+        "event_log": "Chargeback cluster and suppression incidents in same period.",
+        "financial_snapshot": "Reserve hold now 18%."
+      }
+    },
+    {
+      "id": "si-010",
+      "category": "inventory_replenishment",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-002",
+      "asins": ["B0HG000001"],
+      "requires_disclaimer": false,
+      "prompt": "HomeGrid's storage bin ASIN has 45 days of cover at current velocity. Explain what 'days of cover' means, what the recommended minimum for FBA sellers is, and when HomeGrid should initiate their next replenishment order given a 21-day lead time.",
+      "context_blocks": {
+        "seller_snapshot": "HomeGrid: healthy, hyper-growth, FBA 97%, sessions QoQ +24%.",
+        "asin_snapshot": "Storage bins: on-hand 2,340 units, current velocity ~52 units/day, 1,200 inbound in transit.",
+        "event_log": "One port delay event in prior cycle — resolved. Lead time currently 21 days.",
+        "financial_snapshot": "Healthy margin supports buffer inventory. No stockout history."
+      }
+    },
+    {
+      "id": "si-011",
+      "category": "inventory_replenishment",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-006",
+      "asins": ["B0PS000001"],
+      "requires_disclaimer": false,
+      "prompt": "PeakStride is experiencing viral demand growth. Their leggings ASIN went from 90 to 400 units/day in 2 weeks and they have 14 days of cover remaining. Build an emergency replenishment decision framework comparing air vs ocean freight, including the margin impact of each option.",
+      "context_blocks": {
+        "seller_snapshot": "PeakStride: high-growth, viral demand spike Feb 16, inventory stress developing.",
+        "asin_snapshot": "Leggings ASIN: 14 days of cover at new velocity, 400 units/day. Ocean lead time 35 days, air 8 days.",
+        "event_log": "Viral demand spike confirmed Feb 16. Current reorder in ocean freight pipeline.",
+        "financial_snapshot": "Gross margin 43-47%. Air freight cost premium ~$2.40/unit vs ocean ~$0.80/unit."
+      }
+    },
+    {
+      "id": "si-012",
+      "category": "inventory_replenishment",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-009",
+      "asins": ["B0TN000001"],
+      "requires_disclaimer": false,
+      "prompt": "ToyNova has seasonal demand spikes and FC short receipts. Propose inventory policy that protects Q4 peak while limiting stranded and aged stock in Q1.",
+      "context_blocks": {
+        "seller_snapshot": "Stalling seller with seasonal concentration risk.",
+        "asin_snapshot": "STEM toy ASIN with high Q4 volatility.",
+        "event_log": "Short-receipt and stranded inventory events in prior cycle.",
+        "financial_snapshot": "Working capital sensitive to inventory lockups."
+      }
+    },
+    {
+      "id": "si-013",
+      "category": "inventory_replenishment",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-us-002",
+      "asins": ["B0HG000001", "B0HG000002"],
+      "requires_disclaimer": false,
+      "prompt": "HomeGrid is in hyper-growth with inbound delays. Design a replenishment strategy for next 8 weeks to avoid stockouts and aged inventory build. Include reorder points and inbound buffer logic.",
+      "context_blocks": {
+        "seller_snapshot": "High-growth seller with 24% sessions QoQ growth.",
+        "asin_snapshot": "Two top ASINs with strong velocity and low return rates.",
+        "event_log": "Port delay created temporary inbound disruption.",
+        "financial_snapshot": "Healthy margin profile supports buffer inventory."
+      }
+    },
+    {
+      "id": "si-014",
+      "category": "margin_bridge_fee_leakage",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-008",
+      "asins": ["B0NA000001"],
+      "requires_disclaimer": false,
+      "prompt": "List the 5 most common fee line items that reduce an Amazon seller's net margin from gross revenue. For each, explain what drives the fee amount and what data a seller needs to audit it.",
+      "context_blocks": {
+        "seller_snapshot": "NutriAxis: healthy, FBA 92%, well-managed fee structure.",
+        "asin_snapshot": "Immune supplement: referral fee 8%, standard FBA size tier, no oversize.",
+        "event_log": "No fee disputes. Labeling query Feb 2 unrelated.",
+        "financial_snapshot": "Gross margin 42-44%, reserve hold 5%. Good baseline for fee structure education."
+      }
+    },
+    {
+      "id": "si-015",
+      "category": "margin_bridge_fee_leakage",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-012",
+      "asins": ["B0UO000001"],
+      "requires_disclaimer": false,
+      "prompt": "UrbanOffice noticed their FBA fulfillment fees increased after an office chair was re-measured. Explain the oversize tier classifications, how fee re-measurement works, and what a seller can do if they believe the new dimensions are incorrect.",
+      "context_blocks": {
+        "seller_snapshot": "UrbanOffice: healthy, account health 221, ongoing oversize fee dispute.",
+        "asin_snapshot": "Ergonomic chair ASIN: oversize classification, fee increased after dimension remeasure Jan 28.",
+        "event_log": "Dimension remeasurement posted 2026-01-28.",
+        "financial_snapshot": "Fee delta materially impacts per-unit margin. Reserve hold 7%, healthy payout."
+      }
+    },
+    {
+      "id": "si-016",
+      "category": "margin_bridge_fee_leakage",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-007",
+      "asins": ["B0CC000001", "B0CC000002"],
+      "requires_disclaimer": false,
+      "prompt": "CoastalCasa has $11,120 in pending reimbursements and a 22% reserve hold. Build a 30-day fee recovery action plan that prioritizes reimbursement claims by value and age, and quantifies the working capital improvement if 70% are resolved.",
+      "context_blocks": {
+        "seller_snapshot": "CoastalCasa: at-risk, ODR 1.11%, reserve hold 22%, payout delay 11 days.",
+        "asin_snapshot": "Mirror ASIN: 13 units short-receipted. Lamp set ASIN: 8 units short-receipted.",
+        "event_log": "Reimbursement claims open for 45 days. Payout hold restricting cash flow.",
+        "financial_snapshot": "Reserve hold 22%, reimbursements $11,120 pending. 70% recovery = ~$7,784 unlocked."
+      }
+    },
+    {
+      "id": "si-017",
+      "category": "margin_bridge_fee_leakage",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-005",
+      "asins": ["B0KF000001", "B0KF000002"],
+      "requires_disclaimer": false,
+      "prompt": "KitchenForge reports flat GMV but profit decline. Draft a margin diagnostic focused on fee reclassification, return-rate inflation, and promo overuse.",
+      "context_blocks": {
+        "seller_snapshot": "Stalling account with recurring fee disputes.",
+        "asin_snapshot": "Appliance ASINs have elevated return rates and promo costs.",
+        "event_log": "Fee reclassification disputes active in last 30 days.",
+        "financial_snapshot": "Gross margin 22.4% but net outcome deteriorating."
+      }
+    },
+    {
+      "id": "si-018",
+      "category": "margin_bridge_fee_leakage",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-us-003",
+      "asins": ["B0VE000001", "B0VE000002"],
+      "requires_disclaimer": false,
+      "prompt": "Build a margin bridge for VoltEdge: starting from gross GMV, quantify likely leakage from promotions, returns, chargebacks, reserve holds, and fee disputes. Recommend top 3 levers with estimated recovery impact.",
+      "context_blocks": {
+        "seller_snapshot": "Distressed account with severe claims and suppression.",
+        "asin_snapshot": "Electronics ASINs with high return and promo intensity.",
+        "event_log": "Counterfeit complaint and deactivation warning recently issued.",
+        "financial_snapshot": "Gross margin <17%, reserve hold 27%, chargebacks 24."
+      }
+    },
+    {
+      "id": "si-019",
+      "category": "promotion_roi_cannibalization",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-011",
+      "asins": ["B0PH000001"],
+      "requires_disclaimer": false,
+      "prompt": "Explain the difference between 'incremental' and 'cannibalistic' promotion lift in the context of Amazon deals. Provide an example of each using a pet supplement with 200 units/day baseline velocity.",
+      "context_blocks": {
+        "seller_snapshot": "PetHarbor: high-growth, healthy, Subscribe & Save program active.",
+        "asin_snapshot": "Calming chews: 200 units/day baseline, Subscribe & Save active, 40% repeat buyer rate.",
+        "event_log": "No recent promotions. Planning Q1 deal calendar.",
+        "financial_snapshot": "Gross margin 42-45%, reserve hold 3%. Promo budget available."
+      }
+    },
+    {
+      "id": "si-020",
+      "category": "promotion_roi_cannibalization",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-002",
+      "asins": ["B0HG000001"],
+      "requires_disclaimer": false,
+      "prompt": "HomeGrid wants to run a Lightning Deal on their storage bin ASIN during a sales event. The ASIN has 45 days of cover and a 4.8% return rate. Evaluate deal eligibility and design guardrails to prevent stockout and return-rate spike during the event window.",
+      "context_blocks": {
+        "seller_snapshot": "HomeGrid: healthy, hyper-growth, planning event-season promotion.",
+        "asin_snapshot": "Storage bins: 45 days cover, 2,340 on-hand, 4.8% return rate, rated 4.6 stars.",
+        "event_log": "No recent deal history. Port delay previously caused inbound gap.",
+        "financial_snapshot": "Gross margin 32%, healthy. Stockout risk would forfeit event-season rank gains."
+      }
+    },
+    {
+      "id": "si-021",
+      "category": "promotion_roi_cannibalization",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-001",
+      "asins": ["B0NP000002"],
+      "requires_disclaimer": false,
+      "prompt": "Hydration SKU promotions increased units but worsened returns and Buy Box. Diagnose promo ROI quality and propose a guardrailed deal strategy.",
+      "context_blocks": {
+        "seller_snapshot": "At-risk seller with claims pressure.",
+        "asin_snapshot": "Deal-heavy hydration ASIN with suppression and returns issues.",
+        "event_log": "Promotion overlap with suppression event.",
+        "financial_snapshot": "Margin compression plus chargeback uptick."
+      }
+    },
+    {
+      "id": "si-022",
+      "category": "promotion_roi_cannibalization",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-us-006",
+      "asins": ["B0PS000001", "B0PS000002"],
+      "requires_disclaimer": false,
+      "prompt": "PeakStride wants to run aggressive promo calendar after viral growth spike. Build a plan to avoid margin erosion and stockouts while sustaining rank momentum.",
+      "context_blocks": {
+        "seller_snapshot": "High-growth apparel seller with strong account health.",
+        "asin_snapshot": "Leggings and tee SKUs with high conversion and tight inventory windows.",
+        "event_log": "Viral demand spike in prior cycle.",
+        "financial_snapshot": "Strong margin allows tactical, not blanket, discounting."
+      }
+    },
+    {
+      "id": "si-023",
+      "category": "returns_root_cause_analysis",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-006",
+      "asins": ["B0PS000001"],
+      "requires_disclaimer": false,
+      "prompt": "What are the 4 primary categories of Amazon return reason codes? Which categories most frequently indicate a listing content problem vs a product quality problem? Use an apparel seller example to illustrate each.",
+      "context_blocks": {
+        "seller_snapshot": "PeakStride: healthy, return rate 2.1% — well below apparel category norm.",
+        "asin_snapshot": "Performance leggings: 2.1% return rate, 4.5 stars, strong listing quality scores.",
+        "event_log": "No return-related events. Clean quality record.",
+        "financial_snapshot": "Strong margins 43-47%. Returns have minimal financial impact at current rate."
+      }
+    },
+    {
+      "id": "si-024",
+      "category": "returns_root_cause_analysis",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-012",
+      "asins": ["B0UO000001"],
+      "requires_disclaimer": false,
+      "prompt": "UrbanOffice's ergonomic chair ASIN has a 5.9% return rate against a 3.2% category benchmark. Using the context provided, hypothesize the 3 most likely root causes and outline the investigation steps to confirm each hypothesis.",
+      "context_blocks": {
+        "seller_snapshot": "UrbanOffice: healthy, account health 221, return rate elevated on chair ASIN.",
+        "asin_snapshot": "Ergonomic chair: 5.9% return rate, 3.9 stars, B2B/remote buyer profile, freight delivery.",
+        "event_log": "No listing changes in 90 days. Return spike post-January restock.",
+        "financial_snapshot": "Margin affected but not critical. Investigation now preferred over return-suppression tactics."
+      }
+    },
+    {
+      "id": "si-025",
+      "category": "returns_root_cause_analysis",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-005",
+      "asins": ["B0KF000001"],
+      "requires_disclaimer": false,
+      "prompt": "Air fryer return rate is above category norms. Create a focused diagnostic plan using customer reason codes and listing/content checks.",
+      "context_blocks": {
+        "seller_snapshot": "Stalling seller with claims and margin pressure.",
+        "asin_snapshot": "Appliance SKU with elevated return and complaints.",
+        "event_log": "Promotion periods overlap with return spikes.",
+        "financial_snapshot": "Returns materially reducing net contribution."
+      }
+    },
+    {
+      "id": "si-026",
+      "category": "returns_root_cause_analysis",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-us-010",
+      "asins": ["B0SN000001"],
+      "requires_disclaimer": false,
+      "prompt": "Return rate is 19.2% on smart camera ASIN with complaints spanning defects, setup friction, and false expectations. Build a root-cause tree and top 5 fixes by expected defect reduction.",
+      "context_blocks": {
+        "seller_snapshot": "Distressed seller, account health near deactivation risk.",
+        "asin_snapshot": "Camera ASIN with low rating, high returns, and safety concerns.",
+        "event_log": "A-to-Z and counterfeit complaints increased in same window.",
+        "financial_snapshot": "Each point of return-rate reduction materially improves survival odds."
+      }
+    },
+    {
+      "id": "si-027",
+      "category": "ads_efficiency_reallocation",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-008",
+      "asins": ["B0NA000001"],
+      "requires_disclaimer": false,
+      "prompt": "NutriAxis has an ACOS of 14% on their immune supplement ASIN. Explain the difference between ACOS and ROAS, define break-even ACOS, and calculate the break-even ACOS for a product with 42% gross margin.",
+      "context_blocks": {
+        "seller_snapshot": "NutriAxis: healthy, ACOS 14% on main ASIN, ROAS 3.8.",
+        "asin_snapshot": "Immune supplement: ACOS 14%, ROAS 3.8, CVR 7.2%, gross margin 42%.",
+        "event_log": "No ad account issues. Campaigns stable.",
+        "financial_snapshot": "Gross margin 42%. Break-even ACOS = gross margin % for healthy ads management."
+      }
+    },
+    {
+      "id": "si-028",
+      "category": "ads_efficiency_reallocation",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-011",
+      "asins": ["B0PH000001"],
+      "requires_disclaimer": false,
+      "prompt": "PetHarbor's calming chews ASIN has ACOS of 22% against a target of 18%, and CVR of 4.1%. Diagnose likely campaign inefficiencies and recommend a 3-week bid optimization plan to reach the ACOS target without sacrificing more than 10% of current session volume.",
+      "context_blocks": {
+        "seller_snapshot": "PetHarbor: high-growth, ACOS 22% vs target 18%, CVR 4.1%.",
+        "asin_snapshot": "Calming chews: ACOS 22%, ROAS 5.4 on high-performance campaigns, review velocity anomaly active.",
+        "event_log": "Review velocity spike Feb 1 may affect conversion rates.",
+        "financial_snapshot": "Gross margin 42-45%. Each 1% ACOS reduction represents meaningful margin recovery at scale."
+      }
+    },
+    {
+      "id": "si-029",
+      "category": "ads_efficiency_reallocation",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-002",
+      "asins": ["B0HG000001", "B0HG000002"],
+      "requires_disclaimer": false,
+      "prompt": "HomeGrid has high ROAS but wants to scale spend without efficiency collapse. Recommend budget reallocation rules and expansion criteria.",
+      "context_blocks": {
+        "seller_snapshot": "Healthy growth and strong conversion baseline.",
+        "asin_snapshot": "Core storage products with good inventory depth.",
+        "event_log": "Recent inbound delays create supply constraints for one SKU.",
+        "financial_snapshot": "Healthy margin supports controlled expansion."
+      }
+    },
+    {
+      "id": "si-030",
+      "category": "ads_efficiency_reallocation",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-us-003",
+      "asins": ["B0VE000001"],
+      "requires_disclaimer": false,
+      "prompt": "VoltEdge is overspending on ads while conversion and rating decline. Build a survival-mode ad strategy that preserves discoverability but cuts waste.",
+      "context_blocks": {
+        "seller_snapshot": "Distressed account with low Buy Box share and high returns.",
+        "asin_snapshot": "Cable ASIN has high sessions but poor quality outcomes.",
+        "event_log": "Suppression and authenticity events hurt conversion quality.",
+        "financial_snapshot": "Cash constraints require rapid efficiency correction."
+      }
+    },
+    {
+      "id": "si-031",
+      "category": "catalog_quality_program",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-004",
+      "asins": ["B0AB000001"],
+      "requires_disclaimer": false,
+      "prompt": "What are the 5 key components of Amazon's listing quality score? Which 2 have the highest correlation with conversion rate for beauty products, and what specific improvements drive the biggest gains in each?",
+      "context_blocks": {
+        "seller_snapshot": "Aurelia Beauty: healthy, listing quality well-managed, account health 247.",
+        "asin_snapshot": "Vitamin C cream: title score 88/100, bullet score 91/100, 7 images, A+ content active.",
+        "event_log": "No listing suppression events. Copyright complaint Feb 14 on image — separate issue.",
+        "financial_snapshot": "Strong margins 43%. Listing quality directly impacts CVR and ad efficiency."
+      }
+    },
+    {
+      "id": "si-032",
+      "category": "catalog_quality_program",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-009",
+      "asins": ["B0TN000001"],
+      "requires_disclaimer": false,
+      "prompt": "ToyNova's STEM toy ASIN has listing quality scores of 67/100 title, 71/100 bullets, 4 images, and no A+ content. Prioritize 4 content upgrades in order of expected conversion impact and estimate the effort level for each.",
+      "context_blocks": {
+        "seller_snapshot": "ToyNova: stalling, catalog quality gaps contributing to conversion underperformance.",
+        "asin_snapshot": "STEM toy: title 67/100, bullet 71/100, 4 images, no A+ content, CVR below category average.",
+        "event_log": "No suppression events. Catalog quality is opportunity-side issue.",
+        "financial_snapshot": "Margin pressured. Content investment would improve CVR and reduce ad spend per conversion."
+      }
+    },
+    {
+      "id": "si-033",
+      "category": "catalog_quality_program",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-001",
+      "asins": ["B0NP000002"],
+      "requires_disclaimer": false,
+      "prompt": "Design a catalog quality sprint for NorthPeak to address title/variation defects and reduce suppression risk in 30 days.",
+      "context_blocks": {
+        "seller_snapshot": "At-risk seller with suppression and return issues.",
+        "asin_snapshot": "Hydration ASIN is suppressed for variation title mismatch.",
+        "event_log": "Multiple listing quality incidents in quarter.",
+        "financial_snapshot": "Suppression materially impacts promo ROI and cash flow."
+      }
+    },
+    {
+      "id": "si-034",
+      "category": "catalog_quality_program",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-us-003",
+      "asins": ["B0VE000001", "B0VE000002"],
+      "requires_disclaimer": false,
+      "prompt": "Build a 45-day catalog remediation program for VoltEdge across safety docs, authenticity evidence, and listing quality to prevent deactivation.",
+      "context_blocks": {
+        "seller_snapshot": "Distressed seller with suppression and authenticity risk.",
+        "asin_snapshot": "Core electronics ASINs under hazmat/authenticity pressure.",
+        "event_log": "Deactivation warning and counterfeit complaint active.",
+        "financial_snapshot": "High concentration risk on problematic ASINs."
+      }
+    },
+    {
+      "id": "si-035",
+      "category": "working_capital_strategy",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-002",
+      "asins": ["B0HG000001"],
+      "requires_disclaimer": false,
+      "prompt": "Explain what an Amazon reserve hold is, the 3 main factors that trigger one, and what a seller with 90 consecutive days of positive account health can expect in terms of reserve percentage normalization.",
+      "context_blocks": {
+        "seller_snapshot": "HomeGrid: healthy, reserve hold 4%, payout delay 2 days — good baseline example.",
+        "asin_snapshot": "Core storage ASIN with low defect rates — not a source of reserve pressure.",
+        "event_log": "No reserve events. Single port delay event resolved.",
+        "financial_snapshot": "Reserve hold 4%. Healthy payout cycle. Good reference for explaining normal vs elevated holds."
+      }
+    },
+    {
+      "id": "si-036",
+      "category": "working_capital_strategy",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-001",
+      "asins": ["B0NP000001", "B0NP000002"],
+      "requires_disclaimer": false,
+      "prompt": "NorthPeak has 18% reserve hold, $8,420 in pending reimbursements, and 5 suppressed ASINs. Model the cash unlock potential over the next 30 days assuming defect metrics stabilize, and identify the top 3 cash release actions to prioritize.",
+      "context_blocks": {
+        "seller_snapshot": "NorthPeak: at-risk, reserve hold 18%, payout delay 6 days, account health 139.",
+        "asin_snapshot": "5 suppressed ASINs impacting revenue. Backpack ASIN Buy Box at 62.3%.",
+        "event_log": "Reserve hold increased Feb 12. Suppression Jan 24. Chargebacks Feb 7.",
+        "financial_snapshot": "Reserve hold 18%, reimbursements $8,420, payout delay 6 days. Stabilizing defects could unlock 8-12% of hold."
+      }
+    },
+    {
+      "id": "si-037",
+      "category": "working_capital_strategy",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-009",
+      "asins": ["B0TN000001"],
+      "requires_disclaimer": false,
+      "prompt": "ToyNova has cash tied in aged and stranded Q4 inventory. Recommend recovery actions to improve working capital before next buying cycle.",
+      "context_blocks": {
+        "seller_snapshot": "Seasonal seller with post-peak inventory drag.",
+        "asin_snapshot": "STEM toy SKU has elevated aged inventory and FC variance.",
+        "event_log": "Stranded inventory spike in February.",
+        "financial_snapshot": "Pending reimbursements and fee leakage reduce cash flexibility."
+      }
+    },
+    {
+      "id": "si-038",
+      "category": "working_capital_strategy",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-us-007",
+      "asins": ["B0CC000001", "B0CC000002"],
+      "requires_disclaimer": false,
+      "prompt": "CoastalCasa is facing reserve holds, high returns, and stuck inventory. Create a 60-day working-capital stabilization plan with cash preservation levers and risk controls.",
+      "context_blocks": {
+        "seller_snapshot": "At-risk account with ODR breach and payout constraints.",
+        "asin_snapshot": "Large-item decor SKUs with return and delivery issues.",
+        "event_log": "Payout hold and ODR threshold breach recent.",
+        "financial_snapshot": "Reserve hold 22%, reimbursements pending >11K."
+      }
+    },
+    {
+      "id": "si-039",
+      "category": "seller_churn_prevention",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-006",
+      "asins": ["B0PS000001"],
+      "requires_disclaimer": false,
+      "prompt": "What are the 5 early behavioral signals that indicate a seller may be reducing their Amazon investment or considering moving volume to another channel? For each signal, suggest one AM action to address it before churn occurs.",
+      "context_blocks": {
+        "seller_snapshot": "PeakStride: high-growth, strong engagement, healthy metrics — no churn risk. Used as contrast example.",
+        "asin_snapshot": "Strong performance and growing catalog investment are anti-churn indicators.",
+        "event_log": "No churn signals. Viral demand growth Feb 16 shows platform commitment.",
+        "financial_snapshot": "Strong margins, no reserve pressure. Positive seller experience."
+      }
+    },
+    {
+      "id": "si-040",
+      "category": "seller_churn_prevention",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-009",
+      "asins": ["B0TN000001", "B0TN000002"],
+      "requires_disclaimer": false,
+      "prompt": "ToyNova's AM notices declining engagement: no Seller Central login for 3 weeks, 2 missed AM calls, and inventory replenishment paused. Build a re-engagement outreach plan with touch sequence and escalation decision points.",
+      "context_blocks": {
+        "seller_snapshot": "ToyNova: stalling, post-Q4 cash stress, catalog and review issues piling up.",
+        "asin_snapshot": "Two ASINs underperforming. Replenishment halted — stockout risk building.",
+        "event_log": "No seller engagement in 21 days. Last contact was pre-Q4.",
+        "financial_snapshot": "Reserve hold 9%, reimbursements $7,130 pending — financial stress contributing to disengagement."
+      }
+    },
+    {
+      "id": "si-041",
+      "category": "seller_churn_prevention",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-001",
+      "asins": ["B0NP000001", "B0NP000002"],
+      "requires_disclaimer": false,
+      "prompt": "NorthPeak remains commercially strong but confidence is declining due to suppression and chargeback friction. Create a 30-day trust-rebuild AM plan.",
+      "context_blocks": {
+        "seller_snapshot": "At-risk but recoverable seller with meaningful GMV base.",
+        "asin_snapshot": "Core SKUs still have demand but operational instability.",
+        "event_log": "Recent suppression + reserve-hold increase.",
+        "financial_snapshot": "Cash flow stress but not yet critical."
+      }
+    },
+    {
+      "id": "si-042",
+      "category": "seller_churn_prevention",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-us-007",
+      "asins": ["B0CC000001"],
+      "requires_disclaimer": false,
+      "prompt": "Seller signaled they may shift volume off-platform due to perceived algorithm unfairness. Build a retention strategy combining data transparency, quick wins, and trust restoration.",
+      "context_blocks": {
+        "seller_snapshot": "At-risk seller with ODR and payout pressure.",
+        "asin_snapshot": "Core decor ASIN seeing Buy Box and rating pressure.",
+        "event_log": "Escalation from seller management after ODR breach.",
+        "financial_snapshot": "High reserve hold worsens seller sentiment."
+      }
+    },
+    {
+      "id": "si-043",
+      "category": "qbr_narrative_and_commitments",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-012",
+      "asins": ["B0UO000001"],
+      "requires_disclaimer": false,
+      "prompt": "What are the required sections in an Amazon Account Manager QBR presentation? What makes a seller commitment 'measurable' vs 'vague'? Provide an example of each for an office furniture seller.",
+      "context_blocks": {
+        "seller_snapshot": "UrbanOffice: healthy, account health 221, stable demand. Good QBR baseline example.",
+        "asin_snapshot": "Ergonomic chair and desk — core SKUs with stable performance.",
+        "event_log": "No significant events requiring escalation in QBR.",
+        "financial_snapshot": "Healthy margins, oversize fee dispute ongoing but manageable."
+      }
+    },
+    {
+      "id": "si-044",
+      "category": "qbr_narrative_and_commitments",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-006",
+      "asins": ["B0PS000001", "B0PS000002"],
+      "requires_disclaimer": false,
+      "prompt": "PeakStride had a viral growth quarter with 3x GMV increase. Prepare a QBR agenda that sets accurate Q2 normalization expectations while keeping the seller engaged in growth commitments.",
+      "context_blocks": {
+        "seller_snapshot": "PeakStride: high-growth, viral demand spike, strong health metrics.",
+        "asin_snapshot": "Both ASINs overperformed in viral period. Inventory now restocking to new velocity.",
+        "event_log": "Viral demand spike Feb 16 — material upside vs plan.",
+        "financial_snapshot": "Gross margin 43-47%. Growth-driven GMV — need to calibrate Q2 baseline assumptions."
+      }
+    },
+    {
+      "id": "si-045",
+      "category": "qbr_narrative_and_commitments",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-012",
+      "asins": ["B0UO000001", "B0UO000002"],
+      "requires_disclaimer": false,
+      "prompt": "Draft QBR storyline for UrbanOffice: what improved, what deteriorated, and 3 commitments for next quarter with measurable outcomes.",
+      "context_blocks": {
+        "seller_snapshot": "Healthy account with moderate fee and fulfillment variance.",
+        "asin_snapshot": "Desk/chair portfolio with solid Buy Box and stable demand.",
+        "event_log": "Oversize fee adjustment impacted one SKU.",
+        "financial_snapshot": "Margins stable but sensitive to fee reclassifications."
+      }
+    },
+    {
+      "id": "si-046",
+      "category": "qbr_narrative_and_commitments",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-us-005",
+      "asins": ["B0KF000001", "B0KF000002"],
+      "requires_disclaimer": false,
+      "prompt": "Prepare a difficult QBR narrative for KitchenForge where GMV is flat but account quality and margins are eroding. Include how AM should frame urgency without triggering defensiveness.",
+      "context_blocks": {
+        "seller_snapshot": "Stalling seller with structural pressure signs.",
+        "asin_snapshot": "Core appliance SKUs showing return and fee stress.",
+        "event_log": "Category fee reclassification dispute unresolved.",
+        "financial_snapshot": "Profitability trend negative despite stable topline."
+      }
+    },
+    {
+      "id": "si-047",
+      "category": "what_if_scenario_planning",
+      "difficulty": "easy",
+      "seller_profile_id": "seller-us-006",
+      "asins": ["B0PS000001"],
+      "requires_disclaimer": false,
+      "prompt": "Explain what scenario planning is in an AM context, how to construct a base/upside/downside framework, and what 5 data inputs PeakStride's AM would need to model the impact of a 15% price increase on their leggings ASIN.",
+      "context_blocks": {
+        "seller_snapshot": "PeakStride: high-growth, viral demand spike active. Price elasticity question relevant.",
+        "asin_snapshot": "Leggings ASIN: current price $38.99, buy box 96.3%, CVR strong, viral demand spike active.",
+        "event_log": "Viral demand Feb 16 — pricing sensitivity unknown at new demand level.",
+        "financial_snapshot": "Gross margin 43-47%. Price increase would improve per-unit margin but risk CVR."
+      }
+    },
+    {
+      "id": "si-048",
+      "category": "what_if_scenario_planning",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-004",
+      "asins": ["B0AB000001", "B0AB000002"],
+      "requires_disclaimer": false,
+      "prompt": "Model two scenarios for Aurelia Beauty: (A) launch a new face serum ASIN in the next 60 days, (B) invest the same promo budget in growing the existing vitamin C cream. Compare incremental GMV, margin, and operational complexity for each option.",
+      "context_blocks": {
+        "seller_snapshot": "Aurelia: healthy, FBA 100%, account health 247. Growth planning stage.",
+        "asin_snapshot": "Vitamin C cream: mature, 73.5% buy box, stable. Serum ASIN exists but underinvested at 61.8% buy box.",
+        "event_log": "Copyright complaint Feb 14 — potential noise during launch if unresolved.",
+        "financial_snapshot": "Gross margin 43%. Budget available for one growth bet. Serum has growth headroom."
+      }
+    },
+    {
+      "id": "si-049",
+      "category": "what_if_scenario_planning",
+      "difficulty": "medium",
+      "seller_profile_id": "seller-us-002",
+      "asins": ["B0HG000001"],
+      "requires_disclaimer": false,
+      "prompt": "Evaluate two expansion options for HomeGrid: launch 4 new ASINs now vs defer launch until inbound reliability improves. Include demand upside, stockout risk, and operational complexity.",
+      "context_blocks": {
+        "seller_snapshot": "High-growth seller with strong baseline metrics.",
+        "asin_snapshot": "Core ASIN inventory healthy but lead-time volatility present.",
+        "event_log": "Recent port delay disrupted one inbound cycle.",
+        "financial_snapshot": "Capital available for expansion but reputation risk if launch fails."
+      }
+    },
+    {
+      "id": "si-050",
+      "category": "what_if_scenario_planning",
+      "difficulty": "hard",
+      "seller_profile_id": "seller-us-003",
+      "asins": ["B0VE000001", "B0VE000002"],
+      "requires_disclaimer": false,
+      "prompt": "Run three what-if scenarios for VoltEdge: (A) no action, (B) compliance-first remediation, (C) portfolio pruning to top safe ASINs. Compare likely impact on account health, cash flow, and GMV over 60 days.",
+      "context_blocks": {
+        "seller_snapshot": "Distressed account with severe policy and performance risk.",
+        "asin_snapshot": "Two problematic but high-volume ASINs drive most revenue.",
+        "event_log": "Active warnings and unresolved authenticity concerns.",
+        "financial_snapshot": "High reserve hold and chargeback pressure constrain options."
+      }
+    }
+  ]
+}

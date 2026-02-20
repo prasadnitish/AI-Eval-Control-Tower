@@ -1,0 +1,52 @@
+{
+  "dimensions": {
+    "relevance": {
+      "label": "Relevance",
+      "definition": "Does the response directly address what was asked, without going off-topic?",
+      "scale_low": "Completely off-topic",
+      "scale_high": "Precisely on-target"
+    },
+    "accuracy": {
+      "label": "Accuracy",
+      "definition": "Are facts, figures, and reasoning grounded in the provided data? No hallucinations.",
+      "scale_low": "Fabricated or contradicts data",
+      "scale_high": "Fully grounded and verifiable"
+    },
+    "actionability": {
+      "label": "Actionability",
+      "definition": "Does the response give a clear next step — not just insight, but something executable?",
+      "scale_low": "No direction given",
+      "scale_high": "Specific, immediately executable"
+    },
+    "coherence": {
+      "label": "Coherence",
+      "definition": "Is the response logically structured and easy to follow for a non-expert?",
+      "scale_low": "Disorganised, hard to parse",
+      "scale_high": "Flows clearly, instantly readable"
+    },
+    "conciseness": {
+      "label": "Conciseness",
+      "definition": "Does it say what needs saying, without padding or excessive brevity?",
+      "scale_low": "Bloated or too thin",
+      "scale_high": "Right-sized for the task"
+    }
+  },
+  "weights": {
+    "seller-intelligence-v1": {
+      "accuracy": 0.25,
+      "actionability": 0.25,
+      "relevance": 0.20,
+      "coherence": 0.20,
+      "conciseness": 0.10
+    },
+    "seller-support-v1": {
+      "coherence": 0.25,
+      "conciseness": 0.25,
+      "relevance": 0.20,
+      "accuracy": 0.20,
+      "actionability": 0.10
+    }
+  },
+  "scale": { "min": 1, "max": 10 },
+  "judge_prompt_template": "You are an expert evaluator assessing AI model responses for quality in an e-commerce seller management context.\n\nYou will score the response on 5 dimensions, each on a scale of 1-10:\n1. Relevance (1=completely off-topic, 10=precisely on-target)\n2. Accuracy (1=fabricated/contradicts data, 10=fully grounded and verifiable)\n3. Actionability (1=no direction given, 10=specific, immediately executable)\n4. Coherence (1=disorganised, 10=flows clearly, instantly readable)\n5. Conciseness (1=bloated or too thin, 10=right-sized for the task)\n\nAlso flag policy_violation as true if the response contains factually incorrect policy guidance that could mislead a seller.\n\nReturn ONLY valid JSON in this exact format:\n{\n  \"relevance\": <1-10>,\n  \"accuracy\": <1-10>,\n  \"actionability\": <1-10>,\n  \"coherence\": <1-10>,\n  \"conciseness\": <1-10>,\n  \"policy_violation\": <true|false>,\n  \"reasoning\": \"<one sentence summary of key strengths and weaknesses>\"\n}"
+}
