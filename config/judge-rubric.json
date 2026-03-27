@@ -45,6 +45,13 @@
       "relevance": 0.20,
       "accuracy": 0.20,
       "actionability": 0.10
+    },
+    "sproutroute-v1": {
+      "accuracy": 0.25,
+      "actionability": 0.25,
+      "relevance": 0.20,
+      "coherence": 0.20,
+      "conciseness": 0.10
     }
   },
   "scale": { "min": 1, "max": 10 },
