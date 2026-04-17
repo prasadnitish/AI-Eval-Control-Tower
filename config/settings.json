@@ -32,6 +32,15 @@
         "cost_per_inference_ceiling_usd": 0.005
       }
     },
+    "seller-intelligence-v3": {
+      "default_baseline_model": "claude-sonnet-4.6",
+      "default_candidate_model": "gpt-5-mini",
+      "gate_overrides": {
+        "latency_p95_ceiling_ms": 30000,
+        "cost_per_inference_ceiling_usd": 0.02
+      },
+      "_note": "v3 hard-eval prompts are reasoning-heavy; observed baseline p95 ~30s for flagship models. Treat as async/batch workload, not interactive."
+    },
     "seller-support-v2": {
       "default_baseline_model": "claude-sonnet-4.6",
       "default_candidate_model": "deepseek-v3.2",
@@ -39,6 +48,15 @@
         "latency_p95_ceiling_ms": 3000,
         "cost_per_inference_ceiling_usd": 0.005
       }
+    },
+    "seller-support-v3": {
+      "default_baseline_model": "claude-sonnet-4.6",
+      "default_candidate_model": "gpt-5-mini",
+      "gate_overrides": {
+        "latency_p95_ceiling_ms": 30000,
+        "cost_per_inference_ceiling_usd": 0.02
+      },
+      "_note": "v3 hard-eval dataset covers high-severity support cases: suspensions, IP appeals, counterfeit. Async/batch workload — candidate tier models must hold coherence + accuracy."
     },
     "sproutroute-v2": {
       "default_baseline_model": "claude-haiku-4.5",

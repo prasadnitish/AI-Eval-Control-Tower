@@ -126,13 +126,33 @@ Family personas live in [`datasets/sproutroute-profiles.json`](datasets/sproutro
 
 ## Datasets
 
-| File | Prompts | Categories | Domain |
-|---|---|---|---|
-| `datasets/seller-intelligence-v2.json` | 50 | 12 | AM call prep, risk triage, pricing strategy |
-| `datasets/seller-support-v2.json` | 50 | 12 | Policy guidance, account health, appeals |
-| `datasets/sproutroute-v2.json` | 25 | 7 | Itinerary, packing, safety, weather, diet, theme park, international |
+| File | Prompts | Categories | Difficulty | Domain |
+|---|---|---|---|---|
+| `datasets/seller-intelligence-v2.json` | 50 | 12 | easy/medium/hard mix | AM call prep, risk triage, pricing strategy |
+| `datasets/seller-intelligence-v3.json` | 24 | 12 | medium/hard only (hard-eval) | AM advisory with richer context_blocks |
+| `datasets/seller-support-v2.json` | 50 | 12 | easy/medium/hard mix | Policy guidance, account health, appeals |
+| `datasets/seller-support-v3.json` | 24 | 12 | medium/hard only (hard-eval) | Suspensions, IP appeals, counterfeit, POA |
+| `datasets/sproutroute-v2.json` | 25 | 7 | easy/medium/hard mix | Itinerary, packing, safety, weather, diet, theme park, international |
 
-All v2 datasets use structured `context_blocks` for prompt injection. SproutRoute v2 additionally references `family_profile_id` into `datasets/sproutroute-profiles.json`.
+All v2/v3 datasets use structured `context_blocks` for prompt injection. SproutRoute v2 references `family_profile_id` → `datasets/sproutroute-profiles.json`. Seller v3 references `seller_profile_id` → `datasets/seller-profiles-v3.json` and `asin-catalog-v3.json` (though context_blocks carry the needed snapshots inline, so profile lookup is mostly redundant).
+
+**v3 positioning:** Hard-eval datasets derived from the `dataset-brainstorm-v3/` seed banks. Skewed toward high-severity, policy-dense cases where the cheap/fast models are likely to fail. Use v2 for broad coverage; use v3 to stress-test candidates.
+
+---
+
+## NPM Scripts
+
+```bash
+npm run eval:sproutroute           # 4 cheap models, 14 prompts, ~$0.30
+npm run eval:sproutroute:full      # 7 models, 25 prompts, ~$1.85
+npm run eval:seller                # v2 seller intel, 2 models smoke
+npm run eval:seller:v3             # v3 seller intel, 4 models, ~$1.25
+npm run eval:support:v3            # v3 seller support, 4 models, ~$1.25
+npm run eval:dry                   # Cost estimator (no API calls)
+npm run gate                       # Apply release gate to a results file
+npm run history                    # Synthesize 30-day time series from a real run
+npm test                           # Unit tests for judge + gate
+```
 
 ---
 

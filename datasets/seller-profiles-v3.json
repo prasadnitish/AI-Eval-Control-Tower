@@ -1,0 +1,778 @@
+{
+  "id": "seller-profiles-v3",
+  "version": "3.0",
+  "description": "12 detailed seller personas with full performance, account-health, logistics, financial, and risk-tag fields. Drop-in replacement for seller-profiles.json for v3 datasets.",
+  "profiles": [
+    {
+      "seller_id": "seller-us-001",
+      "marketplace_id": "US",
+      "legal_name": "NorthPeak Outdoor Gear LLC",
+      "display_name": "NorthPeak Outdoor",
+      "seller_type": "private_label",
+      "launch_date": "2019-03-15",
+      "primary_categories": [
+        "Sports & Outdoors",
+        "Camping & Hiking"
+      ],
+      "health_tier": "at-risk",
+      "performance": {
+        "ttm_gmv_usd": 3240000,
+        "units_ttm": 131400,
+        "sessions_qoq_pct": -9.8,
+        "conversion_rate_pct": 9.4,
+        "buy_box_pct": 62.3,
+        "return_rate_pct": 8.4,
+        "negative_feedback_rate_pct": 1.2,
+        "avg_rating": 4.1,
+        "rating_count": 9820
+      },
+      "account_health": {
+        "account_health_score": 139,
+        "odr_pct": 0.93,
+        "late_shipment_rate_pct": 3.7,
+        "valid_tracking_rate_pct": 96.4,
+        "a_to_z_claims_60d": 4,
+        "policy_violations_90d": 3,
+        "suppressed_asins": 5
+      },
+      "logistics": {
+        "fba_share_pct": 88,
+        "fbm_share_pct": 12,
+        "avg_delivery_days": 3.2,
+        "stockout_rate_pct": 6.1
+      },
+      "financial": {
+        "gross_margin_pct": 28.7,
+        "reserve_hold_pct": 18,
+        "payout_delay_days": 9,
+        "chargebacks_90d": 6,
+        "fee_disputes_90d": 9,
+        "reimbursements_pending_usd": 8420
+      },
+      "risk_tags": [
+        "buy_box_erosion",
+        "suppression_risk",
+        "returns_spike",
+        "cashflow_pressure"
+      ],
+      "recent_events": [
+        {
+          "event_date": "2026-01-24",
+          "event_type": "listing_suppression",
+          "severity": "high",
+          "description": "3 hydration ASINs suppressed for compliance image mismatch."
+        },
+        {
+          "event_date": "2026-02-07",
+          "event_type": "chargeback_cluster",
+          "severity": "medium",
+          "description": "Chargebacks increased for two high-volume SKUs due to INR claims."
+        },
+        {
+          "event_date": "2026-02-12",
+          "event_type": "reserve_hold_increase",
+          "severity": "high",
+          "description": "Reserve hold moved from 12% to 18% due to account risk score."
+        }
+      ]
+    },
+    {
+      "seller_id": "seller-us-002",
+      "marketplace_id": "US",
+      "legal_name": "HomeGrid Essentials Inc",
+      "display_name": "HomeGrid Essentials",
+      "seller_type": "private_label",
+      "launch_date": "2021-07-09",
+      "primary_categories": [
+        "Home & Kitchen",
+        "Storage & Organization"
+      ],
+      "health_tier": "high-growth",
+      "performance": {
+        "ttm_gmv_usd": 1680000,
+        "units_ttm": 95500,
+        "sessions_qoq_pct": 24.2,
+        "conversion_rate_pct": 13.8,
+        "buy_box_pct": 95.4,
+        "return_rate_pct": 2.3,
+        "negative_feedback_rate_pct": 0.2,
+        "avg_rating": 4.7,
+        "rating_count": 4260
+      },
+      "account_health": {
+        "account_health_score": 298,
+        "odr_pct": 0.14,
+        "late_shipment_rate_pct": 0.7,
+        "valid_tracking_rate_pct": 99.4,
+        "a_to_z_claims_60d": 0,
+        "policy_violations_90d": 0,
+        "suppressed_asins": 0
+      },
+      "logistics": {
+        "fba_share_pct": 100,
+        "fbm_share_pct": 0,
+        "avg_delivery_days": 1.9,
+        "stockout_rate_pct": 1.4
+      },
+      "financial": {
+        "gross_margin_pct": 34.2,
+        "reserve_hold_pct": 2,
+        "payout_delay_days": 2,
+        "chargebacks_90d": 1,
+        "fee_disputes_90d": 2,
+        "reimbursements_pending_usd": 640
+      },
+      "risk_tags": [
+        "hyper_growth_forecast_risk",
+        "q4_capacity_risk"
+      ],
+      "recent_events": [
+        {
+          "event_date": "2026-01-15",
+          "event_type": "promo_overperformance",
+          "severity": "low",
+          "description": "Coupon campaign exceeded demand forecast by 31%."
+        },
+        {
+          "event_date": "2026-02-10",
+          "event_type": "inbound_delay",
+          "severity": "medium",
+          "description": "Inbound container delayed 5 days at LA port."
+        }
+      ]
+    },
+    {
+      "seller_id": "seller-us-003",
+      "marketplace_id": "US",
+      "legal_name": "VoltEdge Accessories Corp",
+      "display_name": "VoltEdge",
+      "seller_type": "hybrid",
+      "launch_date": "2017-11-03",
+      "primary_categories": [
+        "Electronics",
+        "Cell Phone Accessories"
+      ],
+      "health_tier": "distressed",
+      "performance": {
+        "ttm_gmv_usd": 4120000,
+        "units_ttm": 243900,
+        "sessions_qoq_pct": -21.6,
+        "conversion_rate_pct": 7.1,
+        "buy_box_pct": 39.5,
+        "return_rate_pct": 13.9,
+        "negative_feedback_rate_pct": 2.8,
+        "avg_rating": 3.5,
+        "rating_count": 31840
+      },
+      "account_health": {
+        "account_health_score": 84,
+        "odr_pct": 2.41,
+        "late_shipment_rate_pct": 6.2,
+        "valid_tracking_rate_pct": 92.7,
+        "a_to_z_claims_60d": 13,
+        "policy_violations_90d": 8,
+        "suppressed_asins": 11
+      },
+      "logistics": {
+        "fba_share_pct": 64,
+        "fbm_share_pct": 36,
+        "avg_delivery_days": 4.6,
+        "stockout_rate_pct": 9.8
+      },
+      "financial": {
+        "gross_margin_pct": 16.9,
+        "reserve_hold_pct": 27,
+        "payout_delay_days": 14,
+        "chargebacks_90d": 24,
+        "fee_disputes_90d": 15,
+        "reimbursements_pending_usd": 22640
+      },
+      "risk_tags": [
+        "suspension_risk",
+        "counterfeit_claim_risk",
+        "fbm_quality_risk",
+        "cash_crunch"
+      ],
+      "recent_events": [
+        {
+          "event_date": "2026-01-06",
+          "event_type": "a_to_z_claim_spike",
+          "severity": "critical",
+          "description": "A-to-Z claims increased 3.2x over prior 30 days."
+        },
+        {
+          "event_date": "2026-01-29",
+          "event_type": "counterfeit_complaint",
+          "severity": "critical",
+          "description": "Brand owner complaint filed on two charger ASINs."
+        },
+        {
+          "event_date": "2026-02-18",
+          "event_type": "deactivation_warning",
+          "severity": "critical",
+          "description": "Account health warning issued with 14-day remediation requirement."
+        }
+      ]
+    },
+    {
+      "seller_id": "seller-us-004",
+      "marketplace_id": "US",
+      "legal_name": "Aurelia Beauty Labs LLC",
+      "display_name": "Aurelia Beauty",
+      "seller_type": "private_label",
+      "launch_date": "2020-04-22",
+      "primary_categories": [
+        "Beauty & Personal Care",
+        "Skin Care"
+      ],
+      "health_tier": "healthy",
+      "performance": {
+        "ttm_gmv_usd": 2390000,
+        "units_ttm": 124800,
+        "sessions_qoq_pct": 8.1,
+        "conversion_rate_pct": 14.6,
+        "buy_box_pct": 87.2,
+        "return_rate_pct": 3.2,
+        "negative_feedback_rate_pct": 0.4,
+        "avg_rating": 4.5,
+        "rating_count": 14120
+      },
+      "account_health": {
+        "account_health_score": 247,
+        "odr_pct": 0.34,
+        "late_shipment_rate_pct": 1.1,
+        "valid_tracking_rate_pct": 98.8,
+        "a_to_z_claims_60d": 1,
+        "policy_violations_90d": 0,
+        "suppressed_asins": 0
+      },
+      "logistics": {
+        "fba_share_pct": 92,
+        "fbm_share_pct": 8,
+        "avg_delivery_days": 2.1,
+        "stockout_rate_pct": 2.4
+      },
+      "financial": {
+        "gross_margin_pct": 36.8,
+        "reserve_hold_pct": 4,
+        "payout_delay_days": 3,
+        "chargebacks_90d": 2,
+        "fee_disputes_90d": 3,
+        "reimbursements_pending_usd": 1220
+      },
+      "risk_tags": [
+        "restricted_claim_policy_risk",
+        "seasonality_demand_spike"
+      ],
+      "recent_events": [
+        {
+          "event_date": "2026-01-20",
+          "event_type": "health_claim_flag",
+          "severity": "medium",
+          "description": "One supplement-adjacent beauty claim flagged for wording update."
+        }
+      ]
+    },
+    {
+      "seller_id": "seller-us-005",
+      "marketplace_id": "US",
+      "legal_name": "KitchenForge Imports Ltd",
+      "display_name": "KitchenForge",
+      "seller_type": "reseller",
+      "launch_date": "2018-06-11",
+      "primary_categories": [
+        "Kitchen & Dining",
+        "Small Appliances"
+      ],
+      "health_tier": "stalling",
+      "performance": {
+        "ttm_gmv_usd": 2860000,
+        "units_ttm": 102600,
+        "sessions_qoq_pct": -6.4,
+        "conversion_rate_pct": 10.2,
+        "buy_box_pct": 71.4,
+        "return_rate_pct": 6.7,
+        "negative_feedback_rate_pct": 0.9,
+        "avg_rating": 4,
+        "rating_count": 8740
+      },
+      "account_health": {
+        "account_health_score": 171,
+        "odr_pct": 0.81,
+        "late_shipment_rate_pct": 2.9,
+        "valid_tracking_rate_pct": 96.8,
+        "a_to_z_claims_60d": 3,
+        "policy_violations_90d": 2,
+        "suppressed_asins": 2
+      },
+      "logistics": {
+        "fba_share_pct": 69,
+        "fbm_share_pct": 31,
+        "avg_delivery_days": 3.8,
+        "stockout_rate_pct": 5.2
+      },
+      "financial": {
+        "gross_margin_pct": 22.4,
+        "reserve_hold_pct": 11,
+        "payout_delay_days": 6,
+        "chargebacks_90d": 7,
+        "fee_disputes_90d": 11,
+        "reimbursements_pending_usd": 9340
+      },
+      "risk_tags": [
+        "buy_box_slip",
+        "fee_leakage",
+        "listing_quality_gap"
+      ],
+      "recent_events": [
+        {
+          "event_date": "2026-02-03",
+          "event_type": "fee_reclassification_dispute",
+          "severity": "high",
+          "description": "Referral fees reclassified for 4 appliance ASINs."
+        }
+      ]
+    },
+    {
+      "seller_id": "seller-us-006",
+      "marketplace_id": "US",
+      "legal_name": "PeakStride Athletic Goods",
+      "display_name": "PeakStride",
+      "seller_type": "private_label",
+      "launch_date": "2022-02-14",
+      "primary_categories": [
+        "Clothing, Shoes & Jewelry",
+        "Sports Apparel"
+      ],
+      "health_tier": "high-growth",
+      "performance": {
+        "ttm_gmv_usd": 980000,
+        "units_ttm": 58600,
+        "sessions_qoq_pct": 31.9,
+        "conversion_rate_pct": 12.7,
+        "buy_box_pct": 96.8,
+        "return_rate_pct": 5.4,
+        "negative_feedback_rate_pct": 0.2,
+        "avg_rating": 4.8,
+        "rating_count": 2620
+      },
+      "account_health": {
+        "account_health_score": 312,
+        "odr_pct": 0.08,
+        "late_shipment_rate_pct": 0.5,
+        "valid_tracking_rate_pct": 99.6,
+        "a_to_z_claims_60d": 0,
+        "policy_violations_90d": 0,
+        "suppressed_asins": 0
+      },
+      "logistics": {
+        "fba_share_pct": 100,
+        "fbm_share_pct": 0,
+        "avg_delivery_days": 1.7,
+        "stockout_rate_pct": 1.9
+      },
+      "financial": {
+        "gross_margin_pct": 38.1,
+        "reserve_hold_pct": 1,
+        "payout_delay_days": 2,
+        "chargebacks_90d": 0,
+        "fee_disputes_90d": 1,
+        "reimbursements_pending_usd": 280
+      },
+      "risk_tags": [
+        "new_launch_forecast_error",
+        "apparel_return_variance"
+      ],
+      "recent_events": [
+        {
+          "event_date": "2026-02-16",
+          "event_type": "viral_demand_spike",
+          "severity": "medium",
+          "description": "Social media spike drove 2.4x order rate on leggings line."
+        }
+      ]
+    },
+    {
+      "seller_id": "seller-us-007",
+      "marketplace_id": "US",
+      "legal_name": "CoastalCasa Imports LLC",
+      "display_name": "CoastalCasa",
+      "seller_type": "hybrid",
+      "launch_date": "2016-09-01",
+      "primary_categories": [
+        "Home Decor",
+        "Furniture"
+      ],
+      "health_tier": "at-risk",
+      "performance": {
+        "ttm_gmv_usd": 1940000,
+        "units_ttm": 70200,
+        "sessions_qoq_pct": -12.3,
+        "conversion_rate_pct": 8.6,
+        "buy_box_pct": 57.1,
+        "return_rate_pct": 9.8,
+        "negative_feedback_rate_pct": 1.4,
+        "avg_rating": 3.9,
+        "rating_count": 5380
+      },
+      "account_health": {
+        "account_health_score": 126,
+        "odr_pct": 1.11,
+        "late_shipment_rate_pct": 4.3,
+        "valid_tracking_rate_pct": 95.6,
+        "a_to_z_claims_60d": 5,
+        "policy_violations_90d": 2,
+        "suppressed_asins": 3
+      },
+      "logistics": {
+        "fba_share_pct": 48,
+        "fbm_share_pct": 52,
+        "avg_delivery_days": 4.1,
+        "stockout_rate_pct": 6.8
+      },
+      "financial": {
+        "gross_margin_pct": 19.6,
+        "reserve_hold_pct": 22,
+        "payout_delay_days": 11,
+        "chargebacks_90d": 9,
+        "fee_disputes_90d": 8,
+        "reimbursements_pending_usd": 11120
+      },
+      "risk_tags": [
+        "odr_breach",
+        "fbm_delivery_risk",
+        "cashflow_hold",
+        "catalog_suppression_risk"
+      ],
+      "recent_events": [
+        {
+          "event_date": "2026-01-31",
+          "event_type": "odr_threshold_breach",
+          "severity": "critical",
+          "description": "ODR exceeded 1.0% for second consecutive reporting window."
+        },
+        {
+          "event_date": "2026-02-14",
+          "event_type": "payout_hold_notice",
+          "severity": "high",
+          "description": "Disbursement hold increased due to performance risk."
+        }
+      ]
+    },
+    {
+      "seller_id": "seller-us-008",
+      "marketplace_id": "US",
+      "legal_name": "NutriAxis Health Inc",
+      "display_name": "NutriAxis",
+      "seller_type": "private_label",
+      "launch_date": "2018-01-18",
+      "primary_categories": [
+        "Health & Household",
+        "Vitamins & Supplements"
+      ],
+      "health_tier": "healthy",
+      "performance": {
+        "ttm_gmv_usd": 3560000,
+        "units_ttm": 186300,
+        "sessions_qoq_pct": 6.4,
+        "conversion_rate_pct": 15.3,
+        "buy_box_pct": 84.7,
+        "return_rate_pct": 2.7,
+        "negative_feedback_rate_pct": 0.5,
+        "avg_rating": 4.4,
+        "rating_count": 27700
+      },
+      "account_health": {
+        "account_health_score": 236,
+        "odr_pct": 0.42,
+        "late_shipment_rate_pct": 1,
+        "valid_tracking_rate_pct": 99,
+        "a_to_z_claims_60d": 1,
+        "policy_violations_90d": 1,
+        "suppressed_asins": 0
+      },
+      "logistics": {
+        "fba_share_pct": 95,
+        "fbm_share_pct": 5,
+        "avg_delivery_days": 2,
+        "stockout_rate_pct": 2.1
+      },
+      "financial": {
+        "gross_margin_pct": 41.3,
+        "reserve_hold_pct": 5,
+        "payout_delay_days": 3,
+        "chargebacks_90d": 3,
+        "fee_disputes_90d": 4,
+        "reimbursements_pending_usd": 1490
+      },
+      "risk_tags": [
+        "health_claim_compliance",
+        "high_review_velocity"
+      ],
+      "recent_events": [
+        {
+          "event_date": "2026-02-02",
+          "event_type": "labeling_query",
+          "severity": "medium",
+          "description": "Labeling compliance query raised on one immunity SKU."
+        }
+      ]
+    },
+    {
+      "seller_id": "seller-us-009",
+      "marketplace_id": "US",
+      "legal_name": "ToyNova Retail Group",
+      "display_name": "ToyNova",
+      "seller_type": "reseller",
+      "launch_date": "2015-10-20",
+      "primary_categories": [
+        "Toys & Games",
+        "STEM Toys"
+      ],
+      "health_tier": "stalling",
+      "performance": {
+        "ttm_gmv_usd": 2710000,
+        "units_ttm": 119000,
+        "sessions_qoq_pct": -10.8,
+        "conversion_rate_pct": 8.9,
+        "buy_box_pct": 68.4,
+        "return_rate_pct": 7.1,
+        "negative_feedback_rate_pct": 1,
+        "avg_rating": 4,
+        "rating_count": 10320
+      },
+      "account_health": {
+        "account_health_score": 165,
+        "odr_pct": 0.76,
+        "late_shipment_rate_pct": 2.6,
+        "valid_tracking_rate_pct": 97.1,
+        "a_to_z_claims_60d": 2,
+        "policy_violations_90d": 1,
+        "suppressed_asins": 1
+      },
+      "logistics": {
+        "fba_share_pct": 76,
+        "fbm_share_pct": 24,
+        "avg_delivery_days": 3.3,
+        "stockout_rate_pct": 5.9
+      },
+      "financial": {
+        "gross_margin_pct": 24.5,
+        "reserve_hold_pct": 9,
+        "payout_delay_days": 5,
+        "chargebacks_90d": 5,
+        "fee_disputes_90d": 7,
+        "reimbursements_pending_usd": 7130
+      },
+      "risk_tags": [
+        "seasonality_exposure",
+        "stockout_risk",
+        "returns_quality_risk"
+      ],
+      "recent_events": [
+        {
+          "event_date": "2026-01-10",
+          "event_type": "fc_short_receipt",
+          "severity": "medium",
+          "description": "Q4 inbound shipment received 14% fewer units than ASN."
+        },
+        {
+          "event_date": "2026-02-05",
+          "event_type": "stranded_inventory_spike",
+          "severity": "medium",
+          "description": "Stranded units rose after variation relation errors."
+        }
+      ]
+    },
+    {
+      "seller_id": "seller-us-010",
+      "marketplace_id": "US",
+      "legal_name": "SmartNest Innovations LLC",
+      "display_name": "SmartNest",
+      "seller_type": "hybrid",
+      "launch_date": "2017-02-27",
+      "primary_categories": [
+        "Electronics",
+        "Smart Home"
+      ],
+      "health_tier": "distressed",
+      "performance": {
+        "ttm_gmv_usd": 1290000,
+        "units_ttm": 48800,
+        "sessions_qoq_pct": -27.1,
+        "conversion_rate_pct": 6.2,
+        "buy_box_pct": 33.4,
+        "return_rate_pct": 17.5,
+        "negative_feedback_rate_pct": 3.1,
+        "avg_rating": 3.2,
+        "rating_count": 7280
+      },
+      "account_health": {
+        "account_health_score": 72,
+        "odr_pct": 3.08,
+        "late_shipment_rate_pct": 7.4,
+        "valid_tracking_rate_pct": 91.8,
+        "a_to_z_claims_60d": 16,
+        "policy_violations_90d": 9,
+        "suppressed_asins": 8
+      },
+      "logistics": {
+        "fba_share_pct": 59,
+        "fbm_share_pct": 41,
+        "avg_delivery_days": 4.9,
+        "stockout_rate_pct": 11.2
+      },
+      "financial": {
+        "gross_margin_pct": 12.4,
+        "reserve_hold_pct": 31,
+        "payout_delay_days": 16,
+        "chargebacks_90d": 31,
+        "fee_disputes_90d": 14,
+        "reimbursements_pending_usd": 25980
+      },
+      "risk_tags": [
+        "imminent_suspension",
+        "high_return_loss",
+        "chargeback_exposure",
+        "counterfeit_accusation_risk"
+      ],
+      "recent_events": [
+        {
+          "event_date": "2026-01-21",
+          "event_type": "policy_warning_final",
+          "severity": "critical",
+          "description": "Final warning issued for ODR and listing quality defects."
+        },
+        {
+          "event_date": "2026-02-09",
+          "event_type": "counterfeit_claim",
+          "severity": "critical",
+          "description": "Two customer counterfeit complaints escalated to brand owner."
+        },
+        {
+          "event_date": "2026-02-17",
+          "event_type": "fund_disbursement_hold",
+          "severity": "critical",
+          "description": "31% reserve hold applied pending appeal outcome."
+        }
+      ]
+    },
+    {
+      "seller_id": "seller-us-011",
+      "marketplace_id": "US",
+      "legal_name": "PetHarbor Supplies Co",
+      "display_name": "PetHarbor",
+      "seller_type": "private_label",
+      "launch_date": "2021-01-05",
+      "primary_categories": [
+        "Pet Supplies"
+      ],
+      "health_tier": "high-growth",
+      "performance": {
+        "ttm_gmv_usd": 1540000,
+        "units_ttm": 88400,
+        "sessions_qoq_pct": 19.5,
+        "conversion_rate_pct": 12.9,
+        "buy_box_pct": 93.2,
+        "return_rate_pct": 3.6,
+        "negative_feedback_rate_pct": 0.3,
+        "avg_rating": 4.6,
+        "rating_count": 3910
+      },
+      "account_health": {
+        "account_health_score": 281,
+        "odr_pct": 0.19,
+        "late_shipment_rate_pct": 0.8,
+        "valid_tracking_rate_pct": 99.3,
+        "a_to_z_claims_60d": 1,
+        "policy_violations_90d": 0,
+        "suppressed_asins": 0
+      },
+      "logistics": {
+        "fba_share_pct": 97,
+        "fbm_share_pct": 3,
+        "avg_delivery_days": 1.8,
+        "stockout_rate_pct": 1.7
+      },
+      "financial": {
+        "gross_margin_pct": 33.5,
+        "reserve_hold_pct": 2,
+        "payout_delay_days": 2,
+        "chargebacks_90d": 1,
+        "fee_disputes_90d": 1,
+        "reimbursements_pending_usd": 530
+      },
+      "risk_tags": [
+        "promo_cannibalization_risk",
+        "review_velocity_anomaly"
+      ],
+      "recent_events": [
+        {
+          "event_date": "2026-02-01",
+          "event_type": "review_velocity_spike",
+          "severity": "medium",
+          "description": "Unusual burst of short-text 5-star reviews flagged for manual review."
+        }
+      ]
+    },
+    {
+      "seller_id": "seller-us-012",
+      "marketplace_id": "US",
+      "legal_name": "UrbanOffice Goods LLC",
+      "display_name": "UrbanOffice Goods",
+      "seller_type": "reseller",
+      "launch_date": "2014-12-12",
+      "primary_categories": [
+        "Office Products",
+        "Furniture"
+      ],
+      "health_tier": "healthy",
+      "performance": {
+        "ttm_gmv_usd": 3010000,
+        "units_ttm": 110500,
+        "sessions_qoq_pct": 4.2,
+        "conversion_rate_pct": 11.3,
+        "buy_box_pct": 82.1,
+        "return_rate_pct": 4.1,
+        "negative_feedback_rate_pct": 0.5,
+        "avg_rating": 4.3,
+        "rating_count": 12200
+      },
+      "account_health": {
+        "account_health_score": 221,
+        "odr_pct": 0.39,
+        "late_shipment_rate_pct": 1.5,
+        "valid_tracking_rate_pct": 98.2,
+        "a_to_z_claims_60d": 2,
+        "policy_violations_90d": 0,
+        "suppressed_asins": 1
+      },
+      "logistics": {
+        "fba_share_pct": 73,
+        "fbm_share_pct": 27,
+        "avg_delivery_days": 2.9,
+        "stockout_rate_pct": 3.5
+      },
+      "financial": {
+        "gross_margin_pct": 26.8,
+        "reserve_hold_pct": 6,
+        "payout_delay_days": 4,
+        "chargebacks_90d": 3,
+        "fee_disputes_90d": 4,
+        "reimbursements_pending_usd": 2480
+      },
+      "risk_tags": [
+        "large_item_fulfillment_risk",
+        "seasonal_b2b_variance"
+      ],
+      "recent_events": [
+        {
+          "event_date": "2026-01-28",
+          "event_type": "oversize_fee_adjustment",
+          "severity": "medium",
+          "description": "Dimension remeasurement increased fees on 2 desk-chair ASINs."
+        }
+      ]
+    }
+  ]
+}

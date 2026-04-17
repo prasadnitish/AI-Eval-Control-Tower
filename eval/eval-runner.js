@@ -117,7 +117,11 @@ function tryLoadProfiles(path, keyFn) {
     return {};
   }
 }
-const sellerProfileMap = tryLoadProfiles('datasets/seller-profiles.json', p => p.seller_id || p.id);
+const sellerProfileMap = {
+  ...tryLoadProfiles('datasets/seller-profiles.json', p => p.seller_id || p.id),
+  // v3 profiles override matching IDs with richer detail when a v3 dataset is active
+  ...tryLoadProfiles('datasets/seller-profiles-v3.json', p => p.seller_id || p.id),
+};
 const sproutrouteProfileMap = tryLoadProfiles('datasets/sproutroute-profiles.json', p => p.id);
 
 // ── Suite filter ──────────────────────────────────────────────────────────────
