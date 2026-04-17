@@ -1,0 +1,182 @@
+{
+  "id": "sproutroute-profiles",
+  "version": "1.0",
+  "description": "Reusable family personas for SproutRoute trip-planning evaluation. Referenced by prompts in sproutroute-v2.json via family_profile_id.",
+  "profiles": [
+    {
+      "id": "family-001",
+      "display_name": "The Beach Family",
+      "composition": "2 parents, 2 children",
+      "children": [
+        { "age": 4, "height_in": 40, "weight_lb": 38, "notes": "Strong swimmer, sensitive to sun" },
+        { "age": 6, "height_in": 46, "weight_lb": 52, "notes": "Loves marine animals" }
+      ],
+      "pets": [],
+      "budget_tier": "moderate",
+      "travel_style": "relaxed family vacation, mix of activities and downtime",
+      "dietary": "no allergies, picky 4yo prefers plain foods",
+      "medical": "no conditions"
+    },
+    {
+      "id": "family-002",
+      "display_name": "Road Trip of Three",
+      "composition": "2 parents, 1 child",
+      "children": [
+        { "age": 5, "height_in": 44, "weight_lb": 45, "notes": "Car gets restless after 90 min" }
+      ],
+      "pets": [],
+      "budget_tier": "moderate-to-high",
+      "travel_style": "loves live music and animals",
+      "dietary": "no restrictions",
+      "medical": "none"
+    },
+    {
+      "id": "family-003",
+      "display_name": "Theme Park Five",
+      "composition": "2 parents, 3 children",
+      "children": [
+        { "age": 2, "height_in": 34, "weight_lb": 28, "notes": "Nap 1-3pm non-negotiable, rear-facing car seat" },
+        { "age": 5, "height_in": 43, "weight_lb": 46, "notes": "Forward-facing harness" },
+        { "age": 8, "height_in": 50, "weight_lb": 62, "notes": "Booster seat" }
+      ],
+      "pets": [],
+      "budget_tier": "high",
+      "travel_style": "Disney/Universal heavy, park + pool days",
+      "dietary": "no restrictions",
+      "medical": "none"
+    },
+    {
+      "id": "family-004",
+      "display_name": "Multigenerational Savannah",
+      "composition": "2 parents, 3 children, 2 grandparents",
+      "children": [
+        { "age": 1, "height_in": 28, "weight_lb": 22, "notes": "Needs stroller, rear-facing infant seat" },
+        { "age": 4, "height_in": 40, "weight_lb": 37, "notes": "Forward-facing harness" },
+        { "age": 9, "height_in": 52, "weight_lb": 70, "notes": "No car seat required in most states" }
+      ],
+      "pets": [],
+      "accessibility": ["wheelchair user (grandfather)", "walks slowly (grandmother)"],
+      "budget_tier": "moderate",
+      "travel_style": "history and nature, all ages must participate",
+      "dietary": "no allergies",
+      "medical": "grandfather mobility limitations"
+    },
+    {
+      "id": "family-005",
+      "display_name": "ADHD + Tires-Easy Duo",
+      "composition": "2 parents, 2 children",
+      "children": [
+        { "age": 6, "height_in": 46, "weight_lb": 50, "notes": "Tires quickly" },
+        { "age": 10, "height_in": 56, "weight_lb": 80, "notes": "ADHD, needs high-stimulation low-wait activities" }
+      ],
+      "pets": [],
+      "budget_tier": "high",
+      "travel_style": "multi-city, wants at least one adults-only dinner",
+      "dietary": "none",
+      "medical": "ADHD"
+    },
+    {
+      "id": "family-006",
+      "display_name": "Peanut-Allergy Four",
+      "composition": "2 parents, 2 children",
+      "children": [
+        { "age": 5, "height_in": 43, "weight_lb": 44, "notes": "Severe peanut allergy, carries EpiPen Jr" },
+        { "age": 8, "height_in": 50, "weight_lb": 62, "notes": "Booster seat, no allergies" }
+      ],
+      "pets": [],
+      "budget_tier": "moderate-to-high",
+      "travel_style": "tropical beach, alert to food cross-contamination",
+      "dietary": "peanut-free, anaphylactic severity",
+      "medical": "anaphylaxis risk"
+    },
+    {
+      "id": "family-007",
+      "display_name": "Sensory-Sensitive Five",
+      "composition": "2 parents, 3 children",
+      "children": [
+        { "age": 3, "height_in": 38, "weight_lb": 32, "notes": "Forward-facing harness" },
+        { "age": 6, "height_in": 45, "weight_lb": 48, "notes": "Sensory processing, soft cotton only, no sandals, noise-cancelling headphones" },
+        { "age": 11, "height_in": 58, "weight_lb": 92, "notes": "No car seat needed" }
+      ],
+      "pets": [],
+      "budget_tier": "moderate-to-high",
+      "travel_style": "multi-climate, needs laundry access",
+      "dietary": "no restrictions",
+      "medical": "sensory processing disorder"
+    },
+    {
+      "id": "family-008",
+      "display_name": "Dog-Friendly Two-Kid",
+      "composition": "2 parents, 2 children, 1 dog",
+      "children": [
+        { "age": 4, "height_in": 41, "weight_lb": 39, "notes": "Forward-facing harness" },
+        { "age": 7, "height_in": 48, "weight_lb": 58, "notes": "Booster seat" }
+      ],
+      "pets": [
+        { "type": "dog", "name": "Scout", "breed": "labrador", "weight_lb": 65, "age_yrs": 4, "vaccinated": true, "notes": "Pet-friendly lodging required, travels in crate" }
+      ],
+      "budget_tier": "moderate",
+      "travel_style": "outdoorsy, wants pet-friendly hikes and restaurants",
+      "dietary": "none",
+      "medical": "dog on tick prevention"
+    },
+    {
+      "id": "family-009",
+      "display_name": "Celiac + Picky Eater",
+      "composition": "2 parents, 2 children",
+      "children": [
+        { "age": 4, "height_in": 40, "weight_lb": 38, "notes": "Only eats 5 foods (mac, hot dogs, applesauce, crackers, grapes)" },
+        { "age": 8, "height_in": 50, "weight_lb": 62, "notes": "Celiac disease, strict gluten-free" }
+      ],
+      "pets": [],
+      "budget_tier": "moderate",
+      "travel_style": "national parks, self-catering preferred",
+      "dietary": "strict gluten-free for 8yo",
+      "medical": "celiac disease"
+    },
+    {
+      "id": "family-010",
+      "display_name": "Kosher Five",
+      "composition": "2 parents, 3 children",
+      "children": [
+        { "age": 1, "height_in": 30, "weight_lb": 24, "notes": "Rear-facing infant seat, starting solids" },
+        { "age": 4, "height_in": 41, "weight_lb": 40, "notes": "Tree nut allergy" },
+        { "age": 9, "height_in": 53, "weight_lb": 72, "notes": "No car seat required in most states" }
+      ],
+      "pets": [],
+      "budget_tier": "moderate-to-high",
+      "travel_style": "vacation rental with full kitchen preferred",
+      "dietary": "strictly kosher, tree-nut-free for 4yo",
+      "medical": "tree nut allergy"
+    },
+    {
+      "id": "family-011",
+      "display_name": "Disabled-Access Four",
+      "composition": "2 parents, 2 children",
+      "children": [
+        { "age": 5, "height_in": 42, "weight_lb": 40, "notes": "Muscular dystrophy, uses wheelchair, qualifies for DAS" },
+        { "age": 9, "height_in": 52, "weight_lb": 70, "notes": "Loves roller coasters" }
+      ],
+      "pets": [],
+      "accessibility": ["wheelchair user (5yo)"],
+      "budget_tier": "high",
+      "travel_style": "efficiency-focused theme park days with DAS",
+      "dietary": "none",
+      "medical": "muscular dystrophy"
+    },
+    {
+      "id": "family-012",
+      "display_name": "International First-Timers",
+      "composition": "2 parents, 2 children",
+      "children": [
+        { "age": 5, "height_in": 43, "weight_lb": 45, "notes": "Picky eater" },
+        { "age": 9, "height_in": 53, "weight_lb": 72, "notes": "Interested in anime/Japanese culture" }
+      ],
+      "pets": [],
+      "budget_tier": "high",
+      "travel_style": "first international trip for kids, 17h time shift",
+      "dietary": "5yo picky",
+      "medical": "none"
+    }
+  ]
+}

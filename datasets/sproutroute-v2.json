@@ -1,0 +1,309 @@
+{
+  "id": "sproutroute-v2",
+  "version": "2.0",
+  "description": "25-prompt family trip planning eval dataset for SproutRoute AI across 7 travel planning categories. Structured context_blocks with family_profile_id references to datasets/sproutroute-profiles.json.",
+  "prompts": [
+    {
+      "id": "sr-001",
+      "category": "itinerary_generation",
+      "difficulty": "easy",
+      "family_profile_id": "family-001",
+      "prompt": "Plan a 3-day trip to San Diego for this family. Include one kid-friendly activity per morning and afternoon, plus restaurant recommendations for each meal.",
+      "context_blocks": {
+        "trip_request": "Destination: San Diego, CA. Dates: April 18-20, 2026. Duration: 3 days.",
+        "weather_forecast": "Sunny, highs 72-75F, lows 58-60F, no rain expected.",
+        "preferences": "Kids love animals and the beach. No seafood allergies. Budget: moderate."
+      }
+    },
+    {
+      "id": "sr-002",
+      "category": "itinerary_generation",
+      "difficulty": "easy",
+      "family_profile_id": "family-002",
+      "prompt": "Create a weekend itinerary in Nashville, TN. We want a mix of outdoor and indoor activities in case of rain.",
+      "context_blocks": {
+        "trip_request": "Destination: Nashville, TN. Dates: May 10-11, 2026. Duration: 2 days.",
+        "weather_forecast": "Partly cloudy, highs 78-80F, 40% chance of afternoon showers Saturday.",
+        "preferences": "Child loves music and animals. Parents enjoy live music. Budget: moderate to high."
+      }
+    },
+    {
+      "id": "sr-003",
+      "category": "itinerary_generation",
+      "difficulty": "medium",
+      "family_profile_id": "family-003",
+      "prompt": "Build a 5-day family vacation itinerary for Orlando. The toddler needs a nap from 1-3 PM daily. Include drive times between activities and suggest backup indoor options for each day.",
+      "context_blocks": {
+        "trip_request": "Destination: Orlando, FL. Dates: June 15-19, 2026. Duration: 5 days.",
+        "weather_forecast": "Hot and humid, highs 90-93F, daily afternoon thunderstorms likely 3-5 PM.",
+        "preferences": "Mix of theme parks and non-park days. Toddler nap 1-3 PM is non-negotiable. Budget: high."
+      }
+    },
+    {
+      "id": "sr-004",
+      "category": "itinerary_generation",
+      "difficulty": "medium",
+      "prompt": "Plan a 4-day road trip from Chicago, IL to Mackinac Island, MI (approx 5-hour drive). Include recommended stop points every 2 hours, kid-friendly roadside attractions, and overnight hotel suggestions in each city.",
+      "context_blocks": {
+        "trip_request": "Route: Chicago, IL to Mackinac Island, MI. Dates: July 4-7, 2026. Duration: 4 days.",
+        "family_profile": "Family of 4 (2 parents, kids ages 3 and 7). 3yo forward-facing harness, 7yo booster seat.",
+        "weather_forecast": "Warm, highs 82-86F, scattered storms possible July 5.",
+        "preferences": "Kids get restless after 90 minutes in the car. Need frequent stops. Interested in nature and history."
+      }
+    },
+    {
+      "id": "sr-005",
+      "category": "itinerary_generation",
+      "difficulty": "hard",
+      "family_profile_id": "family-005",
+      "prompt": "Design a 7-day multi-destination trip covering Washington DC, Philadelphia, and New York City. One child has ADHD and needs high-stimulation activities with minimal wait times. Include a daily energy budget rating (low/medium/high) and identify quiet wind-down activities for evenings.",
+      "context_blocks": {
+        "trip_request": "Destinations: Washington DC, Philadelphia, NYC. Dates: March 28 - April 3, 2026. Duration: 7 days.",
+        "weather_forecast": "Spring weather, highs 55-65F, rain likely March 30 and April 1.",
+        "preferences": "10-year-old has ADHD, needs engaging activities. 6-year-old tires easily. Parents want at least one adults-only dinner. Budget: high."
+      }
+    },
+    {
+      "id": "sr-006",
+      "category": "itinerary_generation",
+      "difficulty": "hard",
+      "family_profile_id": "family-004",
+      "prompt": "Create a 5-day itinerary for Savannah, GA. The family is visiting grandparents who have limited mobility (wheelchair accessible venues only). Plan activities that work for ages 1 through 75, and include estimated costs for each day.",
+      "context_blocks": {
+        "trip_request": "Destination: Savannah, GA. Dates: October 10-14, 2026. Duration: 5 days.",
+        "weather_forecast": "Pleasant fall weather, highs 76-80F, low humidity, no rain expected.",
+        "preferences": "Grandfather uses wheelchair. Grandmother walks slowly. Baby needs stroller-friendly paths. Budget: moderate. Interested in history and nature."
+      }
+    },
+    {
+      "id": "sr-007",
+      "category": "packing_list",
+      "difficulty": "easy",
+      "prompt": "Generate a packing checklist for a family of 3 (2 parents, 3yo) going to a beach resort in Myrtle Beach, SC for 5 days. Organize by person and category (clothing, toiletries, gear, entertainment).",
+      "context_blocks": {
+        "trip_request": "Destination: Myrtle Beach, SC (beach resort). Dates: 5 days in late July 2026.",
+        "family_profile": "Family of 3 (2 parents, 1 toddler age 3, potty training).",
+        "weather_forecast": "Hot and sunny, highs 88-92F, humid, UV index 9-10.",
+        "preferences": "Toddler is potty training. Family plans to spend most time at beach and pool."
+      }
+    },
+    {
+      "id": "sr-008",
+      "category": "packing_list",
+      "difficulty": "medium",
+      "prompt": "Create a packing list for a family flying to Denver for a ski trip. We only have carry-on luggage (one bag per person). Prioritize essentials and suggest what to buy at the destination instead of packing.",
+      "context_blocks": {
+        "trip_request": "Destination: Denver, CO (ski trip). Dates: February 14-18, 2026.",
+        "family_profile": "Family of 4 (2 parents, kids ages 5 and 8).",
+        "weather_forecast": "Cold, highs 28-35F, snow expected Feb 15-16.",
+        "preferences": "Carry-on only. Will rent ski gear at resort. Kids have never skied before. One child gets cold easily."
+      }
+    },
+    {
+      "id": "sr-009",
+      "category": "packing_list",
+      "difficulty": "medium",
+      "prompt": "Build a comprehensive packing list for a family traveling to Portland, OR with an 8-month-old baby. Include a separate 'diaper bag essentials' section for the plane and a 'do not forget' priority list of the top 10 most critical items.",
+      "context_blocks": {
+        "trip_request": "Destination: Portland, OR. Dates: 4-day trip in September 2026.",
+        "family_profile": "Family of 3 (2 parents, 8-month-old). Baby is formula-fed, starting solids.",
+        "weather_forecast": "Mild, highs 70-75F, light rain possible on day 3.",
+        "preferences": "First flight with baby. Parents are anxious flyers."
+      }
+    },
+    {
+      "id": "sr-010",
+      "category": "packing_list",
+      "difficulty": "hard",
+      "family_profile_id": "family-007",
+      "prompt": "Create a packing list for this family going on a 10-day trip covering 3 days in Seattle, 4 days in Maui, and 3 days in San Francisco. Account for multiple climates, laundry access mid-trip, and the 6yo's sensory sensitivities.",
+      "context_blocks": {
+        "trip_request": "Multi-stop: Seattle (3d), Maui (4d), San Francisco (3d). Dates: August 1-10, 2026.",
+        "weather_forecast": "Seattle: rain likely, 55F. Maui: hot and sunny, 85F. San Francisco: foggy mornings, 62F.",
+        "preferences": "6-year-old has sensory processing issues: only soft tagless cotton, no sandals, needs noise-canceling headphones. Laundry available at Maui hotel only."
+      }
+    },
+    {
+      "id": "sr-011",
+      "category": "safety_guidance",
+      "difficulty": "easy",
+      "prompt": "What car seat does my 3-year-old need when we rent a car in Florida? Include the state law requirements and whether I should bring our own or rent one.",
+      "context_blocks": {
+        "trip_request": "Destination: Orlando, FL. Dates: April 2026.",
+        "family_profile": "Family of 3 (2 parents, 3yo: 36in tall, 32 lbs, convertible car seat at home).",
+        "regulatory_context": "Florida requires children under 6 to use a federally approved child restraint system; children 4-5 may use a seat belt if the car seat is not an option per statute. Forward-facing with harness recommended for 3yo at this height/weight.",
+        "preferences": "Flying into Orlando. Renting a car."
+      }
+    },
+    {
+      "id": "sr-012",
+      "category": "safety_guidance",
+      "difficulty": "medium",
+      "prompt": "We are driving through Virginia, North Carolina, South Carolina, and Georgia with kids ages 2 and 5 (DC to Atlanta road trip). Summarize the car seat laws for each state we will pass through and flag any differences we need to prepare for.",
+      "context_blocks": {
+        "trip_request": "Route: DC → Atlanta, passing through VA, NC, SC, GA. Dates: May 2026.",
+        "family_profile": "Family of 4 (2 parents, 2yo rear-facing convertible, 5yo in booster).",
+        "regulatory_context": "VA: rear-facing until age 2 or until outgrowing seat limits; booster through age 7. NC: child restraint until age 8 OR 80 lbs. SC: rear-facing until age 2; booster through age 8 OR 57in. GA: child restraint until age 8 unless 57in.",
+        "preferences": "Both children are average height/weight for age."
+      }
+    },
+    {
+      "id": "sr-013",
+      "category": "safety_guidance",
+      "difficulty": "medium",
+      "prompt": "Provide a family travel safety briefing for Cancun, Mexico (Hotel Zone) with kids ages 4 and 7. Include: nearest hospitals to our hotel area, common tourist scams to watch for, water safety tips, and an emergency contact card template we can print.",
+      "context_blocks": {
+        "trip_request": "Destination: Cancun, Mexico (Hotel Zone). Dates: December 20-27, 2026.",
+        "family_profile": "Family of 4 (2 parents, kids 4 and 7). First international trip with kids. Strong swimmers but never in ocean waves. Parents speak basic Spanish.",
+        "weather_forecast": "Warm, highs 82-85F, occasional brief rain showers.",
+        "regulatory_context": "Mexico emergency number: 911. Hospiten Cancun is the main international hospital in Hotel Zone. US Consular Agency Cancun: +52 998 883 0272."
+      }
+    },
+    {
+      "id": "sr-014",
+      "category": "safety_guidance",
+      "difficulty": "hard",
+      "family_profile_id": "family-006",
+      "prompt": "The 5yo has a severe peanut allergy (carries EpiPen Jr). Create a comprehensive safety plan for our trip to Honolulu, Hawaii including: restaurant communication cards, nearest hospitals with pediatric ER, airline allergy protocols, and a step-by-step anaphylaxis response plan for each family member.",
+      "context_blocks": {
+        "trip_request": "Destination: Honolulu, Hawaii (staying in Waikiki). Dates: April 5-12, 2026. Flying United from SFO.",
+        "weather_forecast": "Warm, highs 80-84F, trade winds, brief showers possible.",
+        "regulatory_context": "Kapiolani Medical Center for Women & Children is the primary pediatric ER on Oahu. United allergy policy: request allergy buffer zone 48h before flight; no guaranteed nut-free environment."
+      }
+    },
+    {
+      "id": "sr-015",
+      "category": "weather_integration",
+      "difficulty": "easy",
+      "prompt": "The forecast for our trip to Gatlinburg, TN shows mixed conditions. What should we adjust in our outdoor plans, and what indoor backup activities do you recommend for the family?",
+      "context_blocks": {
+        "trip_request": "Destination: Gatlinburg, TN. Dates: March 14-16, 2026.",
+        "family_profile": "Family of 4 (2 parents, kids 3 and 6). Kids enjoy crafts and aquariums.",
+        "weather_forecast": "Day 1: sunny 62F. Day 2: heavy rain all day, high 48F, flash flood watch. Day 3: clearing, 58F with morning fog.",
+        "preferences": "Planned hiking on Day 2 in Great Smoky Mountains."
+      }
+    },
+    {
+      "id": "sr-016",
+      "category": "weather_integration",
+      "difficulty": "medium",
+      "prompt": "We are visiting Phoenix, AZ during extreme heat with a Grand Canyon day trip planned. Redesign our day-by-day itinerary to avoid heat-related illness for kids ages 2, 6, and 9. Include hydration reminders, shade strategy, and optimal timing for outdoor activities.",
+      "context_blocks": {
+        "trip_request": "Destinations: Phoenix, AZ (+ Grand Canyon day trip). Dates: July 22-25, 2026.",
+        "family_profile": "Family of 5 (2 parents, kids 2, 6, 9). Toddler overheats easily. Family from Seattle, not acclimated to desert heat.",
+        "weather_forecast": "Extreme heat: highs 110-115F in Phoenix, 95-100F at Grand Canyon South Rim. UV index 11. No rain.",
+        "preferences": "Grand Canyon day trip on Day 2 is non-negotiable."
+      }
+    },
+    {
+      "id": "sr-017",
+      "category": "weather_integration",
+      "difficulty": "hard",
+      "prompt": "Our 7-day cruise departing from Miami on November 8, 2026 has the following port-of-call forecasts. For each port day, recommend whether to book the outdoor excursion or switch to an indoor alternative, considering we have kids ages 5 and 10 and one child gets severe motion sickness in rough seas.",
+      "context_blocks": {
+        "trip_request": "Royal Caribbean Western Caribbean cruise. Dates: November 8-14, 2026. Origin: Miami, FL.",
+        "family_profile": "Family of 4 (2 parents, kids 5 and 10). 10yo has severe motion sickness.",
+        "weather_forecast": "Day 1 Miami: sunny 82F. Day 3 Cozumel: partly cloudy 84F, calm seas. Day 4 Grand Cayman: tropical storm warning, heavy rain, 6-8ft swells. Day 5 Jamaica: clearing, 80F, residual 4ft swells. Day 7 Miami return: sunny.",
+        "preferences": "Planned: snorkeling Cozumel, beach day Grand Cayman, waterfall hike Jamaica. Parents want to maximize port time."
+      }
+    },
+    {
+      "id": "sr-018",
+      "category": "dietary_accommodation",
+      "difficulty": "easy",
+      "prompt": "Find kid-friendly restaurants in Austin, TX that can accommodate our family's dietary needs. Suggest 3 options for each meal type (breakfast, lunch, dinner).",
+      "context_blocks": {
+        "trip_request": "Destination: Austin, TX. Dates: Weekend trip in May 2026.",
+        "family_profile": "Family of 4 (2 parents, kids 4 and 7). One parent vegetarian. 4yo picky (plain pasta, chicken nuggets, fruit). 7yo has dairy allergy (not severe, can have baked-in dairy).",
+        "weather_forecast": "Warm, highs 88F.",
+        "preferences": "Looking for places with outdoor seating and a relaxed vibe."
+      }
+    },
+    {
+      "id": "sr-019",
+      "category": "dietary_accommodation",
+      "difficulty": "medium",
+      "family_profile_id": "family-009",
+      "prompt": "We are visiting Yellowstone National Park area (staying in West Yellowstone, MT). One child is gluten-free (celiac disease) and the other is going through a phase where they only eat 5 foods. Create a meal plan for each day that keeps both kids fed and happy, including grocery store recommendations for snack stocking.",
+      "context_blocks": {
+        "trip_request": "Destination: Yellowstone NP (West Yellowstone, MT base). Dates: August 3-7, 2026.",
+        "weather_forecast": "Sunny, highs 75-80F, cool evenings around 45F.",
+        "preferences": "Limited restaurant options near park. Have a cooler in the car."
+      }
+    },
+    {
+      "id": "sr-020",
+      "category": "dietary_accommodation",
+      "difficulty": "hard",
+      "family_profile_id": "family-010",
+      "prompt": "Plan all meals for a 6-day trip to Los Angeles (staying in Santa Monica). Dietary constraints: kosher family (no mixing meat and dairy, only kosher-certified meat), one child has a tree nut allergy, and the baby is transitioning to solids. Include both restaurant and self-catering options.",
+      "context_blocks": {
+        "trip_request": "Destination: Los Angeles, CA (Santa Monica). Dates: June 1-6, 2026.",
+        "weather_forecast": "Sunny, highs 75-78F, coastal fog mornings.",
+        "preferences": "Strictly kosher (separate meat and dairy, kosher-certified restaurants preferred). Vacation rental has a full kitchen."
+      }
+    },
+    {
+      "id": "sr-021",
+      "category": "theme_park_planning",
+      "difficulty": "easy",
+      "prompt": "Plan a 2-day visit to Walt Disney World Magic Kingdom in Orlando. List which rides are appropriate for each child by height, suggest the best time to arrive, and include a break/nap strategy.",
+      "context_blocks": {
+        "trip_request": "Destination: Walt Disney World Magic Kingdom. Dates: September 18-19, 2026 (weekdays).",
+        "family_profile": "Family of 4 (2 parents, 3yo at 38in tall, 7yo at 50in tall). 3yo first theme park. 7yo loves coasters.",
+        "weather_forecast": "Hot, highs 89F, afternoon thunderstorms likely 2-4 PM.",
+        "preferences": "Using stroller for the toddler. Have Genie+ but not Individual Lightning Lane."
+      }
+    },
+    {
+      "id": "sr-022",
+      "category": "theme_park_planning",
+      "difficulty": "medium",
+      "prompt": "Create an optimized touring plan for Universal Studios and Islands of Adventure in Orlando (2 parks, 2 days). One parent will stay with the toddler during thrill rides while the other takes the older kids. Include a rider switch strategy and show/parade schedule integration.",
+      "context_blocks": {
+        "trip_request": "Destination: Universal Orlando (USF + IOA). Dates: October 8-9, 2026.",
+        "family_profile": "Family of 5 (2 parents, kids 2, 6, 11). 11yo huge Harry Potter fan. 6yo scared of dark rides. 2yo in stroller.",
+        "weather_forecast": "Sunny, highs 84F, low chance of rain.",
+        "preferences": "Have Express Unlimited passes. Want to minimize walking distance."
+      }
+    },
+    {
+      "id": "sr-023",
+      "category": "theme_park_planning",
+      "difficulty": "hard",
+      "family_profile_id": "family-011",
+      "prompt": "We have 1 day at Disneyland Resort (Disneyland + California Adventure). The 5yo uses a wheelchair. Create a minute-by-minute touring plan that maximizes ride count while using DAS (Disability Access Service), includes character meal reservations, and has a contingency plan for ride breakdowns.",
+      "context_blocks": {
+        "trip_request": "Destination: Disneyland Resort, Anaheim, CA. Dates: Saturday, November 14, 2026. Park hopper tickets.",
+        "weather_forecast": "Sunny, highs 72F, clear all day.",
+        "preferences": "Only 1 day — must be efficient. 5-year-old qualifies for DAS. 9-year-old wants to ride every roller coaster. Want princess character dining. Arriving at rope drop, staying until close."
+      }
+    },
+    {
+      "id": "sr-024",
+      "category": "international_travel",
+      "difficulty": "medium",
+      "family_profile_id": "family-012",
+      "prompt": "We are traveling from the US to Tokyo, Japan. Create a preparation checklist covering: passport/visa requirements for minors, recommended vaccinations, time zone adjustment strategy for the kids, currency tips, essential phrases to teach the children, and a cultural etiquette briefing for the family.",
+      "context_blocks": {
+        "trip_request": "Destination: Tokyo, Japan. Dates: December 20-30, 2026. Duration: 10 days. Flying from LAX (17h time shift).",
+        "weather_forecast": "Cold, highs 45-50F, dry. Possible snow late December.",
+        "regulatory_context": "US citizens need passport valid 6+ months beyond stay. Japan visa-free for tourism up to 90 days. No mandatory vaccines. Child passport valid 5 years.",
+        "preferences": "First international trip for the kids."
+      }
+    },
+    {
+      "id": "sr-025",
+      "category": "international_travel",
+      "difficulty": "hard",
+      "prompt": "Plan a 14-day multi-country European trip covering London (4d), Paris (4d), Barcelona (3d), Rome (3d). Include: border crossing logistics, car seat regulations in each country, health insurance considerations, SIM card/connectivity plan, kid-friendly transit strategies, and a realistic daily budget breakdown in local currencies.",
+      "context_blocks": {
+        "trip_request": "Route: London → Paris → Barcelona → Rome. Dates: July 1-14, 2026.",
+        "family_profile": "Family of 5 (2 parents, kids 1, 5, 10). Baby in carrier/stroller. 5yo walks but tires after 30 min. 10yo interested in history. One parent speaks French, no other languages.",
+        "weather_forecast": "London: 65-72F rainy. Paris: 72-80F sunny. Barcelona: 82-88F sunny. Rome: 85-92F hot and sunny.",
+        "regulatory_context": "UK car seat law: child restraint until 12yo or 135cm. France: until 10yo or 135cm. Spain: until 135cm. Italy: until 150cm. UK uses left-hand traffic. Schengen: Paris, Barcelona, Rome share border-free travel; UK separate post-Brexit.",
+        "preferences": "Traveling by train between cities (Eurostar + TGV + high-speed rail). Budget: moderate."
+      }
+    }
+  ]
+}

@@ -42,6 +42,7 @@ if (!RESULTS_PATH) {
 }
 
 const settings = JSON.parse(readFileSync(join(ROOT, 'config/settings.json'), 'utf-8'));
+const rubric = JSON.parse(readFileSync(join(ROOT, 'config/judge-rubric.json'), 'utf-8'));
 const gate = settings.release_gate;
 const conditional = settings.conditional_go;
 
@@ -59,7 +60,7 @@ try {
   baseline = null;
 }
 
-// ── Pull metrics from results ─────────────────────────────────────────────────
+// ── Pull metrics ──────────────────────────────────────────────────────────────
 const summary = results.summary;
 const dataset = results.meta?.dataset || 'unknown';
 const suite = results.meta?.suite || 'unknown';
@@ -71,9 +72,10 @@ const policyViolations = summary?.policy_violations || 0;
 const p95LatA = summary?.model_a_p95_latency_ms || 0;
 const p95LatB = summary?.model_b_p95_latency_ms || 0;
 const costPerInfA = summary?.model_a_avg_cost_per_inference || 0;
-const costPerInfB = summary?.model_b_avg_cost_per_inference || 0;
 
-// Get baseline quality from baked results (first day)
+// Per-model map (new N-way field) — used for safety hard floor checks
+const perModel = results.per_model || summary?.per_model || {};
+
 let baselineQualityA = null, baselineQualityB = null;
 if (baseline?.daily?.length) {
   baselineQualityA = baseline.daily[0].model_a?.quality_score || null;
@@ -87,9 +89,25 @@ const passes = [];
 
 // Hard floor: policy violations
 if (policyViolations > 0) {
-  failures.push(`Policy violations: ${policyViolations} prompt(s) flagged — hard NO-GO regardless of other scores`);
+  failures.push(`Policy violations: ${policyViolations} prompt(s) flagged — hard NO-GO`);
 } else {
   passes.push(`Policy violations: 0 ✓`);
+}
+
+// Hard floor: safety score on datasets that declare safety as hard-floor dimension
+const hardFloorDims = rubric.hard_floor_dimensions?.[dataset] || [];
+if (hardFloorDims.length && Object.keys(perModel).length) {
+  for (const [slug, pm] of Object.entries(perModel)) {
+    for (const dim of hardFloorDims) {
+      const score = pm.dimension_averages?.[dim];
+      if (score === undefined) continue;
+      if (score < gate.safety_floor_score) {
+        failures.push(`${slug} ${dim} score: ${score} — below hard floor ${gate.safety_floor_score}`);
+      } else {
+        passes.push(`${slug} ${dim} score: ${score} ✓`);
+      }
+    }
+  }
 }
 
 // Hard floor: quality delta vs baseline
@@ -111,7 +129,6 @@ if (baselineQualityA !== null) {
     passes.push(`Model B quality delta: ${deltaB.toFixed(1)}% (baseline: ${baselineQualityB}) ✓`);
   }
 } else {
-  // No baseline available — check absolute scores
   if (avgQualityA < 50) {
     failures.push(`Model A quality score critically low: ${avgQualityA} (no baseline to compare)`);
   } else {
@@ -119,30 +136,23 @@ if (baselineQualityA !== null) {
   }
 }
 
-// Safety floor: latency (soft limit — triggers CONDITIONAL GO, not hard NO-GO)
-if (p95LatA > gate.latency_p95_ceiling_ms) {
-  const overPct = (((p95LatA - gate.latency_p95_ceiling_ms) / gate.latency_p95_ceiling_ms) * 100).toFixed(1);
-  if (parseFloat(overPct) > conditional.latency_soft_limit_pct) {
-    failures.push(`Model A P95 latency: ${p95LatA}ms — exceeds soft ceiling ${gate.latency_p95_ceiling_ms}ms by ${overPct}% (limit: ${conditional.latency_soft_limit_pct}%)`);
+// Latency (soft limit)
+function latencyCheck(slug, p95) {
+  if (p95 > gate.latency_p95_ceiling_ms) {
+    const overPct = (((p95 - gate.latency_p95_ceiling_ms) / gate.latency_p95_ceiling_ms) * 100).toFixed(1);
+    if (parseFloat(overPct) > conditional.latency_soft_limit_pct) {
+      failures.push(`${slug} P95 latency: ${p95}ms — exceeds soft ceiling ${gate.latency_p95_ceiling_ms}ms by ${overPct}% (limit: ${conditional.latency_soft_limit_pct}%)`);
+    } else {
+      warnings.push(`${slug} P95 latency: ${p95}ms — above ceiling by ${overPct}% (within soft limit)`);
+    }
   } else {
-    warnings.push(`Model A P95 latency: ${p95LatA}ms — above ceiling ${gate.latency_p95_ceiling_ms}ms by ${overPct}% (within soft limit)`);
+    passes.push(`${slug} P95 latency: ${p95}ms ✓`);
   }
-} else {
-  passes.push(`Model A P95 latency: ${p95LatA}ms ✓`);
 }
+latencyCheck('Model A', p95LatA);
+latencyCheck('Model B', p95LatB);
 
-if (p95LatB > gate.latency_p95_ceiling_ms) {
-  const overPct = (((p95LatB - gate.latency_p95_ceiling_ms) / gate.latency_p95_ceiling_ms) * 100).toFixed(1);
-  if (parseFloat(overPct) > conditional.latency_soft_limit_pct) {
-    failures.push(`Model B P95 latency: ${p95LatB}ms — exceeds soft ceiling ${gate.latency_p95_ceiling_ms}ms by ${overPct}%`);
-  } else {
-    warnings.push(`Model B P95 latency: ${p95LatB}ms — above ceiling by ${overPct}% (within soft limit)`);
-  }
-} else {
-  passes.push(`Model B P95 latency: ${p95LatB}ms ✓`);
-}
-
-// Cost ceiling (soft limit)
+// Cost (soft limit) — just the baseline slot
 if (costPerInfA > gate.cost_per_inference_ceiling_usd) {
   const overPct = (((costPerInfA - gate.cost_per_inference_ceiling_usd) / gate.cost_per_inference_ceiling_usd) * 100).toFixed(1);
   if (parseFloat(overPct) > conditional.cost_soft_limit_pct) {
@@ -154,18 +164,11 @@ if (costPerInfA > gate.cost_per_inference_ceiling_usd) {
   passes.push(`Model A cost/inference: $${costPerInfA} ✓`);
 }
 
-// ── Determine verdict ─────────────────────────────────────────────────────────
+// ── Verdict ───────────────────────────────────────────────────────────────────
 let verdict, exitCode;
-if (failures.length > 0) {
-  verdict = 'NO-GO';
-  exitCode = 1;
-} else if (warnings.length > 0) {
-  verdict = 'CONDITIONAL GO';
-  exitCode = 0;
-} else {
-  verdict = 'GO';
-  exitCode = 0;
-}
+if (failures.length > 0) { verdict = 'NO-GO'; exitCode = 1; }
+else if (warnings.length > 0) { verdict = 'CONDITIONAL GO'; exitCode = 0; }
+else { verdict = 'GO'; exitCode = 0; }
 
 // ── Print summary ─────────────────────────────────────────────────────────────
 console.log(`\n${'='.repeat(50)}`);
@@ -175,6 +178,14 @@ console.log(`Dataset:  ${dataset} (${suite} suite, ${promptCount} prompts)`);
 console.log(`Model A:  ${results.model_a?.name || 'unknown'}  →  avg quality: ${avgQualityA}`);
 console.log(`Model B:  ${results.model_b?.name || 'unknown'}  →  avg quality: ${avgQualityB}`);
 if (baselineQualityA) console.log(`Baseline: ${baselineQualityA} (Model A) / ${baselineQualityB || '—'} (Model B)`);
+
+// Print the N-way matrix if present
+if (Object.keys(perModel).length > 2) {
+  console.log(`\nN-way matrix:`);
+  for (const [slug, pm] of Object.entries(perModel)) {
+    console.log(`  ${slug.padEnd(24)} quality=${pm.avg_quality}  p95=${pm.p95_latency_ms}ms  cost/inf=$${pm.avg_cost_per_inference}`);
+  }
+}
 console.log('');
 
 if (passes.length) {

@@ -1,25 +1,90 @@
 {
+  "provider": "openrouter",
+  "base_url": "https://openrouter.ai/api/v1",
+  "api_key_env": "OPENROUTER_API_KEY",
+  "default_max_tokens": 1024,
+  "judge": {
+    "id": "anthropic/claude-sonnet-4.6",
+    "name": "Claude Sonnet 4.6",
+    "max_tokens": 1024,
+    "cost_per_1m_input_tokens": 3.00,
+    "cost_per_1m_output_tokens": 15.00
+  },
   "models": {
-    "claude-sonnet-4-5": {
-      "name": "Claude Sonnet 4.5",
+    "claude-sonnet-4.6": {
+      "id": "anthropic/claude-sonnet-4.6",
+      "name": "Claude Sonnet 4.6",
       "provider": "Anthropic",
-      "version": "claude-sonnet-4-5",
-      "endpoint": "https://api.anthropic.com/v1/messages",
-      "api_key_env": "ANTHROPIC_API_KEY",
+      "version": "claude-sonnet-4.6",
       "cost_per_1m_input_tokens": 3.00,
       "cost_per_1m_output_tokens": 15.00,
-      "max_tokens": 1024
+      "max_tokens": 1024,
+      "tier": "flagship"
     },
-    "deepseek-chat": {
-      "name": "DeepSeek-V3",
+    "claude-haiku-4.5": {
+      "id": "anthropic/claude-haiku-4.5",
+      "name": "Claude Haiku 4.5",
+      "provider": "Anthropic",
+      "version": "claude-haiku-4.5",
+      "cost_per_1m_input_tokens": 1.00,
+      "cost_per_1m_output_tokens": 5.00,
+      "max_tokens": 1024,
+      "tier": "fast"
+    },
+    "gpt-5-mini": {
+      "id": "openai/gpt-5-mini",
+      "name": "GPT-5 Mini",
+      "provider": "OpenAI",
+      "version": "gpt-5-mini",
+      "cost_per_1m_input_tokens": 0.25,
+      "cost_per_1m_output_tokens": 2.00,
+      "max_tokens": 4096,
+      "reasoning_effort": "low",
+      "tier": "mid",
+      "_note": "GPT-5 series reasoning is unbounded by default; reasoning_effort=low keeps hidden chain-of-thought short so visible content fits."
+    },
+    "gpt-5-nano": {
+      "id": "openai/gpt-5-nano",
+      "name": "GPT-5 Nano",
+      "provider": "OpenAI",
+      "version": "gpt-5-nano",
+      "cost_per_1m_input_tokens": 0.05,
+      "cost_per_1m_output_tokens": 0.40,
+      "max_tokens": 4096,
+      "reasoning_effort": "low",
+      "tier": "cheap",
+      "_note": "Default reasoning on GPT-5-nano exhausts any token budget before emitting content; low effort is required."
+    },
+    "grok-4-fast": {
+      "id": "x-ai/grok-4-fast",
+      "name": "Grok 4 Fast",
+      "provider": "xAI",
+      "version": "grok-4-fast",
+      "cost_per_1m_input_tokens": 0.20,
+      "cost_per_1m_output_tokens": 0.50,
+      "max_tokens": 1024,
+      "tier": "cheap"
+    },
+    "gemini-2.5-flash": {
+      "id": "google/gemini-2.5-flash",
+      "name": "Gemini 2.5 Flash",
+      "provider": "Google",
+      "version": "gemini-2.5-flash",
+      "cost_per_1m_input_tokens": 0.30,
+      "cost_per_1m_output_tokens": 2.50,
+      "max_tokens": 1024,
+      "tier": "mid"
+    },
+    "deepseek-v3.2": {
+      "id": "deepseek/deepseek-v3.2",
+      "name": "DeepSeek-V3.2",
       "provider": "DeepSeek",
-      "version": "deepseek-chat",
-      "endpoint": "https://api.deepseek.com/v1/chat/completions",
-      "api_key_env": "DEEPSEEK_API_KEY",
+      "version": "deepseek-v3.2",
       "cost_per_1m_input_tokens": 0.27,
       "cost_per_1m_output_tokens": 1.10,
-      "max_tokens": 1024
+      "max_tokens": 1024,
+      "tier": "cheap"
     }
   },
-  "judge_model": "claude-sonnet-4-5"
+  "_note": "All models routed through OpenRouter (single OPENROUTER_API_KEY). Pricing and slugs reflect published rates at implementation time (Apr 2026); verify against https://openrouter.ai/models when in doubt. Add new models by appending to the models map — eval-runner discovers them automatically."
 }

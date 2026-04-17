@@ -4,6 +4,9 @@ export interface DimensionScores {
   actionability: number;
   coherence: number;
   conciseness: number;
+  // Optional dimensions present on SproutRoute-family datasets
+  safety?: number;
+  logistical_feasibility?: number;
 }
 
 export interface DayModel {
@@ -19,6 +22,7 @@ export interface DailyEntry {
   date: string;
   model_a: DayModel;
   model_b: DayModel;
+  per_model?: Record<string, DayModel>;
 }
 
 export interface DriftEvent {
@@ -32,11 +36,24 @@ export interface DriftEvent {
   description: string;
 }
 
+export interface ModelPromptResult {
+  response?: string;
+  latency_ms?: number;
+  input_tokens?: number;
+  output_tokens?: number;
+  cost?: number;
+  scores?: DimensionScores;
+  quality_score?: number;
+  reasoning?: string;
+  error?: string;
+}
+
 export interface PromptResult {
   id: string;
   category: string;
   difficulty: 'easy' | 'medium' | 'hard';
   seller_profile_id: string | null;
+  family_profile_id?: string | null;
   model_a_response?: string;
   model_b_response?: string;
   model_a_scores?: DimensionScores;
@@ -50,7 +67,22 @@ export interface PromptResult {
   policy_violation?: boolean;
   model_a_reasoning?: string;
   model_b_reasoning?: string;
-  error?: string;
+  model_responses?: Record<string, ModelPromptResult>;
+  error?: string | null;
+}
+
+export interface PerModelSummary {
+  name: string;
+  provider: string;
+  id: string;
+  avg_quality: number;
+  p50_latency_ms: number;
+  p95_latency_ms: number;
+  p99_latency_ms: number;
+  total_cost_usd: number;
+  avg_cost_per_inference: number;
+  policy_violations: number;
+  dimension_averages: Record<string, number>;
 }
 
 export interface EvalSummary {
@@ -67,12 +99,16 @@ export interface EvalSummary {
   model_a_avg_cost_per_inference: number;
   model_b_avg_cost_per_inference: number;
   policy_violations: number;
+  judge_cost_usd?: number;
+  per_model?: Record<string, PerModelSummary>;
 }
 
 export interface ModelMeta {
   name: string;
   provider: string;
   version: string;
+  id?: string;
+  tier?: string;
 }
 
 export interface RunMeta {
@@ -85,12 +121,18 @@ export interface RunMeta {
   runner_version: string;
   run_id: string;
   errors?: number;
+  baseline?: string;
+  candidate?: string;
+  models?: string[];
+  provider?: string;
 }
 
 export interface EvalResults {
   meta: RunMeta;
   model_a: ModelMeta;
   model_b: ModelMeta;
+  models?: Record<string, ModelMeta>;
+  per_model?: Record<string, PerModelSummary>;
   summary: EvalSummary;
   daily: DailyEntry[];
   events: DriftEvent[];
@@ -98,7 +140,7 @@ export interface EvalResults {
 }
 
 export type DateRange = '7d' | '14d' | '30d';
-export type DatasetId = 'seller-intelligence-v1' | 'seller-support-v1' | 'custom';
+export type DatasetId = 'seller-intelligence-v1' | 'seller-intelligence-v2' | 'seller-support-v1' | 'seller-support-v2' | 'sproutroute-v1' | 'sproutroute-v2' | 'custom';
 export type Verdict = 'GO' | 'CONDITIONAL GO' | 'NO-GO';
 
 export interface GateThresholds {

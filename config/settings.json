@@ -16,11 +16,26 @@
     "monthly_alert_usd": 40
   },
   "suites": {
-    "smoke": { "prompts_per_category": 2, "description": "First 2 prompts per category (10 total)" },
-    "full": { "prompts_per_category": 10, "description": "All prompts (50 total)" }
+    "smoke": { "prompts_per_category": 2, "description": "First 2 prompts per category (~10 total for seller, ~14 for sproutroute)" },
+    "full": { "prompts_per_category": 10, "description": "All prompts in the dataset" }
   },
   "baseline": {
     "dataset": "seller-intelligence-v2",
     "results_file": "output/eval-results.json"
+  },
+  "datasets": {
+    "seller-intelligence-v2": {
+      "default_baseline_model": "claude-sonnet-4.6",
+      "default_candidate_model": "deepseek-v3.2"
+    },
+    "seller-support-v2": {
+      "default_baseline_model": "claude-sonnet-4.6",
+      "default_candidate_model": "deepseek-v3.2"
+    },
+    "sproutroute-v2": {
+      "default_baseline_model": "claude-haiku-4.5",
+      "default_candidate_model": "gpt-5-nano",
+      "_note": "SproutRoute production currently uses Claude Haiku 4.5; candidate exploration is focused on cheaper tier models (gpt-5-nano, grok-4-fast)."
+    }
   }
 }

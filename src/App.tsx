@@ -7,11 +7,12 @@ import LatencyView from './views/LatencyView';
 import CostView from './views/CostView';
 import ABComparison from './views/ABComparison';
 import ReleaseReadiness from './views/ReleaseReadiness';
+import MultiModelMatrix from './views/MultiModelMatrix';
 
 // Placeholder — replaced by baked data after running eval + history
 import placeholderData from './data/placeholder.json';
 
-type View = 'overview' | 'accuracy' | 'latency' | 'cost' | 'ab' | 'release';
+type View = 'overview' | 'accuracy' | 'latency' | 'cost' | 'ab' | 'matrix' | 'release';
 
 const NAV = [
   { id: 'overview', label: 'Overview', icon: '◈' },
@@ -19,6 +20,7 @@ const NAV = [
   { id: 'latency', label: 'Latency', icon: '⊙' },
   { id: 'cost', label: 'Cost', icon: '◇' },
   { id: 'ab', label: 'A/B Comparison', icon: '⊞' },
+  { id: 'matrix', label: 'Model Matrix', icon: '⊟' },
   { id: 'release', label: 'Release Readiness', icon: '◉' },
 ] as const;
 
@@ -163,6 +165,7 @@ export default function App() {
         {view === 'latency' && <LatencyView {...viewProps} />}
         {view === 'cost' && <CostView {...viewProps} />}
         {view === 'ab' && <ABComparison {...viewProps} />}
+        {view === 'matrix' && <MultiModelMatrix results={results} />}
         {view === 'release' && <ReleaseReadiness {...viewProps} />}
       </main>
     </div>
