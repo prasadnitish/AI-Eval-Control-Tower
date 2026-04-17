@@ -226,3 +226,54 @@ input[type=range] { flex: 1; accent-color: var(--accent-a); cursor: pointer; }
 .tag-medium { background: rgba(245,166,35,0.15); color: var(--amber); }
 .tag-hard { background: rgba(231,76,60,0.15); color: var(--red); }
 .empty-state { color: var(--text-muted); font-size: 13px; text-align: center; padding: 40px; }
+
+/* ───────────────────────────────────────────────────────────────────────── */
+/* Mobile responsive (<= 900px) — sidebar collapses, grids stack, tables scroll */
+/* ───────────────────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .app { flex-direction: column; height: auto; min-height: 100vh; }
+  .sidebar {
+    width: 100%;
+    min-width: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 12px 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+  }
+  .sidebar-logo { border-bottom: none; padding: 0 16px; margin-bottom: 0; flex-basis: 100%; }
+  .sidebar-section { display: none; }
+  .nav-item { padding: 6px 12px; font-size: 12px; white-space: nowrap; border-radius: 6px; }
+  .nav-icon { font-size: 11px; }
+
+  .main { padding: 16px 14px; overflow-y: visible; }
+
+  .card-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .card-grid-2 { grid-template-columns: 1fr; }
+
+  .controls-bar { flex-wrap: wrap; gap: 8px; }
+  .controls-bar h2 { flex-basis: 100%; font-size: 16px; }
+
+  .card { padding: 14px; }
+  .kpi-value { font-size: 22px; }
+  .chart-card { padding: 14px; margin-bottom: 12px; }
+
+  /* Tables: allow horizontal scroll inside the card */
+  .metric-table { font-size: 12px; display: block; overflow-x: auto; white-space: nowrap; }
+  .metric-table th, .metric-table td { padding: 8px 10px; }
+
+  .slider-row { flex-wrap: wrap; gap: 8px; }
+  .slider-label { min-width: 140px; font-size: 11px; }
+  .slider-value { min-width: 56px; font-size: 11px; }
+}
+
+/* Extra-small (<=520px) — KPI cards stack to 1 column */
+@media (max-width: 520px) {
+  .card-grid-4 { grid-template-columns: 1fr; }
+  .main { padding: 12px 10px; }
+  .sidebar { padding: 8px 0 4px; }
+  .nav-item { padding: 5px 10px; font-size: 11px; }
+  .model-legend { font-size: 11px; gap: 10px; }
+}

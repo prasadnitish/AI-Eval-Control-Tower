@@ -43,7 +43,7 @@ if (!RESULTS_PATH) {
 
 const settings = JSON.parse(readFileSync(join(ROOT, 'config/settings.json'), 'utf-8'));
 const rubric = JSON.parse(readFileSync(join(ROOT, 'config/judge-rubric.json'), 'utf-8'));
-const gate = settings.release_gate;
+const baseGate = settings.release_gate;
 const conditional = settings.conditional_go;
 
 let results, baseline;
@@ -63,6 +63,10 @@ try {
 // ── Pull metrics ──────────────────────────────────────────────────────────────
 const summary = results.summary;
 const dataset = results.meta?.dataset || 'unknown';
+
+// Apply per-dataset gate overrides (e.g. SproutRoute trip plans need a higher latency ceiling than seller Q&A)
+const datasetOverrides = settings.datasets?.[dataset]?.gate_overrides || {};
+const gate = { ...baseGate, ...datasetOverrides };
 const suite = results.meta?.suite || 'unknown';
 const promptCount = results.meta?.prompt_count || (results.prompts?.length || 0);
 

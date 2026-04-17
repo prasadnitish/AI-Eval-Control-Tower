@@ -13,7 +13,8 @@
     "eval:sproutroute:full": "node eval/eval-runner.js --dataset sproutroute-v2 --suite full --models claude-haiku-4.5,claude-sonnet-4.6,gpt-5-mini,gpt-5-nano,grok-4-fast,gemini-2.5-flash,deepseek-v3.2 --baseline claude-haiku-4.5 --candidate gpt-5-nano",
     "eval:seller": "node eval/eval-runner.js --dataset seller-intelligence-v2 --suite smoke --models claude-sonnet-4.6,deepseek-v3.2",
     "gate": "node eval/check-gate.js",
-    "history": "node eval/generate-history.js"
+    "history": "node eval/generate-history.js",
+    "test": "node --test tests/*.test.js"
   },
   "dependencies": {
     "openai": "^4.77.0",
