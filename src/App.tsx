@@ -8,9 +8,7 @@ import CostView from './views/CostView';
 import ABComparison from './views/ABComparison';
 import ReleaseReadiness from './views/ReleaseReadiness';
 import MultiModelMatrix from './views/MultiModelMatrix';
-
-// Placeholder — replaced by baked data after running eval + history
-import placeholderData from './data/placeholder.json';
+import { BAKED_RESULTS, getDefault } from './data/resultsRegistry';
 
 type View = 'overview' | 'accuracy' | 'latency' | 'cost' | 'ab' | 'matrix' | 'release';
 
@@ -28,9 +26,11 @@ export default function App() {
   const [view, setView] = useState<View>('overview');
   const [dateRange, setDateRange] = useState<DateRange>('30d');
   const [dragOver, setDragOver] = useState(false);
+  const [bakedKey, setBakedKey] = useState<string>(getDefault().key);
   const fileRef = useRef<HTMLInputElement>(null);
 
-  const originalData = placeholderData as unknown as EvalResults;
+  const currentBaked = BAKED_RESULTS.find(r => r.key === bakedKey) || getDefault();
+  const originalData = currentBaked.data;
   const { results, customLabel, uploadError, loadFile, reset } = useEvalData(originalData);
 
   const filteredDaily = filterByDateRange(results.daily, dateRange);
@@ -77,7 +77,7 @@ export default function App() {
 
         <div style={{ flex: 1 }} />
 
-        {/* Dataset / file info */}
+        {/* Dataset picker + file upload */}
         <div style={{ padding: '16px 20px', borderTop: '1px solid var(--border)' }}>
           {customLabel ? (
             <div>
@@ -96,14 +96,41 @@ export default function App() {
             </div>
           ) : (
             <div>
-              <div style={{ fontSize: 11, color: 'var(--text-muted)', marginBottom: 6 }}>
-                Dataset: <span style={{ color: 'var(--text)' }}>{results.meta?.dataset || '—'}</span>
+              <div style={{ fontSize: 10, color: 'var(--text-dim)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 6 }}>
+                Baked results
+              </div>
+              <select
+                value={bakedKey}
+                onChange={(e) => {
+                  const key = e.target.value;
+                  setBakedKey(key);
+                  const next = BAKED_RESULTS.find(r => r.key === key);
+                  if (next) reset(next.data);
+                }}
+                style={{
+                  width: '100%',
+                  fontSize: 12,
+                  padding: '6px 8px',
+                  background: 'var(--surface2)',
+                  color: 'var(--text)',
+                  border: '1px solid var(--border)',
+                  borderRadius: 6,
+                  marginBottom: 8,
+                  cursor: 'pointer',
+                }}
+              >
+                {BAKED_RESULTS.map(r => (
+                  <option key={r.key} value={r.key}>{r.label}</option>
+                ))}
+              </select>
+              <div style={{ fontSize: 11, color: 'var(--text-muted)', marginBottom: 10, lineHeight: 1.4 }}>
+                {currentBaked.description}
               </div>
               <div
                 style={{ fontSize: 11, color: 'var(--accent-a)', cursor: 'pointer' }}
                 onClick={() => fileRef.current?.click()}
               >
-                + Load custom results
+                + Upload custom JSON
               </div>
               <input
                 ref={fileRef}
