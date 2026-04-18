@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite src",
-    "build": "vite build src",
+    "build": "vite build src --base=/evals/",
     "preview": "vite preview",
     "eval": "node eval/eval-runner.js",
     "eval:dry": "node eval/eval-runner.js --dry-run",
