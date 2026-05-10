@@ -19,7 +19,7 @@ The repo is designed to be cloned and run locally with your own API key. The pub
 | Evidence chain | Shows what data was checked, who judged it, how scores were produced, and what the scores do not prove |
 | Release gate | GO / CONDITIONAL GO / NO-GO with reason codes and safety hard floors |
 | Drift timeline | Distribution-shift and behaviour-shift events over 30 days |
-| CI gate | GitHub Actions smoke eval blocks PRs on regression |
+| GitHub Actions gate | PRs run secret-free install/test/build checks; live OpenRouter evals run only from the manual workflow |
 | Dashboard | React + Vite launch-review tool with decision memo, evidence chain, candidate board, rubric/failure modes, operating envelope, rollout plan, and runbook |
 | Three product scenarios | Seller-growth AM recommendations, SproutMath content authoring, and SproutRoute family-travel planning |
 
@@ -59,7 +59,8 @@ The CLI loads `.env` automatically. API keys stay local to the Node runner and a
 - Candidate model calls and judge calls send the prompt context and model response to OpenRouter and the selected model provider. Do not run private seller, student, family, customer, or credential-bearing data unless you are allowed to send that data to those providers.
 - Generated result files include full prompt context, model responses, per-dimension scores, judge reasoning, token counts, latency, and cost. Local runs write to `output/local-results.json` by default, which is intentionally ignored.
 - The committed `output/eval-results.json` and `output/v3-smoke-results.json` files are synthetic demo baselines. Replace or scrub artifacts before sharing a fork that uses real business data.
-- GitHub Actions artifact upload is disabled by default. Set the repository variable `UPLOAD_EVAL_ARTIFACTS=true` only for synthetic or approved datasets.
+- Pull request checks do not receive or use `OPENROUTER_API_KEY`. Live OpenRouter evals run only from the manual GitHub Actions workflow.
+- GitHub Actions artifact upload is disabled by default. Set the repository variable `UPLOAD_EVAL_ARTIFACTS=true` and choose the manual `upload_artifacts` input only for synthetic or approved datasets.
 
 ---
 
@@ -303,7 +304,7 @@ ai-evals-control-tower/
 │
 └── .github/
     └── workflows/
-        └── eval-gate.yml     # CI: smoke eval on every PR to main
+        └── eval-gate.yml     # PR install/test/build plus manual live eval gate
 ```
 
 ---
