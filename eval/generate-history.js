@@ -5,8 +5,8 @@
  *
  * Usage:
  *   node eval/generate-history.js \
- *     --input output/eval-results.json \
- *     --output output/eval-results.json
+ *     --input output/local-results.json \
+ *     --output output/local-results.json
  */
 
 import { readFileSync, writeFileSync } from 'fs';
@@ -29,8 +29,8 @@ function parseArgs(argv) {
 }
 
 const args = parseArgs(process.argv);
-const INPUT_PATH = args['input'] || 'output/eval-results.json';
-const OUTPUT_PATH = args['output'] || 'output/eval-results.json';
+const INPUT_PATH = args['input'] || 'output/local-results.json';
+const OUTPUT_PATH = args['output'] || 'output/local-results.json';
 
 const base = JSON.parse(readFileSync(resolve(ROOT, INPUT_PATH), 'utf-8'));
 

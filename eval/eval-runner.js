@@ -9,7 +9,7 @@
  *     --suite smoke \
  *     --baseline claude-sonnet-4.6 \
  *     --candidate gpt-5-nano \
- *     --output output/eval-results.json
+ *     --output output/local-results.json
  *
  * Flags:
  *   --models       Comma-separated model slugs from config/models.json (≥2).
@@ -18,7 +18,7 @@
  *   --suite        'smoke' (N per category per suite config) or 'full' [default: full]
  *   --baseline     Model slug to treat as baseline in the gate/dashboard (default: first in --models)
  *   --candidate    Model slug to treat as candidate (default: second in --models)
- *   --output       Output path [default: output/eval-results.json]
+ *   --output       Output path [default: output/local-results.json]
  *   --dry-run      Estimate cost + prompts, don't call any models
  *   --skip-validate  Skip OpenRouter pre-flight model-id validation
  */
@@ -99,7 +99,7 @@ function resolveDatasetPath(input) {
 }
 const DATASET_PATH = resolveDatasetPath(args.dataset);
 const SUITE = args.suite || 'full';
-const OUTPUT_PATH = args.output || 'output/eval-results.json';
+const OUTPUT_PATH = args.output || 'output/local-results.json';
 const DRY_RUN = Boolean(args['dry-run']);
 const SKIP_VALIDATE = Boolean(args['skip-validate']);
 

@@ -225,7 +225,7 @@ export const SCENARIOS: Scenario[] = [
       scoreMethod: [
         'Dimensions: accuracy, actionability, relevance, coherence, and conciseness.',
         'Weighted quality score is calculated from config/judge-rubric.json; the release gate is enforced by eval/check-gate.js.',
-        'The runner keeps per-prompt response text, per-dimension scores, judge reasoning, latency, tokens, and cost in output/eval-results.json.',
+        'The runner keeps per-prompt response text, per-dimension scores, judge reasoning, latency, tokens, and cost in output/local-results.json.',
       ],
       confidenceChecks: [
         'Same prompt, context, judge model, and rubric are applied to every candidate in the run.',
@@ -249,7 +249,7 @@ export const SCENARIOS: Scenario[] = [
         },
         {
           label: 'Apply gate',
-          command: 'npm run gate -- output/eval-results.json',
+          command: 'npm run gate -- output/local-results.json --baseline output/eval-results.json',
           detail: 'Turns the run artifact into a GO, CONDITIONAL GO, or NO-GO release decision.',
         },
       ],
@@ -257,7 +257,7 @@ export const SCENARIOS: Scenario[] = [
         'config/models.json',
         'config/judge-rubric.json',
         'config/settings.json',
-        'output/eval-results.json',
+        'output/local-results.json',
       ],
     },
   },
@@ -402,7 +402,7 @@ export const SCENARIOS: Scenario[] = [
         },
         {
           label: 'Apply gate',
-          command: 'npm run gate -- output/eval-results.json',
+          command: 'npm run gate -- output/local-results.json --baseline output/eval-results.json',
           detail: 'Fails the release if answer validity, grade fit, or child safety drops below the floor.',
         },
       ],
@@ -410,7 +410,7 @@ export const SCENARIOS: Scenario[] = [
         'datasets/sproutmath-authoring-v1.json',
         'config/judge-rubric.json',
         'eval/judge.js',
-        'output/eval-results.json',
+        'output/local-results.json',
       ],
     },
   },
@@ -576,7 +576,7 @@ export const SCENARIOS: Scenario[] = [
         },
         {
           label: 'Apply gate',
-          command: 'npm run gate -- output/eval-results.json',
+          command: 'npm run gate -- output/local-results.json --baseline output/eval-results.json',
           detail: 'Blocks models that miss the safety floor or exceed launch thresholds.',
         },
       ],
@@ -584,7 +584,7 @@ export const SCENARIOS: Scenario[] = [
         'datasets/sproutroute-v2.json',
         'datasets/sproutroute-profiles.json',
         'src/data/sproutroute-full.json',
-        'output/eval-results.json',
+        'output/local-results.json',
       ],
     },
   },

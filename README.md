@@ -43,13 +43,23 @@ npm run eval:dry -- --dataset sproutroute-v2 --suite smoke --models claude-haiku
 npm run eval:sproutroute
 
 # Check release gate verdict
-npm run gate -- output/eval-results.json
+npm run gate -- output/local-results.json --baseline output/eval-results.json
 
 # Start dashboard dev server
 npm run dev
 ```
 
 The CLI loads `.env` automatically. API keys stay local to the Node runner and are never required by the browser dashboard.
+
+---
+
+## Privacy and Security Defaults
+
+- `.env`, `.env.local`, and generated eval artifacts are gitignored. Keep API keys only in `.env` or GitHub Actions secrets, never in datasets, config, prompts, or result files.
+- Candidate model calls and judge calls send the prompt context and model response to OpenRouter and the selected model provider. Do not run private seller, student, family, customer, or credential-bearing data unless you are allowed to send that data to those providers.
+- Generated result files include full prompt context, model responses, per-dimension scores, judge reasoning, token counts, latency, and cost. Local runs write to `output/local-results.json` by default, which is intentionally ignored.
+- The committed `output/eval-results.json` and `output/v3-smoke-results.json` files are synthetic demo baselines. Replace or scrub artifacts before sharing a fork that uses real business data.
+- GitHub Actions artifact upload is disabled by default. Set the repository variable `UPLOAD_EVAL_ARTIFACTS=true` only for synthetic or approved datasets.
 
 ---
 
@@ -87,7 +97,7 @@ The scores are useful because the run is repeatable and inspectable:
 - Same dataset, model list, judge model, judge prompt, and rubric are applied to every candidate.
 - Each result artifact includes per-prompt model responses, per-dimension scores, judge reasoning, token counts, latency, cost, and policy-violation flags.
 - Hard floors are checked separately from average quality so a high aggregate score cannot hide a safety or answer-validity failure.
-- `npm run eval:dry` estimates cost before spending; `npm run gate -- output/eval-results.json` applies the launch policy to the run artifact.
+- `npm run eval:dry` estimates cost before spending; `npm run gate -- output/local-results.json --baseline output/eval-results.json` applies the launch policy to the local run artifact.
 
 The scores are not a substitute for production certification. LLM-as-judge is directional evidence. Before a real launch, add human-reviewed calibration examples, deterministic validators for facts/schema/math answer keys, and production telemetry such as accepted, edited, rejected, retried, or escalated outputs.
 
@@ -122,7 +132,7 @@ node eval/eval-runner.js \
   --suite smoke \
   --baseline claude-sonnet-4.6 \
   --candidate gpt-5-nano \
-  --output output/eval-results.json
+  --output output/local-results.json
 ```
 
 | Flag | Default | Description |
@@ -132,7 +142,7 @@ node eval/eval-runner.js \
 | `--candidate` | second in `--models` | Slot `model_b` in the dashboard / gate |
 | `--dataset` | `seller-intelligence-v2` | Dataset id or path to JSON |
 | `--suite` | `full` | `smoke` (N per category) or `full` |
-| `--output` | `output/eval-results.json` | Output path |
+| `--output` | `output/local-results.json` | Output path |
 | `--dry-run` | | Print cost estimate, no API calls |
 | `--skip-validate` | | Skip OpenRouter pre-flight model-id check |
 | `--model-a` / `--model-b` | | Back-compat aliases for a 2-way run |

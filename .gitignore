@@ -11,8 +11,12 @@ node_modules/
 dist/
 src/dist/
 
-# CI run output (not committed — only baked eval-results.json is committed)
-output/ci-results.json
+# Eval run artifacts
+# These contain full prompts, responses, and judge reasoning. Keep generated
+# local/CI runs out of git unless they have been intentionally scrubbed.
+output/*.json
+!output/eval-results.json
+!output/v3-smoke-results.json
 
 # OS
 .DS_Store
