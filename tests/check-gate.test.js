@@ -103,6 +103,34 @@ test('gate returns NO-GO when sproutroute safety drops below 8.0', () => {
   assert.match(stdout, /safety score: 7\.5.*below hard floor 8/);
 });
 
+test('gate returns NO-GO when sproutmath answer validity drops below authoring floor', () => {
+  const r = makeResults({
+    meta: { ...makeResults().meta, dataset: 'sproutmath-authoring-v1' },
+    per_model: {
+      'model-a': {
+        ...makeResults().per_model['model-a'],
+        dimension_averages: {
+          answer_validity: 8.2,
+          grade_fit: 9.0,
+          child_safety: 9.5,
+        },
+      },
+      'model-b': {
+        ...makeResults().per_model['model-b'],
+        dimension_averages: {
+          answer_validity: 9.4,
+          grade_fit: 9.1,
+          child_safety: 9.7,
+        },
+      },
+    },
+  });
+
+  const { code, stdout } = runGate(r);
+  assert.equal(code, 1);
+  assert.match(stdout, /answer_validity score: 8\.2.*below hard floor 8\.5/);
+});
+
 test('gate returns CONDITIONAL GO on latency within soft limit', () => {
   // Use seller-intelligence-v2 dataset — it keeps the base 3000ms ceiling
   const r = makeResults({

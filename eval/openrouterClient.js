@@ -9,13 +9,46 @@
  */
 
 import OpenAI from 'openai';
+import { existsSync, readFileSync } from 'fs';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
 
 const APP_REFERRER = 'https://www.nitishprasad.com/ai-eval-control-tower';
 const APP_TITLE = 'AI Eval Control Tower';
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const ROOT = join(__dirname, '..');
 
 let _client = null;
+let _envLoaded = false;
+
+function loadLocalEnv() {
+  if (_envLoaded) return;
+  _envLoaded = true;
+
+  const envPath = join(ROOT, '.env');
+  if (!existsSync(envPath)) return;
+
+  const lines = readFileSync(envPath, 'utf-8').split(/\r?\n/);
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) continue;
+
+    const eq = trimmed.indexOf('=');
+    if (eq === -1) continue;
+
+    const key = trimmed.slice(0, eq).trim();
+    let value = trimmed.slice(eq + 1).trim();
+    if (!key || process.env[key] !== undefined) continue;
+
+    if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+      value = value.slice(1, -1);
+    }
+    process.env[key] = value;
+  }
+}
 
 export function getClient(baseUrl = 'https://openrouter.ai/api/v1') {
+  loadLocalEnv();
   if (!_client) {
     const apiKey = process.env.OPENROUTER_API_KEY;
     if (!apiKey) {
@@ -91,6 +124,7 @@ export async function callModel({ modelConfig, systemPrompt, userPrompt, maxToke
  * @returns {Promise<{ok: string[], missing: string[]}>}
  */
 export async function validateModelIds(modelIds) {
+  loadLocalEnv();
   const apiKey = process.env.OPENROUTER_API_KEY;
   if (!apiKey) {
     throw new Error('OPENROUTER_API_KEY not set');

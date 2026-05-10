@@ -147,9 +147,11 @@ const selectedPrompts = selectPrompts(allPrompts, SUITE);
 // ── Build prompt string ───────────────────────────────────────────────────────
 const DEFAULT_SYSTEM_PROMPT = `You are an expert Amazon marketplace advisor. Answer the question using only the context provided. Be specific, actionable, and concise.`;
 const SPROUTROUTE_SYSTEM_PROMPT = `You are a family travel planner. Use ONLY the context provided. Prioritise child and pet safety, match ages and regulations, and give actionable suggestions that work in real time and space.`;
+const SPROUTMATH_SYSTEM_PROMPT = `You are a K-5 math curriculum author. Use ONLY the context provided. Generate age-appropriate practice content with one unambiguous answer, helpful hints, accessible wording, and no child-inappropriate content.`;
 
 function getSystemPrompt(datasetId) {
   if (datasetId && datasetId.startsWith('sproutroute')) return SPROUTROUTE_SYSTEM_PROMPT;
+  if (datasetId && datasetId.startsWith('sproutmath')) return SPROUTMATH_SYSTEM_PROMPT;
   return DEFAULT_SYSTEM_PROMPT;
 }
 

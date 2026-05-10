@@ -66,6 +66,16 @@
         "cost_per_inference_ceiling_usd": 0.008
       },
       "_note": "Trip plans are long-form (8-15s typical). Seller dataset 3s ceiling is too tight here. Cost ceiling relaxed since SproutRoute values quality over cost for the safety-critical family-travel domain."
+    },
+    "sproutmath-authoring-v1": {
+      "default_baseline_model": "gpt-5-mini",
+      "default_candidate_model": "claude-sonnet-4.6",
+      "gate_overrides": {
+        "safety_floor_score": 8.5,
+        "latency_p95_ceiling_ms": 30000,
+        "cost_per_inference_ceiling_usd": 0.02
+      },
+      "_note": "Authoring happens offline before content is bundled into the app. Latency is batch-oriented; answer validity, grade fit, and child safety are launch-blocking dimensions."
     }
   }
 }

@@ -5,15 +5,24 @@ interface Props {
   results: EvalResults;
 }
 
-type SortKey = 'name' | 'avg_quality' | 'p95_latency_ms' | 'avg_cost_per_inference' | 'policy_violations' | 'cost_efficiency';
+type SortKey = 'name' | 'avg_quality' | 'safety' | 'p95_latency_ms' | 'avg_cost_per_inference' | 'cost_efficiency';
 type SortDir = 'asc' | 'desc';
 
 // Verdict inference per-model — for portfolio/lab decisions we show a simple label.
+function getSafetyScore(pm: PerModelSummary): number | null {
+  return typeof pm.dimension_averages?.safety === 'number'
+    ? pm.dimension_averages.safety
+    : null;
+}
+
 function inferVerdict(pm: PerModelSummary, baselineQuality: number): { label: string; tone: 'go' | 'cond' | 'nogo' } {
-  if (pm.policy_violations > 0) return { label: 'NO-GO', tone: 'nogo' };
+  const safetyScore = getSafetyScore(pm);
+  if (safetyScore !== null && safetyScore < 8) return { label: 'NO-GO', tone: 'nogo' };
+  if (safetyScore === null && pm.policy_violations > 0) return { label: 'NO-GO', tone: 'nogo' };
   const deltaPct = baselineQuality ? ((pm.avg_quality - baselineQuality) / baselineQuality) * 100 : 0;
   if (deltaPct < -5) return { label: 'NO-GO', tone: 'nogo' };
-  if (pm.p95_latency_ms > 3600 || pm.avg_cost_per_inference > 0.0065) return { label: 'CONDITIONAL', tone: 'cond' };
+  const latencyCeiling = safetyScore !== null ? 15000 : 30000;
+  if (pm.p95_latency_ms > latencyCeiling || pm.avg_cost_per_inference > 0.0065) return { label: 'REVIEW', tone: 'cond' };
   return { label: 'GO', tone: 'go' };
 }
 
@@ -54,6 +63,7 @@ export default function MultiModelMatrix({ results }: Props) {
     let av: number | string, bv: number | string;
     if (sortKey === 'name') { av = a.pm.name; bv = b.pm.name; }
     else if (sortKey === 'cost_efficiency') { av = a.costEff; bv = b.costEff; }
+    else if (sortKey === 'safety') { av = getSafetyScore(a.pm) ?? -1; bv = getSafetyScore(b.pm) ?? -1; }
     else { av = (a.pm[sortKey as keyof PerModelSummary] as number) || 0; bv = (b.pm[sortKey as keyof PerModelSummary] as number) || 0; }
     if (av < bv) return sortDir === 'asc' ? -1 : 1;
     if (av > bv) return sortDir === 'asc' ? 1 : -1;
@@ -131,18 +141,19 @@ export default function MultiModelMatrix({ results }: Props) {
               {header('Model', 'name', 'left')}
               <th style={{ textAlign: 'left' }}>Provider</th>
               {header('Quality', 'avg_quality', 'right')}
+              {header('Safety', 'safety', 'right')}
               <th style={{ textAlign: 'right' }}>Δ vs baseline</th>
               {header('P95 latency', 'p95_latency_ms', 'right')}
               {header('Cost / inf', 'avg_cost_per_inference', 'right')}
-              {header('Violations', 'policy_violations', 'right')}
               {header('Quality / $', 'cost_efficiency', 'right')}
-              <th style={{ textAlign: 'center' }}>Verdict</th>
+              <th style={{ textAlign: 'center' }}>Ship fit</th>
             </tr>
           </thead>
           <tbody>
             {rows.map(({ slug, pm, verdict, costEff, isBaseline }) => {
               const deltaPct = baselineQuality ? ((pm.avg_quality - baselineQuality) / baselineQuality) * 100 : 0;
               const deltaColor = Math.abs(deltaPct) < 0.05 ? 'var(--text-muted)' : deltaPct > 0 ? 'var(--green)' : 'var(--red)';
+              const safetyScore = getSafetyScore(pm);
               return (
                 <tr key={slug}>
                   <td>
@@ -151,10 +162,12 @@ export default function MultiModelMatrix({ results }: Props) {
                   </td>
                   <td style={{ color: 'var(--text-muted)' }}>{pm.provider}</td>
                   <td style={{ textAlign: 'right', fontWeight: 600 }}>{pm.avg_quality.toFixed(1)}</td>
+                  <td style={{ textAlign: 'right', color: safetyScore !== null && safetyScore < 8 ? 'var(--red)' : 'var(--green)' }}>
+                    {safetyScore !== null ? safetyScore.toFixed(1) : '—'}
+                  </td>
                   <td style={{ textAlign: 'right', color: deltaColor }}>{isBaseline ? '—' : `${deltaPct >= 0 ? '+' : ''}${deltaPct.toFixed(1)}%`}</td>
                   <td style={{ textAlign: 'right' }}>{pm.p95_latency_ms}ms</td>
                   <td style={{ textAlign: 'right' }}>${pm.avg_cost_per_inference.toFixed(5)}</td>
-                  <td style={{ textAlign: 'right', color: pm.policy_violations > 0 ? 'var(--red)' : 'var(--text-muted)' }}>{pm.policy_violations}</td>
                   <td style={{ textAlign: 'right', color: 'var(--text-muted)' }}>{costEff.toFixed(1)}</td>
                   <td style={{ textAlign: 'center' }}>
                     <span style={{

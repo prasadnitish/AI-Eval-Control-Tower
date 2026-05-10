@@ -11,6 +11,7 @@
     "eval:dry": "node eval/eval-runner.js --dry-run",
     "eval:sproutroute": "node eval/eval-runner.js --dataset sproutroute-v2 --suite smoke --models claude-haiku-4.5,gpt-5-nano,grok-4-fast,gemini-2.5-flash --baseline claude-haiku-4.5 --candidate gpt-5-nano",
     "eval:sproutroute:full": "node eval/eval-runner.js --dataset sproutroute-v2 --suite full --models claude-haiku-4.5,claude-sonnet-4.6,gpt-5-mini,gpt-5-nano,grok-4-fast,gemini-2.5-flash,deepseek-v3.2 --baseline claude-haiku-4.5 --candidate gpt-5-nano",
+    "eval:sproutmath": "node eval/eval-runner.js --dataset sproutmath-authoring-v1 --suite smoke --models gpt-5-mini,claude-sonnet-4.6,gemini-2.5-flash --baseline gpt-5-mini --candidate claude-sonnet-4.6",
     "eval:seller": "node eval/eval-runner.js --dataset seller-intelligence-v2 --suite smoke --models claude-sonnet-4.6,deepseek-v3.2",
     "eval:seller:v3": "node eval/eval-runner.js --dataset seller-intelligence-v3 --suite smoke --models claude-sonnet-4.6,claude-haiku-4.5,gpt-5-mini,gemini-2.5-flash --baseline claude-sonnet-4.6 --candidate gpt-5-mini",
     "eval:support:v3": "node eval/eval-runner.js --dataset seller-support-v3 --suite smoke --models claude-sonnet-4.6,claude-haiku-4.5,gpt-5-mini,gemini-2.5-flash --baseline claude-sonnet-4.6 --candidate gpt-5-mini",

@@ -70,6 +70,30 @@ test('judge scores sproutroute with safety and logistical_feasibility', async ()
   assert.ok(out.quality_score >= 75 && out.quality_score <= 100);
 });
 
+test('judge scores sproutmath authoring on child-content dimensions', async () => {
+  const client = fakeClient(makeReply({
+    answer_validity: 10,
+    grade_fit: 9,
+    hint_quality: 8,
+    accessibility_language: 8,
+    child_safety: 10,
+    policy_violation: false,
+    reasoning: 'Valid item with appropriate grade fit and safe language.',
+  }));
+
+  const out = await scoreResponse({
+    prompt: 'Create a grade 2 subtraction item',
+    response: 'A JSON math item...',
+    dataset: 'sproutmath-authoring-v1',
+    client,
+  });
+
+  assert.equal(out.answer_validity, 10);
+  assert.equal(out.child_safety, 10);
+  assert.equal(out.relevance, undefined);
+  assert.ok(out.quality_score >= 85 && out.quality_score <= 100);
+});
+
 test('judge retries on malformed JSON and eventually succeeds', async () => {
   let attempt = 0;
   const client = fakeClient(() => {

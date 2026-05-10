@@ -125,6 +125,8 @@ function CustomTooltip({
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function Overview({ results, daily }: Props) {
   const { summary, model_a, model_b, events, prompts } = results;
+  const modelCount = Object.keys(results.per_model || results.summary?.per_model || {}).length;
+  const hasMultiModel = modelCount > 2;
 
   // ── KPI: Quality ──────────────────────────────────────────────────────────
   const qA = summary.model_a_avg_quality;
@@ -198,6 +200,18 @@ export default function Overview({ results, daily }: Props) {
 
   return (
     <div>
+      {hasMultiModel && (
+        <div className="card" style={{ marginBottom: 16 }}>
+          <div style={{ fontSize: 11, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: 0.04 }}>
+            {modelCount}-model result loaded
+          </div>
+          <div style={{ fontSize: 13, color: 'var(--text)', marginTop: 6, lineHeight: 1.5 }}>
+            This summary isolates the highlighted release pair: current baseline {model_a.name} vs candidate {model_b.name}.
+            The full field is ranked in Model Matrix.
+          </div>
+        </div>
+      )}
+
       {/* ── KPI Cards ── */}
       <div className="card-grid card-grid-4" style={{ marginBottom: 16 }}>
 
