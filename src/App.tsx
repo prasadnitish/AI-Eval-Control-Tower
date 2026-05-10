@@ -360,8 +360,20 @@ function RubricView({ scenario }: { scenario: Scenario }) {
 }
 
 function EconomicsView({ scenario }: { scenario: Scenario }) {
-  const maxCost = Math.max(...scenario.candidates.map((candidate) => candidate.cost), 0.001);
-  const maxLatency = Math.max(...scenario.candidates.map((candidate) => candidate.latencyMs), 1);
+  const chartCandidates = sortedCandidates(scenario);
+  const costs = chartCandidates.map((candidate) => Math.max(candidate.cost, 0.00001));
+  const latencies = chartCandidates.map((candidate) => Math.max(candidate.latencyMs, 1));
+  const minCost = Math.min(...costs);
+  const maxCost = Math.max(...costs);
+  const minLatency = Math.min(...latencies);
+  const maxLatency = Math.max(...latencies);
+  const normalizeLog = (value: number, min: number, max: number) => {
+    if (min === max) return 50;
+    const logValue = Math.log10(value);
+    const logMin = Math.log10(min);
+    const logMax = Math.log10(max);
+    return 12 + ((logValue - logMin) / (logMax - logMin)) * 76;
+  };
 
   return (
     <section className="view-stack">
@@ -376,23 +388,41 @@ function EconomicsView({ scenario }: { scenario: Scenario }) {
       <div className="economics-grid">
         <article className="panel">
           <span className="mini-label">Cost and latency by candidate</span>
-          <div className="bubble-chart" aria-label="Candidate cost and latency comparison">
-            {scenario.candidates.map((candidate) => {
-              const left = Math.max(6, Math.min(90, (candidate.cost / maxCost) * 84));
-              const bottom = Math.max(8, Math.min(86, (candidate.latencyMs / maxLatency) * 78));
-              return (
-                <div
-                  key={candidate.id}
-                  className={`bubble ${toneClass(candidate.verdict)}`}
-                  style={{ left: `${left}%`, bottom: `${bottom}%` }}
-                  title={`${candidate.name}: ${fmtCost(candidate.cost)}, ${fmtLatency(candidate.latencyMs)}`}
-                >
-                  {candidate.name.split(' ')[0]}
+          <p className="chart-note">Lower-left is cheaper and faster. Each numbered point maps to the model list.</p>
+          <div className="envelope-layout">
+            <div className="envelope-plot" aria-label="Candidate cost and latency comparison">
+              <span className="axis-hint top">Slower P95</span>
+              <span className="axis-hint bottom">Faster P95</span>
+              <span className="axis-hint left">Lower cost</span>
+              <span className="axis-hint right">Higher cost</span>
+              {chartCandidates.map((candidate, index) => {
+                const left = normalizeLog(Math.max(candidate.cost, 0.00001), minCost, maxCost);
+                const bottom = normalizeLog(Math.max(candidate.latencyMs, 1), minLatency, maxLatency);
+                return (
+                  <div
+                    key={candidate.id}
+                    className={`envelope-point ${toneClass(candidate.verdict)}`}
+                    style={{ left: `${left}%`, bottom: `${bottom}%` }}
+                    title={`${index + 1}. ${candidate.name}: ${fmtCost(candidate.cost)}, ${fmtLatency(candidate.latencyMs)}`}
+                  >
+                    {index + 1}
+                  </div>
+                );
+              })}
+            </div>
+            <div className="envelope-legend" aria-label="Candidate chart legend">
+              {chartCandidates.map((candidate, index) => (
+                <div key={candidate.id} className="envelope-legend-row">
+                  <span className={`legend-index ${toneClass(candidate.verdict)}`}>{index + 1}</span>
+                  <div>
+                    <strong>{candidate.name}</strong>
+                    <small>
+                      {fmtCost(candidate.cost)} · {fmtLatency(candidate.latencyMs)} · {candidate.verdictLabel}
+                    </small>
+                  </div>
                 </div>
-              );
-            })}
-            <span className="axis-label x">Cost per inference</span>
-            <span className="axis-label y">P95 latency</span>
+              ))}
+            </div>
           </div>
         </article>
 
