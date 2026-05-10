@@ -130,7 +130,7 @@ function candidateFromSummary(
 const sproutRouteModels = perModel(sproutRoute);
 const sellerModels = perModel(seller);
 
-export const SCENARIOS: Scenario[] = [
+const SCENARIO_DEFINITIONS: Scenario[] = [
   {
     id: 'seller-growth',
     title: '3P Seller Growth Recommendations',
@@ -589,6 +589,22 @@ export const SCENARIOS: Scenario[] = [
     },
   },
 ];
+
+const SCENARIO_ORDER: ScenarioId[] = [
+  'sproutroute-travel',
+  'seller-growth',
+  'sproutmath-authoring',
+];
+
+export const SCENARIOS: Scenario[] = SCENARIO_ORDER.map((id) => {
+  const scenario = SCENARIO_DEFINITIONS.find((item) => item.id === id);
+
+  if (!scenario) {
+    throw new Error(`Missing scenario definition for ${id}`);
+  }
+
+  return scenario;
+});
 
 export function getScenario(id: ScenarioId): Scenario {
   return SCENARIOS.find((scenario) => scenario.id === id) || SCENARIOS[0];

@@ -21,7 +21,7 @@ The repo is designed to be cloned and run locally with your own API key. The pub
 | Drift timeline | Distribution-shift and behaviour-shift events over 30 days |
 | GitHub Actions gate | PRs run secret-free install/test/build checks; live OpenRouter evals run only from the manual workflow |
 | Dashboard | React + Vite launch-review tool with decision memo, evidence chain, candidate board, rubric/failure modes, operating envelope, rollout plan, and runbook |
-| Three product scenarios | Seller-growth AM recommendations, SproutMath content authoring, and SproutRoute family-travel planning |
+| Three product scenarios | SproutRoute family-travel planning, seller-growth AM recommendations, and SproutMath content authoring |
 
 ---
 
@@ -72,9 +72,9 @@ Datasets live in [`datasets/`](datasets/) and are plain JSON so teams can inspec
 
 | Dataset | What it checks | Primary use case |
 |---|---|---|
+| `sproutroute-v2` | Family profile, ages, accessibility needs, weather, regulatory context, dietary constraints, activity preferences, itinerary feasibility, and safety advice | SproutRoute itinerary generation and safety tips |
 | `seller-intelligence-v3` | Seller account health, ODR, reserve holds, Buy Box pressure, return rates, suppression history, chargebacks, margins, and AM advisory tasks | Account-manager recommendations to 3P ecommerce sellers |
 | `sproutmath-authoring-v1` | Generated question text, answer choices, answer key, hint, explanation, spoken form, grade-band fit, accessibility wording, and child-safety boundaries | SproutMath K-5 content authoring gate |
-| `sproutroute-v2` | Family profile, ages, accessibility needs, weather, regulatory context, dietary constraints, activity preferences, itinerary feasibility, and safety advice | SproutRoute itinerary generation and safety tips |
 
 Each prompt contains `context_blocks`. The runner injects those blocks into every candidate model call so each model answers from the same evidence packet.
 
@@ -184,12 +184,12 @@ Family personas live in [`datasets/sproutroute-profiles.json`](datasets/sproutro
 
 | File | Prompts | Categories | Difficulty | Domain |
 |---|---|---|---|---|
+| `datasets/sproutroute-v2.json` | 25 | 7 | easy/medium/hard mix | Itinerary, packing, safety, weather, diet, theme park, international |
 | `datasets/seller-intelligence-v2.json` | 50 | 12 | easy/medium/hard mix | AM call prep, risk triage, pricing strategy |
 | `datasets/seller-intelligence-v3.json` | 24 | 12 | medium/hard only (hard-eval) | AM advisory with richer context_blocks |
 | `datasets/seller-support-v2.json` | 50 | 12 | easy/medium/hard mix | Policy guidance, account health, appeals |
 | `datasets/seller-support-v3.json` | 24 | 12 | medium/hard only (hard-eval) | Suspensions, IP appeals, counterfeit, POA |
 | `datasets/sproutmath-authoring-v1.json` | 10 | 5 | easy/medium/hard mix | K-5 question, hint, answer-key, accessibility, child-safety authoring gate |
-| `datasets/sproutroute-v2.json` | 25 | 7 | easy/medium/hard mix | Itinerary, packing, safety, weather, diet, theme park, international |
 
 All v2/v3 datasets use structured `context_blocks` for prompt injection. SproutRoute v2 references `family_profile_id` → `datasets/sproutroute-profiles.json`. Seller v3 references `seller_profile_id` → `datasets/seller-profiles-v3.json` and `asin-catalog-v3.json` (though context_blocks carry the needed snapshots inline, so profile lookup is mostly redundant).
 
@@ -276,12 +276,12 @@ ai-evals-control-tower/
 │   └── settings.json         # Gate thresholds, suite config, defaults
 │
 ├── datasets/
+│   ├── sproutroute-v2.json
+│   ├── sproutroute-profiles.json
 │   ├── seller-intelligence-v2.json
-│   ├── sproutmath-authoring-v1.json
 │   ├── seller-support-v2.json
 │   ├── seller-profiles.json
-│   ├── sproutroute-v2.json
-│   └── sproutroute-profiles.json
+│   └── sproutmath-authoring-v1.json
 │
 ├── eval/
 │   ├── openrouterClient.js   # OpenAI-compatible client pointed at OpenRouter
