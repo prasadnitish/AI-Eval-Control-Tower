@@ -63,6 +63,11 @@ export default function App() {
           <p>Release Readiness Dashboard</p>
         </div>
 
+        <div className="demo-link-rail" aria-label="Demo links">
+          <a href="/project-agent-observability.html">Case study</a>
+          <a href="https://github.com/prasadnitish/AI-Eval-Control-Tower/tree/codex/agent-observability" target="_blank" rel="noreferrer">GitHub ↗</a>
+        </div>
+
         <div className="sidebar-section">Analysis</div>
         {NAV.map(n => (
           <div
