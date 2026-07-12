@@ -107,3 +107,7 @@ export interface GateThresholds {
   costPerInferenceMax: number;
   allowDrift: boolean;
 }
+
+export type SpanStatus = 'ok' | 'error' | 'fallback' | 'skipped';
+export interface TraceSpan { span_id:string; label:string; parent_span_id:string|null; start_ms:number; end_ms:number; status:SpanStatus; cost:number|null; detail:Record<string,unknown>|null; }
+export interface Trace { meta:{run_id:string;tenant_id:string;service_id:string;environment:string;started_at:string;total_cost:number;source:'eval-runner'|'orchestrator';offsets_reconstructed?:boolean};spans:TraceSpan[]; }

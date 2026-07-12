@@ -1,0 +1,13 @@
+{
+  "target_spans_per_minute": 50000,
+  "burst_attempted": 150000,
+  "buffer_limit": 60000,
+  "accepted": 60090,
+  "dropped_low_priority_successes": 89910,
+  "retained_errors": 150,
+  "p95_ingest_delay_ms": 0,
+  "harness_runtime_ms": 27.73,
+  "tenant_crossovers": 0,
+  "raw_payload_fields_persisted": 0,
+  "evidence_level": "in-process buffered collector simulation"
+}

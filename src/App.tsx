@@ -7,11 +7,12 @@ import LatencyView from './views/LatencyView';
 import CostView from './views/CostView';
 import ABComparison from './views/ABComparison';
 import ReleaseReadiness from './views/ReleaseReadiness';
+import Observability from './views/Observability';
 
 // Placeholder — replaced by baked data after running eval + history
 import placeholderData from './data/placeholder.json';
 
-type View = 'overview' | 'accuracy' | 'latency' | 'cost' | 'ab' | 'release';
+type View = 'overview' | 'accuracy' | 'latency' | 'cost' | 'ab' | 'release' | 'observability';
 
 const NAV = [
   { id: 'overview', label: 'Overview', icon: '◈' },
@@ -20,6 +21,7 @@ const NAV = [
   { id: 'cost', label: 'Cost', icon: '◇' },
   { id: 'ab', label: 'A/B Comparison', icon: '⊞' },
   { id: 'release', label: 'Release Readiness', icon: '◉' },
+  { id: 'observability', label: 'Runtime Traces', icon: '⌁' },
 ] as const;
 
 export default function App() {
@@ -141,12 +143,12 @@ export default function App() {
         <div className="controls-bar">
           <h2>{NAV.find(n => n.id === view)?.label}</h2>
 
-          <div className="model-legend">
+          {view !== 'observability' && <div className="model-legend">
             <span><span className="model-dot dot-a" />{results.model_a?.name || 'Model A'}</span>
             <span><span className="model-dot dot-b" />{results.model_b?.name || 'Model B'}</span>
-          </div>
+          </div>}
 
-          {['7d','14d','30d'].map(r => (
+          {view !== 'observability' && ['7d','14d','30d'].map(r => (
             <button
               key={r}
               className={`badge-btn${dateRange === r ? ' active' : ''}`}
@@ -164,6 +166,7 @@ export default function App() {
         {view === 'cost' && <CostView {...viewProps} />}
         {view === 'ab' && <ABComparison {...viewProps} />}
         {view === 'release' && <ReleaseReadiness {...viewProps} />}
+        {view === 'observability' && <Observability />}
       </main>
     </div>
   );

@@ -27,6 +27,7 @@ import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join, resolve } from 'path';
 import { scoreResponse } from './judge.js';
+import { createSpanLogger } from './span-logger.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -201,6 +202,9 @@ async function callModel(modelConfig, prompt) {
 
 // ── Main run ──────────────────────────────────────────────────────────────────
 async function run() {
+  const today = new Date().toISOString().split('T')[0];
+  const runId = `run_${today.replace(/-/g, '')}_${String(Date.now()).slice(-4)}`;
+  const trace = createSpanLogger(runId, { costTable: modelsConfig.models });
   console.log(`\n=== AI Evals Runner ===`);
   console.log(`Dataset:  ${datasetRaw.id} (${SUITE} suite, ${selectedPrompts.length} prompts)`);
   console.log(`Model A:  ${modelA.name} (${MODEL_A_ID})`);
@@ -221,14 +225,14 @@ async function run() {
     try {
       // Run both models in parallel
       const [resultA, resultB] = await Promise.all([
-        callModel(modelA, injectedPrompt),
-        callModel(modelB, injectedPrompt),
+        trace.span(`model_a:${p.id}`, () => callModel(modelA, injectedPrompt), { modelId: MODEL_A_ID, usageFrom: r => ({ inputTokens: r.input_tokens, outputTokens: r.output_tokens }), detail: { model_id: MODEL_A_ID } }),
+        trace.span(`model_b:${p.id}`, () => callModel(modelB, injectedPrompt), { modelId: MODEL_B_ID, usageFrom: r => ({ inputTokens: r.input_tokens, outputTokens: r.output_tokens }), detail: { model_id: MODEL_B_ID } }),
       ]);
 
       // Judge both responses in parallel
       const [scoresA, scoresB] = await Promise.all([
-        scoreResponse({ prompt: injectedPrompt, response: resultA.text, dataset: datasetRaw.id }),
-        scoreResponse({ prompt: injectedPrompt, response: resultB.text, dataset: datasetRaw.id }),
+        trace.span(`judge_a:${p.id}`, () => scoreResponse({ prompt: injectedPrompt, response: resultA.text, dataset: datasetRaw.id })),
+        trace.span(`judge_b:${p.id}`, () => scoreResponse({ prompt: injectedPrompt, response: resultB.text, dataset: datasetRaw.id })),
       ]);
 
       totalCostA += resultA.cost;
@@ -287,10 +291,6 @@ async function run() {
   const avgB = avg(validResults.map(r => r.model_b_quality_score));
   const latenciesA = validResults.map(r => r.model_a_latency_ms).sort((a, b) => a - b);
   const latenciesB = validResults.map(r => r.model_b_latency_ms).sort((a, b) => a - b);
-  const today = new Date().toISOString().split('T')[0];
-
-  const runId = `run_${today.replace(/-/g, '')}_${String(Date.now()).slice(-4)}`;
-
   const output = {
     meta: {
       generated_at: new Date().toISOString(),
@@ -357,6 +357,8 @@ async function run() {
   // Write output
   mkdirSync(resolve(ROOT, OUTPUT_PATH, '..'), { recursive: true });
   writeFileSync(resolve(ROOT, OUTPUT_PATH), JSON.stringify(output, null, 2));
+  const tracePath = resolve(ROOT, 'output', 'traces', `${runId}.json`);
+  await trace.flush(tracePath);
 
   console.log(`\n=== Run Complete ===`);
   console.log(`Prompts:  ${selectedPrompts.length} (${runErrors} errors)`);
@@ -367,6 +369,7 @@ async function run() {
   console.log(`Total cost (B):      $${output.summary.model_b_total_cost_usd}`);
   console.log(`Output:              ${OUTPUT_PATH}`);
   console.log(`Run ID:              ${runId}\n`);
+  console.log(`Trace:               ${tracePath}\n`);
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────────

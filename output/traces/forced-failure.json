@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "run_id": "forced_failure_20260712",
+    "tenant_id": "portfolio",
+    "service_id": "eval-control-tower",
+    "environment": "local",
+    "started_at": "2026-07-12T17:44:17.969Z",
+    "total_cost": 0,
+    "source": "eval-runner"
+  },
+  "spans": [
+    {
+      "span_id": "6f889f44-15c6-425a-a951-f3a5a2781e7a",
+      "label": "retrieval",
+      "parent_span_id": null,
+      "start_ms": 0,
+      "end_ms": 0,
+      "status": "ok",
+      "cost": null,
+      "detail": null
+    },
+    {
+      "span_id": "a10f4999-6165-44c0-8d4a-c5546c8241be",
+      "label": "policy_judge",
+      "parent_span_id": null,
+      "start_ms": 0,
+      "end_ms": 1,
+      "status": "error",
+      "cost": null,
+      "detail": {
+        "error_code": "POLICY_SERVICE_UNAVAILABLE"
+      }
+    },
+    {
+      "span_id": "043ce894-35c8-4ce1-b000-a2ae48997cc8",
+      "label": "release_gate",
+      "parent_span_id": null,
+      "start_ms": 1,
+      "end_ms": 1,
+      "status": "ok",
+      "cost": null,
+      "detail": {
+        "fallback_reason": "policy judge unavailable"
+      }
+    }
+  ]
+}

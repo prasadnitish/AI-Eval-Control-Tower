@@ -10,6 +10,9 @@
     "eval": "node eval/eval-runner.js",
     "gate": "node eval/check-gate.js",
     "history": "node eval/generate-history.js"
+    ,"test": "node --test tests/*.test.js"
+    ,"trace:load": "node eval/trace-load.js"
+    ,"trace:failure": "node eval/generate-failure-trace.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",
